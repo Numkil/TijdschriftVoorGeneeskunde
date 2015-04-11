@@ -7,6 +7,7 @@ automatisch geupdate worden in de database
 
 Developers
 ==========
+[![Build Status](https://travis-ci.org/TijdschriftVoorGeneeskunde/TijdschriftVoorGeneeskunde.svg)](https://travis-ci.org/TijdschriftVoorGeneeskunde/TijdschriftVoorGeneeskunde)
 1) Checking your System Configuration
 -------------------------------------
 
