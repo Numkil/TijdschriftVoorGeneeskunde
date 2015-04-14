@@ -1,0 +1,31 @@
+/app/bootstrap.php.cache
+/app/cache/*
+/app/config/parameters.yml
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/build/
+/vendor/
+/bin/
+/composer.phar
+/composer.lock
+/node_modules/
+/web/bundles/*
+/.vagrant/
+/.idea/
+/xdebug/
+
+# Javacript, push everything except generated files
+!/web/bundles/global
+/web/bundles/global/vendor/*
+/web/bundles/global/js/src/pages/*
+/web/bundles/global/js/build/*
+/web/bundles/global/less/sprites
+/web/bundles/global/images/*-sprites.png
+/web/bundles/global/css/stadssalg.css
+
+# don't push our cache files
+web/media/
+web/assets/
+bower_components
+sftpCache.json
