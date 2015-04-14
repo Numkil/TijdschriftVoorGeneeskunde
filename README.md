@@ -27,7 +27,10 @@ If you get any warnings or recommendations, fix them before moving on.
 -------------------------------------------
 
 Execute the following commands to get a working system on your pc.
+
     composer install
+    php app/console doctrine:database:create
+    php app/console doctrine:schema:update --force # Create tables for the project
     php app/console server:run
 
 3) Which commits get accepted?
