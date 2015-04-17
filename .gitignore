@@ -17,7 +17,7 @@
 *.swp
 
 # Javacript, push everything except generated files
-!/web/bundles/global
+/web/bundles/global
 /web/bundles/global/vendor/*
 /web/bundles/global/js/src/pages/*
 /web/bundles/global/js/build/*

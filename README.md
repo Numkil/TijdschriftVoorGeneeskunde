@@ -26,9 +26,18 @@ If you get any warnings or recommendations, fix them before moving on.
 2) Getting your copy of the project running
 -------------------------------------------
 
+You need the following programs installed.
+    
+    npm
+    composer
+    symfony
+
 Execute the following commands to get a working system on your pc.
 
-    composer install
+    npm install                # Download the automation tools
+    composer install           # Download php vendor libs + choose parameters
+    bower install              # Download javascript and css vendor libs
+    gulp dev {prod}            # Install / Concat / Uglify all the js and css in the right folders
     php app/console doctrine:database:create
     php app/console doctrine:schema:update --force # Create tables for the project
     php app/console server:run
