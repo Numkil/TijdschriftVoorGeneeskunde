@@ -14,6 +14,7 @@
 /.vagrant/
 /.idea/
 /xdebug/
+*.swp
 
 # Javacript, push everything except generated files
 !/web/bundles/global
