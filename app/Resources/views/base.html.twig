@@ -2,12 +2,18 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Tijdschrift voor Geneeskunde{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/global/vendor/vendor-styles.css') }}" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{{ asset('bundles/global/css/TvG-style.css') }}" type="text/css" media="screen" title="no title" charset="utf-8">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <script type="text/javascript" charset="utf-8" src="{{asset('bundles/global/vendor/vendor-scripts.js')}}"></script>
+        <script type="text/javascript" charset="utf-8" src="{{asset('bundles/global/js/TvG-scripts.js')}}"></script>
+        {% endblock %}
     </body>
 </html>
