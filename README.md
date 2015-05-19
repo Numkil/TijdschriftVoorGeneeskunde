@@ -1,7 +1,6 @@
 Tijdschrift voor Geneeskunde
 ============================
 
-[![Join the chat at https://gitter.im/TijdschriftVoorGeneeskunde/TijdschriftVoorGeneeskunde](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/TijdschriftVoorGeneeskunde/TijdschriftVoorGeneeskunde?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Dit is de nieuwe gemoderniseerde website voor het tijdschrift der geneeskunde.
 Management van de abbonees is de belangrijkste verbetering waaraan gewerkt zal
 worden. Ook zal het betalen van het abonnement via de website moeten kunnen en
@@ -9,7 +8,9 @@ automatisch geupdate worden in de database
 
 Developers
 ==========
-[![Build Status](https://travis-ci.org/TijdschriftVoorGeneeskunde/TijdschriftVoorGeneeskunde.svg)](https://travis-ci.org/TijdschriftVoorGeneeskunde/TijdschriftVoorGeneeskunde)
+[![Build Status](https://travis-ci.org/TijdschriftVoorGeneeskunde/TijdschriftVoorGeneeskunde.svg)](https://travis-ci.org/
+[![Join the chat at https://gitter.im/TijdschriftVoorGeneeskunde/TijdschriftVoorGeneeskunde](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/TijdschriftVoorGeneeskunde/TijdschriftVoorGeneeskunde?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+TijdschriftVoorGeneeskunde/TijdschriftVoorGeneeskunde)
 1) Checking your System Configuration
 -------------------------------------
 
