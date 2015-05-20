@@ -1,0 +1,14 @@
+<div class="collapse navbar-collapse pull-right">
+<ul class="nav navbar-nav">
+    <li>
+    <a href="{{path('fos_user_profile_show')}}">
+        {{ 'logged_in_as'|trans({'%username%': app.user.username}) }}
+    </a>
+    </li>
+    <li>
+    <a class="btn btn-danger" href="{{ path('fos_user_security_logout') }}">
+        {{ 'logout'|trans({}, 'FOSUserBundle') }}
+    </a>
+    </li>
+</ul>
+</div><!--/.nav-collapse -->
