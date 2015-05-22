@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\RoleInterface;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  *
@@ -48,5 +48,15 @@ class Role implements RoleInterface
     public function getRole()
     {
         return $this->role;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 }

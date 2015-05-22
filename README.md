@@ -30,10 +30,13 @@ If you get any warnings or recommendations, fix them before moving on.
 -------------------------------------------
 
 You need the following programs installed.
-    
+
     npm
     composer
     symfony
+    bower
+    gulp
+    a database
 
 Execute the following commands to get a working system on your pc.
 
@@ -43,6 +46,7 @@ Execute the following commands to get a working system on your pc.
     gulp dev {prod}            # Install / Concat / Uglify all the js and css in the right folders
     php app/console doctrine:database:create
     php app/console doctrine:schema:update --force # Create tables for the project
+    php app/console doctrine:fixture:load          # Initial data likes roles, etc..
     php app/console server:run
 
 3) Which commits get accepted?
@@ -64,4 +68,4 @@ yourself. Everything else goes in AppBundle.
 
 I hope that by keeping everything
 small, simple and not creating special cases or dependencies we can keep the
-code as simple as a hello world. 
+code as simple as a hello world.
