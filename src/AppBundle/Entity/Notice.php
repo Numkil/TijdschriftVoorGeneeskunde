@@ -8,11 +8,26 @@ use Doctrine\ORM\Mapping as ORM;
 * Class Notice
 */
 class Notice{
-	
+	/**
+	* @ORM\Column(name="id", type="integer", nullable=false, length=150)
+	*/
 	private $id;
+	/**
+	* @ORM\Column(name="title", type="string", nullable=false, length=150)
+	*/
 	private $title;
+	/**
+	* @ORM\Column(name="message", type="string", nullable=false, length=150)
+	*/
 	private $message;
+	/**
+	* @ORM\Column(name="creationDate", type="datetime", nullable=false, length=150)
+	*/
 	private $creationDate;
+
+	public function __construct(){
+		$this->creationDate = new \DateTime();
+	}
 
 	public function setId($id){
 		$this->id = $id;
