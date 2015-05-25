@@ -21,31 +21,36 @@ class LoadRoleData implements FixtureInterface
        $role->setName('User');
        $role->setRole('ROLE_USER');
        $manager->persist($role);
-       $manager->flush();
 
        $role = new Role();
        $role->setName('Payed User');
        $role->setRole('ROLE_PAIDUSER');
        $manager->persist($role);
-       $manager->flush();
 
        $role = new Role();
        $role->setName('Printer');
        $role->setRole('ROLE_PRINTER');
        $manager->persist($role);
-       $manager->flush();
 
        $role = new Role();
        $role->setName('Admin');
        $role->setRole('ROLE_ADMIN');
        $manager->persist($role);
-       $manager->flush();
 
        $role = new Role();
        $role->setName('Super Admin');
        $role->setRole('ROLE_SUPER_ADMIN');
        $manager->persist($role);
-       $manager->flush();
 
+       $manager->flush();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getOrder()
+    {
+        return 1;
+    }
+
 }
