@@ -69,6 +69,8 @@ doctrine:
         #     path:     "%database_path%"
         mapping_types:
           enum: string
+        types:
+          PaymentType: AppBundle\Entity\Types\PaymentType
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
