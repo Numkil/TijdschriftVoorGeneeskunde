@@ -20,6 +20,10 @@ class Subscription{
      * @var \DateTime
      */
     private $endDate;
+
+    /**
+     * @ORM\Column(name="isPaid", type="boolean")
+     */
     protected $isPaid;
 
     public function __construct($startDate, $endDate){
