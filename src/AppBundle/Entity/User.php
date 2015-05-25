@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
+use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -36,18 +37,11 @@ class User extends BaseUser
     protected $_firstname;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="telephone", type="integer", length=150)
+     * @var string
+     * @ORM\Column(name="telephone", type="string", length=150)
+     * @AssertPhoneNumber(defaultRegion="BE")
      */
     protected $_telephone;
-
-    /**
-     * @var Role[]
-     *
-     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
-     */
-    protected $_roles;
 
     /**
      * @var Subscriber
@@ -71,7 +65,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        #hack hack hack
     }
 
     /**
@@ -139,25 +132,6 @@ class User extends BaseUser
     public function setTelephone($telephone)
     {
         $this->_telephone = $telephone;
-
-        return $this;
-    }
-
-    /**
-     * @return Role[] The user roles
-     */
-    public function getRoles()
-    {
-        return $this->_roles->toArray();
-    }
-
-    /**
-     * @param Role[] role
-     * @return this
-     */
-    public function setRoles(array $roles)
-    {
-        $this->_roles = new ArrayCollection($roles);
 
         return $this;
     }
