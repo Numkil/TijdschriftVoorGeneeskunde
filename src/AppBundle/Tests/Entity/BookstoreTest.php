@@ -47,6 +47,8 @@ class BookstoreTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($bookstore->amountSubscribers(), 0);
         $bookstore->addSubscriber($user);
         $this->assertEquals($bookstore->amountSubscribers(), 1);
+        $bookstore->addSubscriber($user);
+        $this->assertEquals($bookstore->amountSubscribers(), 1);
     }
 
     private function createUser1(){

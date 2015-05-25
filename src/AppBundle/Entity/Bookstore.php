@@ -45,8 +45,9 @@ class Bookstore
      */
     public function addSubscriber($subscriber)
     {
-        $this->_subscribers->add($subscriber);
-
+        if(!$this->_subscribers->contains($subscriber)){
+            $this->_subscribers->add($subscriber);
+        }
         return $this;
     }
 
