@@ -11,6 +11,20 @@ class ArticleParser{
 	private $username;
 	private $password;
 
+    /**
+     * @param mixed $hostname
+     * @param mixed $encodingtype
+     * @param mixed $username
+     * @param mixed $password
+     */
+    public function __construct($hostname, $encodingtype, $username, $password)
+    {
+        $this->setHostname($hostname);
+        $this->setEncodingType($encodingtype);
+        $this->setUsername($username);
+        $this->setPassword($password);
+    }
+
 	/**
 	* Set hostname
 	* @param String $hostname
