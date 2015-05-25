@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Notice{
 	
 	private $id;
+	private $title;
 	private $message;
 	private $creationDate;
 
@@ -21,6 +22,16 @@ class Notice{
 
 	public function getId(){
 		return $this->id;
+	}
+
+	public function setTitle($title){
+		$this->title = $title;
+
+		return $this;
+	}
+
+	public function getTitle(){
+		return $this->title;
 	}
 
 	public function setMessage($message){
