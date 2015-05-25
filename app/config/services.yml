@@ -3,7 +3,12 @@
 parameters:
 #    parameter_name: value
 
+## Our services
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  article_parser:
+    class: AppBundle\Service\ArticleParser
+    arguments:
+      - "%hostname%"
+      - "%encoding_type%"
+      - "%username%"
+      - "%password%"
