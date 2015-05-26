@@ -1,0 +1,53 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST"
+    class="form-horizontal">
+
+    <div class="form-group">
+        <label for="username" class="col-sm-2 control-label">{{ form_label(form.username) }}</label>
+        <div class="col-sm-8">
+            {{ form_widget(form.username, { 'attr' : { 'class': 'form-control' } }) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">{{ form_label(form.name) }}</label>
+        <div class="col-sm-4">
+            {{ form_widget(form.name, { 'attr' : { 'class': 'form-control' } }) }}
+        </div>
+        <label for="firstname" class="col-sm-2 control-label">{{ form_label(form.firstname) }}</label>
+        <div class="col-sm-4" >
+            {{ form_widget(form.firstname, { 'attr' : { 'class': 'form-control' } }) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">{{ form_label(form.email) }}</label>
+        <div class="col-lg-8">
+            {{ form_widget(form.email, { 'attr' : { 'class': 'form-control' } }) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="telephone" class="col-sm-2 control-label">{{ form_label(form.telephone) }}</label>
+        <div class="col-lg-8">
+            {{ form_widget(form.telephone, { 'attr' : { 'class': 'form-control' } }) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {% for passwordField in form.plainPassword %}
+        <label for="password" class="col-sm-2 control-label">{{ form_label(passwordField) }}</label>
+        <div class="col-sm-4">
+            {{ form_widget(passwordField, { 'attr' : { 'class': 'form-control' } }) }}
+        </div>
+        {% endfor %}
+    </div>
+
+    {{ form_rest(form) }}
+
+    <div>
+        <button type="submit" class="btn btn-primary"> {{ 'registration.submit'|trans }} </button>
+    </div>
+    </div>
+</form>
