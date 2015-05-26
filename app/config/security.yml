@@ -41,3 +41,4 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/notice/new/$, role: ROLE_ADMIN}
+        - { path: ^/admin/notice/, role: ROLE_SUPER_ADMIN}

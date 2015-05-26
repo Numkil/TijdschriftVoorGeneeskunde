@@ -10,7 +10,7 @@ use AppBundle\Entity\Notice;
 class NoticeController extends Controller{
 	
 	/**
-	* @Route("/notice/", name="adminOverview")
+	* @Route("/admin/notice/", name="adminOverview")
 	*/
 	public function indexAction(Request $request){
 		$notices = $this->getDoctrine()
@@ -74,7 +74,7 @@ class NoticeController extends Controller{
 	}
 
 	/**
-	* @Route("/notice/update/{id}", name="updateNotice")
+	* @Route("/admin/notice/update/{id}", name="updateNotice")
 	*/
 	public function updateNoticeAction(Request $request, $id){
 		$em = $this->getDoctrine()->getManager();
@@ -104,7 +104,7 @@ class NoticeController extends Controller{
 	}
 
 	/**
-	* @Route("/notice/remove/{id}", name="removeNotice")
+	* @Route("/admin/notice/remove/{id}", name="removeNotice")
 	* 
 	*/
 	public function removeNoticeAction($id){	
