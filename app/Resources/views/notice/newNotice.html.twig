@@ -1,0 +1,22 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <h1>New Notice</h1>
+    {{ form_start(notice) }}
+    	{{ form_errors(notice) }}
+
+    	<div class="form-group">
+    		<label for="title">{{ form_label(notice.title) }}</label>
+    		{{ form_widget(notice.title) }}
+    	</div>
+
+    	<div class="form-group">
+    		<label for="message">{{ form_label(notice.message) }}</label>
+    		{{form_widget(notice.message)}}
+    	</div>
+
+    	{{form_widget(notice.save, { 'attr': {'class': 'btn btn-primary'}})}}
+
+    {{ form_end(notice) }}
+{% endblock %}
+	

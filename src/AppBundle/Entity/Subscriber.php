@@ -33,6 +33,16 @@ class Subscriber
     protected $_subscriptions;
 
     /**
+     * @ORM\OneToOne(targetEntity="Address", mappedBy="facturationAddress")
+     */
+    protected $_facturationAddress;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Address", mappedBy="deliveryAddress")
+     */
+    protected $_deliveryAddress;
+
+    /**
      * Get pricingtype
      *
      * @return string
@@ -135,5 +145,37 @@ class Subscriber
            if($subscription->isActive()){return true;}
         }
         return false;
+    }
+
+        /**
+    *Set this subscriber's facturation address
+    *@param Address address
+    */
+    public function setFacturationAddress($address){
+        $this->_facturationAddress = $address;
+    }
+
+    /**
+    * Get this subscriber's facturation address
+    *@return Address address
+    */
+    public function getFacturationAddress(){
+        return $this->_facturationAddress;
+    }
+
+        /**
+    *Set this subscriber's delivery address
+    *@param Address address
+    */
+    public function setDeliveryAddress($address){
+        $this->_deliveryAddress = $address;
+    }
+
+    /**
+    * Get this subscriber's delivery address
+    *@return Address address
+    */
+    public function getDeliveryAddress(){
+        return $this->_deliveryAddress;
     }
 }
