@@ -2,25 +2,46 @@
 
 {% block content %}
     <h1>Notice overview<h1>
+
+    {% if is_granted('ROLE_ADMIN') %}	
     <div class="row">
     	<div class="col-md-12">
     		<a href="{{path('createNotice')}}" class="btn btn-primary">Add Notice</a>
     	</div>
     </div>
+    {% endif %}
 
-    {% for notice in notices %}
+    {{ pagination.getTotalItemCount }}
+
     <div class="row">
     	<div class="col-md-12">
-		    <div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">{{ notice.title }}</h3>
-				</div>
-				<div class="panel-body">
-					{{ notice.creationDate|date("d/m/Y h:i") }}
-					{{ notice.message }}
-				</div>	
-			</div>
+    		<table class="table table-striped">
+			 	<thead>
+			 		<td>#</td>
+			 		<td>Title</td>
+			 		<td>Creation date</td>
+			 		<td class="span1">Message</td>
+			 		<td></td>
+			 		<td></td>
+			 	</thead>
+			 	<tbody>
+			 		{% for notice in pagination %}
+			 		<tr>
+			 			<td>{{ notice.id }}</td>
+			 			<td>{{ notice.title }}</td>
+			 			<td>{{ notice.creationDate|date("d/m/Y h:i") }}</td>
+			 			<td>{{ notice.message }}</td>
+			 			<td><a href="{{path('updateNotice', {id:notice.id})}}" class="btn btn-link">Update</a></td>
+			 			<td><a href="{{path('removeNotice', {id:notice.id})}}" class="btn btn-danger">Remove</a></td>
+			 		</tr>
+					{% endfor %}
+			 	</tbody>
+			</table>
 		</div>
 	<div>
-	{% endfor %}
+
+	<div class="pagination">
+	    {{ knp_pagination_render(pagination) }}
+	</div>
+	
 {% endblock %}
