@@ -21,6 +21,7 @@ class Bookstore
      * @var string
      *
      * @ORM\Column(name="telephone", type="string", length=150)
+     * @AssertPhoneNumber(defaultRegion="BE")
      */
     protected $_telephone;
 

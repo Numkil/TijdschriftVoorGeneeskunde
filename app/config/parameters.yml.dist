@@ -19,7 +19,7 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    hostname:          127.0.0.1
-    encoding_type:     json
-    username:          changeMe
-    password:          changeMe
+    article_parser_hostname:          127.0.0.1
+    article_parser_encoding_type:     json
+    article_parser_username:          changeMe
+    article_parser_password:          changeMe
