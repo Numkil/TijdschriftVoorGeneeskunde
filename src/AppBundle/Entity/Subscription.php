@@ -1,5 +1,8 @@
 <?php
 
+namespace AppBundle\Entity;
+
+use Symfony\Component\Validator\Constraints\DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,7 +29,7 @@ class Subscription{
      */
     protected $isPaid;
 
-    public function __construct($startDate, $endDate){
+    public function __construct(\DateTime $startDate, \DateTime $endDate){
         $this->setStartDate($startDate);
         $this->setEndDate($endDate);
         $this->isPaid(false);
@@ -37,7 +40,7 @@ class Subscription{
      * @return this
      */
 
-    public function setStartDate(DateTime $startDate){
+    public function setStartDate(\DateTime $startDate){
         $this->startDate = $startDate;
         return $this;
     }
@@ -50,7 +53,7 @@ class Subscription{
      * @param Date $endDate
      * @return this
      */
-    public function setEndDate(DateTime $endDate){
+    public function setEndDate(\DateTime $endDate){
         $this->endDate = $endDate;
         return $this;
     }
@@ -63,7 +66,7 @@ class Subscription{
      * @return boolean
      */
     public function isActive(){
-        if(date() >= $this->startDate && date() <= $this->endDate){
+        if(new \DateTime() >= $this->startDate && new \DateTime() <= $this->endDate){
             return true;
         }
 
