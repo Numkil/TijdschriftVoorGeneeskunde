@@ -10,11 +10,103 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Bookstore
 {
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=150)
+     */
+    protected $_name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telephone", type="string", length=150)
+     */
+    protected $_telephone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=150)
+     */
+    protected $_email;
+
+    /**
+    *@var Address
+    *
+    * @ORM\OneToOne(targetEntity="Address", mappedBy="address")
+    */
+    protected $_address;
 
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="subscriber")
      */
     protected $_subscribers;
+
+
+    /**
+    *Set this bookstore's name
+    *@param String name
+    */
+    public function setName($name){
+        $this->_name = $name;
+    }
+
+    /**
+    * Get this bookstore's name
+    *@return String name
+    */
+    public function getName(){
+        return $this->_name;
+    }
+
+    /**
+    *Set this bookstore's telephone
+    *@param String telephone
+    */
+    public function setTelephone($telephone){
+        $this->_telephone = $telephone;
+    }
+
+    /**
+    * Get this bookstore's telephone
+    *@return String telephone
+    */
+    public function getTelephone(){
+        return $this->_telephone;
+    }
+
+    /**
+    *Set this bookstore's email address
+    *@param String email
+    */
+    public function setEmail($email){
+        $this->_email = $email;
+    }
+
+    /**
+    * Get this bookstore's email address
+    *@return String email
+    */
+    public function getEmail(){
+        return $this->_email;
+    }
+
+    /**
+    *Set this bookstore's address
+    *@param Address address
+    */
+    public function setAddress($address){
+        $this->_address = $address;
+    }
+
+    /**
+    * Get this bookstore's address
+    *@return Address address
+    */
+    public function getAddress(){
+        return $this->_address;
+    }
 
     /**
      * @param User[] $subscribers
