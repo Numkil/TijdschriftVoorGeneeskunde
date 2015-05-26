@@ -8,10 +8,10 @@ services:
   article_parser:
     class: AppBundle\Service\ArticleParser
     arguments:
-      - "%hostname%"
-      - "%encoding_type%"
-      - "%username%"
-      - "%password%"
+      - "%article_parser_hostname%"
+      - "%article_parser_encoding_type%"
+      - "%article_parser_username%"
+      - "%article_parser_password%"
   user.registration.form.type:
     class: AppBundle\Form\Type\RegistrationFormType
     tags:
