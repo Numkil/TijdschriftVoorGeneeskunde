@@ -47,9 +47,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user->setTelephone(0497333676);
 
         //Role of the testuser ==> every access
-        $role = $manager->getRepository('AppBundle:Role')
-            ->findOneBy(array('role' => 'ROLE_SUPER_ADMIN'));
-        $user->setRoles(array($role));
+        $user->setRoles(array('ROLE_SUPER_ADMIN'));
 
         $manager->persist($user);
         $manager->flush();

@@ -43,13 +43,6 @@ class User extends BaseUser
     protected $_telephone;
 
     /**
-     * @var Role[]
-     *
-     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
-     */
-    protected $_roles;
-
-    /**
      * @var Subscriber
      *
      * ORM\OneToOne(targetEntity="Subscriber", inversedBy="user")
@@ -71,7 +64,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        #hack hack hack
     }
 
     /**
@@ -139,25 +131,6 @@ class User extends BaseUser
     public function setTelephone($telephone)
     {
         $this->_telephone = $telephone;
-
-        return $this;
-    }
-
-    /**
-     * @return Role[] The user roles
-     */
-    public function getRoles()
-    {
-        return $this->_roles->toArray();
-    }
-
-    /**
-     * @param Role[] role
-     * @return this
-     */
-    public function setRoles(array $roles)
-    {
-        $this->_roles = new ArrayCollection($roles);
 
         return $this;
     }
