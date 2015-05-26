@@ -74,6 +74,7 @@ doctrine:
           enum: string
         types:
           PaymentType: AppBundle\Entity\Types\PaymentType
+          phone_number: Misd\PhoneNumberBundle\Doctrine\DBAL\Types\PhoneNumberType
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"

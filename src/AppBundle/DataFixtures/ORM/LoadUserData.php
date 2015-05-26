@@ -44,8 +44,10 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         //TvG specific data
         $user->setName('test');
         $user->setFirstName('dev');
-        $user->setTelephone(0497333676);
-
+        $number = '0497 333 676';
+        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+        $benumber = $phoneUtil->parse($number, 'BE');
+        $user->setTelephone($benumber);
         //Role of the testuser ==> every access
         $user->setRoles(array('ROLE_SUPER_ADMIN'));
 
