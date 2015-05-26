@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -117,7 +118,7 @@ class Subscriber
     /**
      * @return boolean
      */
-    public function hasPayedSubscription()
+    public function hasPaidSubscription()
     {
         foreach ($this->_subscriptions as $subscription) {
            if($subscription->isPaid()){return true;}
