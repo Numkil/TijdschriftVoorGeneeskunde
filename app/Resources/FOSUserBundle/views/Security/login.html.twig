@@ -22,8 +22,11 @@
 
     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
     <label for="remember_me">{% trans %}Remember me{% endtrans %}</label>
+    <input type="hidden" name="_csrf_token" value="{{ fos_csrf_provider.generateCsrfToken('authenticate') }}" />
 
     <button class="btn btn-lg btn-block btn-primary" type="submit">{% trans %}Submit{% endtrans %}</button>
-  <input type="hidden" name="_csrf_token" value="{{ fos_csrf_provider.generateCsrfToken('authenticate') }}" />
+    <a href="{{path('fos_user_resetting_request')}}" class="text-warning">{{ 'Forgotten password'|trans }}</a>
 </form>
+
+
 {% endblock %}
