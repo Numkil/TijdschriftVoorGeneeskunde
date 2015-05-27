@@ -33,9 +33,10 @@
         <div class="beginpage container" >
             {% for type, messages in app.session.flashBag.all %}
                 {% for message in messages %}
-                    <div class="{{ type }}">
-                        {{ message|trans }}
-                    </div>
+                <div class="alert alert-block alert-success">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ message|trans }}
+                </div>
                 {% endfor %}
             {% endfor %}
             {% block sidebar %}
