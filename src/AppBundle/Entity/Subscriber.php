@@ -126,6 +126,19 @@ class Subscriber
     }
 
     /**
+     * Add one subscription
+     * @param Subscription
+     * @return this
+     */
+    public function addSubscription($subscription)
+    {
+        if(!$this->_subscriptions->contains($subscription)){
+            $this->_subscriptions->add($subscription);
+        }
+        return $this;
+    }
+
+    /**
      * @return boolean
      */
     public function hasPaidSubscription()
