@@ -26,7 +26,7 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
             array('/'),
             array('/login'),
             array('/register/'),
-            array('/notice/overview/'),
+            //array('/notice/overview'),
         );
     }
 
