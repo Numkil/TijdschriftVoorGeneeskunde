@@ -9,16 +9,51 @@ use Doctrine\Common\Collections\ArrayCollection;
 */
 class Article{
 	
+	private $id;
+	private $type;
 	private $title;
+	private $subtitle;
 	private $summery;
-	private $autors;
+	private $authors;
 	private $tags;
-	private $subjects;
+	private $categories;
 	private $collumns;
 	private $year;
 	private $volume;
 	private $number;
+	private $startPage;
+	private $endPage;
+	private $classification;
 
+	 /**
+     * Set id for article
+     * @param String $id
+     * @return this
+     */
+	public function setId($id){
+		$this->id = $id;
+
+		return $this;
+	}
+
+	public function getId(){
+		return $this->id;
+	}
+
+	 /**
+     * Set type for article
+     * @param String $type
+     * @return this
+     */
+	public function setType($type){
+		$this->type = $type;
+
+		return $this;
+	}
+
+	public function getType(){
+		return $this->type;
+	}
 
 	 /**
      * Set name for article
@@ -31,9 +66,18 @@ class Article{
 		return $this;
 	}
 
-
 	public function getTitle(){
 		return $this->title;
+	}
+
+	public function setSubtitle($subtitle){
+		$this->subtitle = $subtitle;
+
+		return $this;
+	}
+
+	public function getSubtitle(){
+		return $this->subtitle;	
 	}
 
 	 /**
@@ -52,34 +96,34 @@ class Article{
 	}
 
 	 /**
-     * Set array of autors
-     * @param String[] $autors
+     * Set array of authors
+     * @param String[] $authors
      * @return this
      */
-	public function setAutors($autors){
-		if(!is_array($autors)){
-			$autors = array($autors);
+	public function setAuthors($authors){
+		if(!is_array($authors)){
+			$authors = array($authors);
 		}
-		$this->autors = new ArrayCollection($autors);
+		$this->authors = new ArrayCollection($authors);
 
 		return $this;
 	}
 
 	 /**
-     * Add one autor to autors
-     * @param String $autor
+     * Add one authors to authors
+     * @param String $authors
      * @return this
      */
-	public function addAutor($autor){
-		if(!$this->autors->contains($autor)){
-			$this->autors->add($autor);
+	public function addAuthor($author){
+		if(!$this->authors->contains($author)){
+			$this->authors->add($author);
 		}
 
 		return $this;
 	}
 
-	public function getAllAutors(){
-		return $this->autors;
+	public function getAllAuthors(){
+		return $this->authors;
 	}
 
 	 /**
@@ -114,34 +158,34 @@ class Article{
 	}
 
 	 /**
-     * Set array of subjects
-     * @param String[] $subjects
+     * Set array of categories
+     * @param String[] $categories
      * @return this
      */
-	public function setSubjects($subjects){
-		if(!is_array($subjects)){
-			$subjects = array($subjects);
+	public function setCategories($categories){
+		if(!is_array($categories)){
+			$categories = array($categories);
 		}
-		$this->subjects = new ArrayCollection($subjects);
+		$this->categories = new ArrayCollection($categories);
 
 		return $this;
 	}
 
 	 /**
-     * Add one subject to subjects
-     * @param String $subject
+     * Add one categorie to categories
+     * @param String $categorie
      * @return this
      */
-	public function addSubject($subject){
-		if(!$this->subjects->contains($subjects){
-			$this->subjects->add($subject);
+	public function addCategories($categorie){
+		if(!$this->categories->contains($categorie){
+			$this->categories->add($categorie);
 		}
 
 		return $this;
 	}
 
-	public function getSubjects(){
-		return $this->subjects;
+	public function getCategories(){
+		return $this->categories;
 	}
 
 	 /**
@@ -215,6 +259,48 @@ class Article{
 
 	public function getNumber(){
 		return $this->number;
+	}
+
+	 /**
+     * @param String $startPage
+     * @return this
+     */
+	public function setStartPage($startPage){
+		$this->startPage = $startPage;
+
+		return $this;
+	}
+
+	public function getStartPage(){
+		return $this->startPage;
+	}
+
+	 /**
+     * @param String $endPage
+     * @return this
+     */
+	public function setEndPage($endPage){
+		$this->endPage = $endPage;
+
+		return $this;
+	}
+
+	public function getEndPage(){
+		return $this->endPage;
+	}
+
+	 /**
+     * @param String $classification
+     * @return this
+     */
+	public function setClassification($classification){
+		$this->classification = $classification;
+
+		return $this;
+	}
+
+	public function getClassification(){
+		return $this->classification;
 	}
 
 }

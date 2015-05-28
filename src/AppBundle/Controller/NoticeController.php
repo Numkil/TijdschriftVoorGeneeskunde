@@ -29,7 +29,7 @@ class NoticeController extends Controller{
 
 
     /**
-     * @Route("/notice/overview/", name="noticeOverview")
+     * @Route("/notice/", name="noticeOverview")
      */
     public function noticeOverviewAction(Request $request){
         //For pagination we used the KnpPaginatorBundle --> https://github.com/KnpLabs/KnpPaginatorBundle/blob/master/Resources/doc/templates.md
