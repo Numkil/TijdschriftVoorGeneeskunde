@@ -1,6 +1,10 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% if '/profile/edit' in app.request.requestUri %}
 <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST"
+{% else %}
+<form action="{{ path('editSpecificUser', {userid: user.id}) }}" {{ form_enctype(form) }} method="POST"
+{% endif %}
     class="form-horizontal">
 
     <div class="form-group">
@@ -35,17 +39,22 @@
         </div>
     </div>
 
+    {% if '/profile/edit' in app.request.requestUri %}
     <div class="form-group">
         <label for="password" class="col-sm-2 control-label">{{ form_label(form.current_password) }}</label>
         <div class="col-lg-8">
             {{ form_widget(form.current_password, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
     </div>
-
+    {% endif %}
     {{ form_rest(form) }}
 
     <div>
         <button type="submit" class="btn btn-primary"> {{ 'profile.edit.submit'|trans }} </button>
+    {% if '/profile/edit' in app.request.requestUri %}
         <a href="{{path('fos_user_profile_show')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+    {% else %}
+        <a href="{{path('viewSpecificUser', {userid: user.id})}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+    {% endif %}
     </div>
 </form>

@@ -7,8 +7,19 @@
             <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
         </div>
 
+        {% if app.user.id == user.id %}
         <a href="{{path('fos_user_profile_edit')}}" class="btn btn-primary">{{ 'Edit account'|trans }}</a>
         <a href="{{path('fos_user_change_password')}}" class="btn btn-danger">{{ 'Change password'|trans }}</a>
+        {% else %}
+            {% if is_granted('ROLE_SUPER_ADMIN')  %}
+            <a href="{{path('editSpecificUser', { userid: user.id })}}" class="btn btn-primary">
+                {{ 'Edit account'|trans }}
+            </a>
+            <a href="{{path('changePasswordSpecificUser', { userid: user.id })}}" class="btn btn-danger">
+                {{ 'Change password'|trans }}
+            </a>
+            {% endif %}
+        {% endif %}
     </div>
 
     <div class=" jumbotron">
