@@ -1,0 +1,12 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <h1>New Subscription</h1>
+    {{ form_start(form) }}
+    	{{ form_errors(form) }}
+
+    	{{ form_rest(form) }}
+
+    {{ form_end(form) }}
+{% endblock %}
+

@@ -38,7 +38,7 @@ class User extends BaseUser
 
     /**
      * @var string
-     * @ORM\Column(name="telephone", type="string", length=150)
+     * @ORM\Column(name="telephone", type="phone_number")
      * @AssertPhoneNumber(defaultRegion="BE")
      */
     protected $_telephone;
@@ -126,10 +126,10 @@ class User extends BaseUser
     /**
      * Set name
      *
-     * @param integer $telephone
+     * @param PhoneNumber $telephone
      * @return this
      */
-    public function setTelephone($telephone)
+    public function setTelephone(\libphonenumber\PhoneNumber $telephone)
     {
         $this->_telephone = $telephone;
 

@@ -6,11 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
 * Class Notice
-*/
+ * @ORM\Entity
+ * @ORM\Table(name="notice")
+ */
 class Notice{
 	/**
-	* @ORM\Column(name="id", type="integer", nullable=false, length=150)
-	*/
+     * @ORM\Id
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
 	private $id;
 	/**
 	* @ORM\Column(name="title", type="string", nullable=false, length=150)

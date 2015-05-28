@@ -20,7 +20,7 @@ class Bookstore
     /**
      * @var string
      *
-     * @ORM\Column(name="telephone", type="string", length=150)
+     * @ORM\Column(name="telephone", type="phone_number")
      * @AssertPhoneNumber(defaultRegion="BE")
      */
     protected $_telephone;
@@ -65,7 +65,8 @@ class Bookstore
     *Set this bookstore's telephone
     *@param String telephone
     */
-    public function setTelephone($telephone){
+    public function setTelephone(\libphonenumber\PhoneNumber $telephone)
+    {
         $this->_telephone = $telephone;
     }
 

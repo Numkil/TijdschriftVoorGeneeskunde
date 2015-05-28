@@ -23,7 +23,9 @@
         "fresh/doctrine-enum-bundle": "^3.2",
         "doctrine/doctrine-fixtures-bundle": "^2.2",
         "misd/phone-number-bundle": "^1.0",
-        "knplabs/knp-menu-bundle": "~2"
+        "knplabs/knp-components": "~1.2",
+        "knplabs/knp-menu-bundle": "~2",
+        "knplabs/knp-paginator-bundle": "^2.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
