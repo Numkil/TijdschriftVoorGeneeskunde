@@ -1,5 +1,14 @@
 <div class="collapse navbar-collapse pull-right">
 <ul class="nav navbar-nav">
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <li>
+        <a href="{{path('adminOverview')}}">{{ 'Manage notices'|trans }}</a>
+    </li>
+    <li>
+        <a href="{{path('userOverview')}}">{{ 'Manage users'|trans }}</a>
+    </li>
+    {% endif %}
     <li>
     <a href="{{path('fos_user_profile_show')}}">
         {{ 'logged_in_as'|trans({'%username%': app.user.username}) }}
@@ -10,5 +19,6 @@
         {{ 'logout'|trans({}, 'FOSUserBundle') }}
     </a>
     </li>
+
 </ul>
 </div><!--/.nav-collapse -->
