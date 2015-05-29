@@ -7,9 +7,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class Address
+ * @ORM\Entity
+ * @ORM\Table(name="address")
  */
 class Address
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $_id;
+    
 	/**
      * @var string
      *
@@ -42,7 +51,7 @@ class Address
     *Set this address' street
     *@param String street
     */
-    public function setName($street){
+    public function setStreet($street){
         $this->_street = $street;
     }
 

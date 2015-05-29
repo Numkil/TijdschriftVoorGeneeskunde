@@ -1,0 +1,49 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <h1>New Bookstore</h1>
+    {{ form_start(bookstore) }}
+    	{{ form_errors(bookstore) }}
+
+    	<div class="form-group">
+            <label for="street">{{ form_label(bookstore.name) }}</label>
+            {{form_widget(bookstore.name) }}
+        </div>
+
+        <div class="form-group">
+            <label for="street">{{ form_label(bookstore.telephone) }}</label>
+            {{form_widget(bookstore.telephone) }}
+        </div>
+
+        <div class="form-group">
+            <label for="street">{{ form_label(bookstore.email) }}</label>
+            {{form_widget(bookstore.email) }}
+        </div>
+
+        <div class="form-group">
+            <label for="street">{{ form_label(bookstore.address.street) }}</label>
+            {{form_widget(bookstore.address.street) }}
+        </div>
+
+        <div class="form-group">
+            <label for="postalCode">{{ form_label(bookstore.address.postalCode) }}</label>
+            {{form_widget(bookstore.address.postalCode) }}
+        </div>
+
+        <div class="form-group">
+            <label for="municipality">{{ form_label(bookstore.address.municipality) }}</label>
+            {{form_widget(bookstore.address.municipality) }}
+        </div>
+
+        <div class="form-group">
+            <label for="country">{{ form_label(bookstore.address.country) }}</label>
+            {{form_widget(bookstore.address.country) }}
+        </div>
+
+        <a href="{{path('adminOverview')}}" class="btn btn-primary">Cancel</a>
+        {{form_widget(bookstore.save, { 'attr': {'class': 'btn btn-primary'}})}}
+
+    	{{ form_rest(bookstore) }}
+
+    {{ form_end(bookstore) }}
+{% endblock %}

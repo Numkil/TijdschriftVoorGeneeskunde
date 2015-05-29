@@ -4,12 +4,22 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
 
 /**
  * Class Bookstore
+ * @ORM\Entity
+ * @ORM\Table(name="bookstore")
  */
 class Bookstore
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $_id;
+
     /**
      * @var string
      *
@@ -35,7 +45,8 @@ class Bookstore
     /**
     *@var Address
     *
-    * @ORM\OneToOne(targetEntity="Address", mappedBy="address")
+    * @ORM\OneToOne(targetEntity="Address")
+    * @ORM\JoinColumn(name="address", referencedColumnName="id")
     */
     protected $_address;
 
@@ -44,6 +55,23 @@ class Bookstore
      */
     protected $_subscribers;
 
+    /**
+    *Set this bookstore's id
+    *@param String id
+    */
+    public function setId($id){
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+    *Set this bookstore's id
+    *@param String id
+    */
+    public function getId(){
+        return $this->id;
+    }
 
     /**
     *Set this bookstore's name
