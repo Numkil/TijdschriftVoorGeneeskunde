@@ -1,0 +1,48 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <h1>Bookstore overview<h1>
+
+    {% if is_granted('ROLE_ADMIN') %}	
+    <div class="row">
+    	<div class="col-md-12">
+    		<a href="{{path('createBookstore')}}" class="btn btn-primary">Add bookstore</a>
+    	</div>
+    </div>
+    {% endif %}
+
+    {{ pagination.getTotalItemCount }}
+
+    <div class="row">
+    	<div class="col-md-12">
+    		<table class="table table-striped">
+			 	<thead>
+			 		<td>#</td>
+			 		<td>Title</td>
+			 		<td>Creation date</td>
+			 		<td class="span1">Message</td>
+			 		<td></td>
+			 		<td></td>
+			 	</thead>
+			 	<tbody>
+			 		{% for bookstore in pagination %}
+			 		<tr>
+			 			<td>{{ bookstore.id }}</td>
+			 			<td>{{ bookstore.name }}</td>
+			 			<td>{{ bookstore.telephone }}</td>
+			 			<td>{{ bookstore.email }}</td>
+			 			<td>{{ bookstore.address.street}}, {{ bookstore.address.postalcode}} {{ bookstore.address.municipality }}}</td>
+			 			<td><a href="{{path('updat bookstore', {id bookstore.id})}}" class="btn btn-link">Update</a></td>
+			 			<td><a href="{{path('remov bookstore', {id bookstore.id})}}" class="btn btn-danger">Remove</a></td>
+			 		</tr>
+					{% endfor %}
+			 	</tbody>
+			</table>
+		</div>
+	<div>
+
+	<div class="pagination">
+	    {{ knp_pagination_render(pagination) }}
+	</div>
+	
+{% endblock %}
