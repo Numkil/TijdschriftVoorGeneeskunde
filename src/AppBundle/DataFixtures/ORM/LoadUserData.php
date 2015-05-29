@@ -7,7 +7,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use AppBundle\Entity\User;
-use AppBundle\Entity\Role;
 
 /**
  * Class LoadRoleData
@@ -60,6 +59,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
      */
     public function getOrder()
     {
-        return 3;
+        return 1;
     }
 }
