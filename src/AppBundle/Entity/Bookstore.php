@@ -60,7 +60,7 @@ class Bookstore
     *@param String id
     */
     public function setId($id){
-        $this->id = $id;
+        $this->_id = $id;
 
         return $this;
     }
@@ -70,7 +70,7 @@ class Bookstore
     *@param String id
     */
     public function getId(){
-        return $this->id;
+        return $this->_id;
     }
 
     /**

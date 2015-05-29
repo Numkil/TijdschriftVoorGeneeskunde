@@ -11,7 +11,7 @@ use AppBundle\Entity\Bookstore;
 class BookstoreController extends Controller
 {
 	/**
-     * @Route("/bookstore/", name="index")
+     * @Route("/bookstore/", name="bookstoreOverview")
      */
     public function indexAction(Request $request){
         $books = $this->getDoctrine()
@@ -40,6 +40,9 @@ class BookstoreController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            //Have to add address object to database before it can be used as a foreign key in the bookstoreObject
+            $em->persist($bookstoreObject->getAddress());
             $em->persist($bookstoreObject);
             $em->flush();
 
