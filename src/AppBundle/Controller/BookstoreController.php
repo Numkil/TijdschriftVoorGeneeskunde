@@ -15,7 +15,7 @@ class BookstoreController extends Controller
      */
     public function indexAction(Request $request){
         $books = $this->getDoctrine()
-            ->getRepository('AppBundle:Bookstore');
+            ->getRepository('AppBundle:Bookstore')->findAll();
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

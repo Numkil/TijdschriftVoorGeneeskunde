@@ -45,7 +45,8 @@ class Bookstore
     /**
     *@var Address
     *
-    * @ORM\OneToOne(targetEntity="Address", mappedBy="address")
+    * @ORM\OneToOne(targetEntity="Address")
+    * @ORM\JoinColumn(name="address", referencedColumnName="id")
     */
     protected $_address;
 
