@@ -18,7 +18,7 @@ class Bookstore
      * @ORM\Column(type="integer", name="id")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $_id;
+    private $id;
 
     /**
      * @var string
@@ -60,7 +60,7 @@ class Bookstore
     *@param String id
     */
     public function setId($id){
-        $this->_id = $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -70,7 +70,7 @@ class Bookstore
     *@param String id
     */
     public function getId(){
-        return $this->_id;
+        return $this->id;
     }
 
     /**

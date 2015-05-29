@@ -21,6 +21,7 @@
 			 		<td>Title</td>
 			 		<td>Creation date</td>
 			 		<td class="span1">Message</td>
+			 		<td>Address</td>
 			 		<td></td>
 			 		<td></td>
 			 	</thead>
@@ -32,6 +33,8 @@
 			 			<td>{{ bookstore.telephone }}</td>
 			 			<td>{{ bookstore.email }}</td>
 			 			<td>{{ bookstore.address.street}}, {{ bookstore.address.postalcode}} {{ bookstore.address.municipality }}</td>
+			 			<td><a href="{{path('updateBookstore', {id:bookstore.id})}}" class="btn btn-link">Update</a></td>
+			 			<td><a href="{{path('removeBookstore', {id:bookstore.id})}}" class="btn btn-danger">Remove</a></td>
 			 		</tr>
 					{% endfor %}
 			 	</tbody>
