@@ -18,7 +18,7 @@ class Bookstore
      * @ORM\Column(type="integer", name="id")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $_id;
+    private $id;
 
     /**
      * @var string

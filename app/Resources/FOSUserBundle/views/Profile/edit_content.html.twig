@@ -39,6 +39,13 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="bookstore" class="col-sm-2 control-label">{{ form_label(form.bookstore) }}</label>
+        <div class="col-lg-8">
+            {{ form_widget(form.bookstore, { 'attr' : { 'class': 'form-control' } }) }}
+        </div>
+    </div>
+
     {% if '/profile/edit' in app.request.requestUri %}
     <div class="form-group">
         <label for="password" class="col-sm-2 control-label">{{ form_label(form.current_password) }}</label>
@@ -47,7 +54,6 @@
         </div>
     </div>
     {% endif %}
-    {{ form_rest(form) }}
 
     <div>
         <button type="submit" class="btn btn-primary"> {{ 'profile.edit.submit'|trans }} </button>
