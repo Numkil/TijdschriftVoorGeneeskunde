@@ -13,6 +13,7 @@
         <tr>
             <th>{{ 'username' | trans }}</th>
             <th>{{ 'email' | trans }}</th>
+            <th>{{ 'bookstore' | trans }}</th>
             <th></th>
         </tr>
         <tbody>
@@ -20,6 +21,7 @@
            <tr>
                <td><a href="{{path('viewSpecificUser', {userid: user.id})}}" >{{ user.username }}</a></td>
                <td>{{ user.email}}</td>
+                <td>{{ user.bookstore}}</td>
                <td><a href="{{path('deleteSpecificUser', {userid: user.id})}}">{{ 'delete' | trans }}</a></td>
            </tr>
            {% endfor %}
