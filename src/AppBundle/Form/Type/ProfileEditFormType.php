@@ -15,12 +15,7 @@ class ProfileEditFormType extends AbstractType
         $builder->add('firstname');
         $builder->add('telephone', 'tel', array('default_region' => 'BE',
             'format' => PhoneNumberFormat::NATIONAL));
-        $builder->add(  'bookstore', 
-                        'entity', 
-                        array(
-                            'class' => 'AppBundle:Bookstore',
-                            'property' => 'name',
-                            ));
+       
     }
 
     public function getParent()

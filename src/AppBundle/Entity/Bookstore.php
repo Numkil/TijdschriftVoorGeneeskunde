@@ -51,7 +51,7 @@ class Bookstore
     protected $_address;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="subscriber")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="_bookstore")
      */
     protected $_subscribers;
 
