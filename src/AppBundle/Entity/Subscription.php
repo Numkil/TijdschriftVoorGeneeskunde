@@ -7,8 +7,17 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  *Class Subscription
+ * @ORM\Entity
+ * @ORM\Table(name="subscription")
  */
 class Subscription{
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
     /**
      *
@@ -29,10 +38,29 @@ class Subscription{
      */
     protected $isPaid;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Subscriber", inversedBy="_subscriptions")
+     */
+    protected $subscriber;
+
     public function __construct(\DateTime $startDate, \DateTime $endDate){
         $this->setStartDate($startDate);
         $this->setEndDate($endDate);
-        $this->isPaid(false);
+        $this->setPaid(false);
+    }
+
+    /**
+     * @param Subscriber
+     * @return this
+     */
+
+    public function setSubscriber($subscriber){
+        $this->subscriber = $subscriber;
+        return $this;
+    }
+
+    public function getSubscriber(){
+        return $this->subscriber;
     }
 
     /**
@@ -88,4 +116,5 @@ class Subscription{
     public function isPaid(){
         return $this->isPaid;
     }
+
 }

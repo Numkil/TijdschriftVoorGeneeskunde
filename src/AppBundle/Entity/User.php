@@ -46,8 +46,8 @@ class User extends BaseUser
     /**
      * @var Subscriber
      *
-     * ORM\OneToOne(targetEntity="Subscriber", inversedBy="user")
-     * @ORM\JoinColumn(name="subscriber", nullable=true, referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Subscriber", mappedBy="_user")
+     * @ORM\JoinColumn(nullable=true)
      */
     protected $_subscriber;
 

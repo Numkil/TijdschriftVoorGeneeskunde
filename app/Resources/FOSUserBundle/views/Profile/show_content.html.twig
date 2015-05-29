@@ -30,6 +30,11 @@
             <a href="{{path('newSubscription', { userid: user.id })}}" class="btn btn-primary">{{ 'Add new
                 subscription'|trans }}</a>
             {% endif %}
+            {% if user.subscriber %}
+            {% for subje in user.subscriber.subscriptions %}
+                {{ subje.enddate | date }}
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

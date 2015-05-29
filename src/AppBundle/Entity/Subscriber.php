@@ -8,9 +8,19 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Holds the data needed for a subscribed User
+ * @ORM\Entity
+ * @ORM\Table(name="subscriber")
  */
 class Subscriber
 {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @DoctrineAssert\Enum(entity="AppBundle\Entity\Types\PaymentType")
      * @ORM\Column(name="pricingtype", type="PaymentType", nullable=false)
@@ -23,24 +33,29 @@ class Subscriber
     protected $_school;
 
     /**
-     * @ORM\Column(name="graduation", type="integer", nullable=true, length=4)
+     * @ORM\Column(name="graduation", type="datetime", nullable=true, length=4)
      */
     protected $_graduation;
 
     /**
-     * @ORM\OneToMany(targetEntity="Subscriptions", mappedBy="subscription")
+     * @ORM\OneToMany(targetEntity="Subscription", mappedBy="subscriber")
      */
     protected $_subscriptions;
 
     /**
-     * @ORM\OneToOne(targetEntity="Address", mappedBy="facturationAddress")
+     * @ORM\OneToOne(targetEntity="Address")
      */
     protected $_facturationAddress;
 
     /**
-     * @ORM\OneToOne(targetEntity="Address", mappedBy="deliveryAddress")
+     * @ORM\OneToOne(targetEntity="Address")
      */
     protected $_deliveryAddress;
+
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="_subscriber")
+     */
+    protected $_user;
 
     /**
      * Get pricingtype
@@ -132,6 +147,10 @@ class Subscriber
      */
     public function addSubscription($subscription)
     {
+        if(!$this->_subscriptions){
+            $this->setSubscriptions($subscription);
+        }
+
         if(!$this->_subscriptions->contains($subscription)){
             $this->_subscriptions->add($subscription);
         }
@@ -191,4 +210,22 @@ class Subscriber
     public function getDeliveryAddress(){
         return $this->_deliveryAddress;
     }
+
+	/**
+	* Set user
+	* @param $user
+	* @return this
+	*/
+	public function setUser($user){
+		$this->_user= $user;
+
+		return $this;
+	}
+
+	/**
+     * @return String username
+     */
+	public function getUser(){
+		return $this->_user;
+	}
 }

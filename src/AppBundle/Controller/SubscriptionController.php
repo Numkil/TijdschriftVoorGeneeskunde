@@ -37,12 +37,24 @@ class SubscriptionController extends Controller{
                 $em->persist($subscriber);
             }
 
-            $date = \DateTime();
-            $subscription = new Subscription($date, $date->add(\DateInterval('1Y')));
-            $em->persist($subscription);
-
+            $date = new \DateTime();
+            //create a new subscription with
+            $subscription = new Subscription($date, $date->add(new \DateInterval('P1Y')));
             $subscriber->addSubscription($subscription);
+            $subscription->setSubscriber($subscriber);
+            $user->setSubscriber($subscriber);
+            $subscriber->setUser($user);
+
+            $em->persist($subscription);
+            $em->persist($subscriber->getFacturationAddress());
+            $em->persist($subscriber->getDeliveryAddress());
+            $em->persist($subscriber);
+
             $em->flush();
+            $this->addFlash(
+               'notice', 'subscription added'
+            );
+            return $this->redirectToRoute('homepage');
         }
 
 
