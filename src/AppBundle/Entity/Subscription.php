@@ -94,7 +94,8 @@ class Subscription{
      * @return boolean
      */
     public function isActive(){
-        if(new \DateTime() >= $this->startDate && new \DateTime() <= $this->endDate){
+        $today = new \DateTime();
+        if($today >= $this->startDate && $today <= $this->endDate){
             return true;
         }
 

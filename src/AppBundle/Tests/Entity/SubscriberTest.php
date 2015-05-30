@@ -27,6 +27,18 @@ class SubscriberTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function getActiveSubscriptionTest()
+    {
+        $subscriber = new Subscriber();
+        $active = $this->createSubscription1();
+
+        $subscriber->setSubscriptions(array($active, $this->createSubscription2()));
+        $this->assertEquals($active, $subscriber->getActiveSubscription());
+
+        $subscriber->setSubscriptions(array($this->createSubscription2()));
+        $this->assertEquals(null, $subscriber->getActiveSubscription());
+    }
+
     private function createSubscription1(){
         $time = new Subscription(new \DateTime(), new \DateTime('2020-01-01'));
         return $time;
