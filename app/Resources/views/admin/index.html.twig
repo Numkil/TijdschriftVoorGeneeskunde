@@ -11,6 +11,7 @@
 data-toggle="datatable" id="adminUserOverview">
     <thead>
         <tr>
+            <th>{{ 'id' | trans }}</th>
             <th>{{ 'username' | trans }}</th>
             <th>{{ 'email' | trans }}</th>
             <th>{{ 'bookstore' | trans }}</th>
@@ -20,6 +21,7 @@ data-toggle="datatable" id="adminUserOverview">
     <tbody>
         {% for user in users %}
         <tr>
+            <td>{{ user.id  }}</td>
             <td><a href="{{path('viewSpecificUser', {userid: user.id})}}" >{{ user.username }}</a></td>
             <td>{{ user.email}}</td>
             <td>{{ user.bookstore}}</td>
