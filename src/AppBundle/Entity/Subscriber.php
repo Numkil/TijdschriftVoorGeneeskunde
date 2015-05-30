@@ -179,6 +179,17 @@ class Subscriber
         return false;
     }
 
+    /**
+     * @return boolean
+     */
+    public function getActiveSubscription()
+    {
+        foreach ($this->_subscriptions as $subscription) {
+           if($subscription->isActive()){return $subscription;}
+        }
+        return null;
+    }
+
         /**
     *Set this subscriber's facturation address
     *@param Address address
