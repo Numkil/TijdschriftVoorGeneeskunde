@@ -46,12 +46,11 @@ class Bookstore
     *@var Address
     *
     * @ORM\OneToOne(targetEntity="Address")
-    * @ORM\JoinColumn(name="address", referencedColumnName="id")
     */
     protected $_address;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="subscriber")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="_bookstore")
      */
     protected $_subscribers;
 

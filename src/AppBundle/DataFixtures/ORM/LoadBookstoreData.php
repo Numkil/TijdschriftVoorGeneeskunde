@@ -48,7 +48,7 @@ class LoadBookstoreData implements FixtureInterface, ContainerAwareInterface
         $bookstore->setAddress($address);
 
         $user = $manager->getRepository('AppBundle:User')->findOneBy(array('username' => 'testuserbookstore'));
-        $user->setBookstore($user);
+        $user->setBookstore($bookstore);
         $bookstore->addSubscriber($user);
 
         $manager->persist($address);
