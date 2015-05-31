@@ -51,6 +51,26 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user->setRoles(array('ROLE_SUPER_ADMIN'));
 
         $manager->persist($user);
+
+        //FOSUserBundle stuffs
+        $user = $fosusermanager->createUser();
+        $user->setUserName('testuserbookstore');
+        $user->setEmail('testuser@bookstore.test');
+        $user->setPlainPassword('p@ssword');
+        $user->setEnabled(true);
+
+        //TvG specific data
+        $user->setName('testbookstore');
+        $user->setFirstName('devbookstore');
+        $number = '0497 444 676';
+        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+        $benumber = $phoneUtil->parse($number, 'BE');
+        $user->setTelephone($benumber);
+        //Role of the testuser ==> every access
+        $user->setRoles(array('ROLE_USER'));
+
+        $manager->persist($user);
+
         $manager->flush();
     }
 

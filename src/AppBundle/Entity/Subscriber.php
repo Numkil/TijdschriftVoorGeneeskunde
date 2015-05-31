@@ -149,6 +149,7 @@ class Subscriber
     {
         if(!$this->_subscriptions){
             $this->setSubscriptions($subscription);
+            return $this;
         }
 
         if(!$this->_subscriptions->contains($subscription)){
