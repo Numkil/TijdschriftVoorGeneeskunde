@@ -33,10 +33,6 @@ class SubscriptionController extends Controller{
 
         if ($subscriberform->isValid())
         {
-            if($newsubscriber){
-                $em->persist($subscriber);
-            }
-
             $date = new \DateTime();
             $expire = new \DateTime();
             $expire->add(new \DateInterval('P1Y'));
@@ -47,10 +43,13 @@ class SubscriptionController extends Controller{
             $user->setSubscriber($subscriber);
             $subscriber->setUser($user);
 
+
             $em->persist($subscription);
-            $em->persist($subscriber->getFacturationAddress());
-            $em->persist($subscriber->getDeliveryAddress());
-            $em->persist($subscriber);
+            if($newsubscriber){
+                $em->persist($subscriber->getFacturationAddress());
+                $em->persist($subscriber->getDeliveryAddress());
+                $em->persist($subscriber);
+            }
 
             $em->flush();
             $this->addFlash(
