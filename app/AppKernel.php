@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Misd\PhoneNumberBundle\MisdPhoneNumberBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
 
             //Our own bundles
             new AppBundle\AppBundle(),
