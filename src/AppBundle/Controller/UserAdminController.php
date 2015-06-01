@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\Common\Util\Debug;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\User;
@@ -45,11 +46,33 @@ class UserAdminController extends Controller{
         $user = $fosusermanager->createUser();
         $user->setEnabled(true);
         $form = $this->createForm(new RegistrationFormType('AppBundle\Entity\User'), $user);
+        $form->add(  'bookstore','entity', array(
+                'class' => 'AppBundle:Bookstore',
+                'property' => 'name',
+                'empty_data' => null,
+                'required' => false,
+        ));
+        $form->add( 'Role', 'choice', array(
+            'mapped' => false,
+            'required' => true,
+            'choices' => array(
+                'ROLE_USER' => $this->get('translator')->trans('role user'),
+                'ROLE_PRINTER' => $this->get('translator')->trans('role printer'),
+                'ROLE_ADMIN' => $this->get('translator')->trans('role admin'),
+            ),
+        ));
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            $user->addRole($form->get('Role')->getData());
+
+            if($user->getBookstore()){
+                $user->getBookstore()->addSubscriber($user);
+            }
             $fosusermanager->updateUser($user);
+            $em->flush();
 
             $this->addFlash(
                 'notice', 'The profile has been created'
@@ -109,18 +132,33 @@ class UserAdminController extends Controller{
         $user = $em->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
         $form = $this->createForm(new ProfileEditFormType('AppBundle\Entity\User'), $user);
         $form->remove('current_password');
-        $form->add(  'bookstore', 
-                        'entity', 
-                        array(
-                            'class' => 'AppBundle:Bookstore',
-                            'property' => 'name',
-                            ));
+        $form->add(  'bookstore','entity', array(
+                'class' => 'AppBundle:Bookstore',
+                'property' => 'name',
+                'empty_data' => null,
+                'placeholder' => $this->get('translator')->trans('--No bookstore--'),
+                'required' => false,
+        ));
+        $form->add( 'Role', 'choice', array(
+            'mapped' => false,
+            'required' => true,
+            'choices' => array(
+                'ROLE_USER' => $this->get('translator')->trans('role user'),
+                'ROLE_PRINTER' => $this->get('translator')->trans('role printer'),
+                'ROLE_ADMIN' => $this->get('translator')->trans('role admin'),
+            ),
+        ));
+
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            
-            $form->getData['bookstore']->addSubscriber($user);
+
+            $user->addRole($form->get('Role')->getData());
+
+            if($user->getBookstore()){
+                $user->getBookstore()->addSubscriber($user);
+            }
 
             $em->flush();
 
