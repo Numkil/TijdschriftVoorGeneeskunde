@@ -2,7 +2,8 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -11,7 +12,7 @@ use AppBundle\Entity\Notice;
 /**
  * Class LoadRoleData
  */
-class LoadNoticeData implements FixtureInterface, ContainerAwareInterface
+class LoadNoticeData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 
     /** @var ContainerInterface */

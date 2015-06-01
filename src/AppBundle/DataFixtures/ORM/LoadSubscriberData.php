@@ -2,7 +2,8 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -14,7 +15,7 @@ use AppBundle\Entity\Types\PaymentType;
 /**
  * Class LoadBookstoreDate
  */
-class LoadSubscriberData implements FixtureInterface, ContainerAwareInterface
+class LoadSubscriberData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 
     /** @var ContainerInterface */
