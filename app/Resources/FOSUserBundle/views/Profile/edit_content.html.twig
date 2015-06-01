@@ -55,6 +55,8 @@
         </div>
     {% endif %}
 
+    {{ form_rest(form) }}
+
     <div>
         <button type="submit" class="btn btn-primary"> {{ 'profile.edit.submit'|trans }} </button>
     {% if '/profile/edit' in app.request.requestUri %}
