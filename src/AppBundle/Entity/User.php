@@ -54,13 +54,8 @@ class User extends BaseUser
     /**
      * @var Bookstore
      *
-<<<<<<< HEAD
-     * ORM\ManyToOne(targetEntity="Bookstore", inversedBy="_subscribers")
-     * @ORM\JoinColumn(nullable=true )
-=======
      * @ORM\ManyToOne(targetEntity="Bookstore", inversedBy="_subscribers")
      * @ORM\JoinColumn(nullable=true)
->>>>>>> c9689ede4dd93531ea4d95045fce150346261916
      */
     protected $_bookstore;
 

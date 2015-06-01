@@ -52,10 +52,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setRoles(array('ROLE_SUPER_ADMIN'));
 
         $manager->persist($user);
-<<<<<<< HEAD
-        
-        
-=======
+
 
         //FOSUserBundle stuffs
         $user = $fosusermanager->createUser();
@@ -75,7 +72,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setRoles(array('ROLE_USER'));
 
         $manager->persist($user);
->>>>>>> c9689ede4dd93531ea4d95045fce150346261916
 
         $manager->flush();
     }
