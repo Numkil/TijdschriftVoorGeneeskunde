@@ -2,7 +2,8 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -11,7 +12,7 @@ use AppBundle\Entity\User;
 /**
  * Class LoadRoleData
  */
-class LoadUserData implements FixtureInterface, ContainerAwareInterface
+class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 
     /** @var ContainerInterface */
@@ -51,8 +52,30 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user->setRoles(array('ROLE_SUPER_ADMIN'));
 
         $manager->persist($user);
+<<<<<<< HEAD
         
         
+=======
+
+        //FOSUserBundle stuffs
+        $user = $fosusermanager->createUser();
+        $user->setUserName('testuserbookstore');
+        $user->setEmail('testuser@bookstore.test');
+        $user->setPlainPassword('p@ssword');
+        $user->setEnabled(true);
+
+        //TvG specific data
+        $user->setName('testbookstore');
+        $user->setFirstName('devbookstore');
+        $number = '0497 444 676';
+        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+        $benumber = $phoneUtil->parse($number, 'BE');
+        $user->setTelephone($benumber);
+        //Role of the testuser ==> every access
+        $user->setRoles(array('ROLE_USER'));
+
+        $manager->persist($user);
+>>>>>>> c9689ede4dd93531ea4d95045fce150346261916
 
         $manager->flush();
     }

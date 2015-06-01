@@ -17,14 +17,7 @@ class NoticeController extends Controller{
             ->getRepository('AppBundle:Notice')
             ->findBy(array(), array('creationDate' => 'DESC'));
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $notices,
-            $request->query->getInt('page', 1),
-            10 /* max number of elements per page*/
-        );
-
-        return $this->render('notice/index.html.twig', array('pagination' => $pagination));
+        return $this->render('notice/index.html.twig', array('notices' => $notices));
     }
 
 

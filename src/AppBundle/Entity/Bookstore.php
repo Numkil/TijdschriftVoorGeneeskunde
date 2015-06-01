@@ -46,7 +46,6 @@ class Bookstore
     *@var Address
     *
     * @ORM\OneToOne(targetEntity="Address")
-    * @ORM\JoinColumn(name="address", referencedColumnName="id")
     */
     protected $_address;
 
@@ -167,6 +166,11 @@ class Bookstore
      */
     public function addSubscriber($subscriber)
     {
+        if(!$this->_subscribers){
+            $this->setSubscribers($subscriber);
+            return $this;
+        }
+
         if(!$this->_subscribers->contains($subscriber)){
             $this->_subscribers->add($subscriber);
         }

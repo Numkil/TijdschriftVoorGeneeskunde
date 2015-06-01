@@ -149,6 +149,7 @@ class Subscriber
     {
         if(!$this->_subscriptions){
             $this->setSubscriptions($subscription);
+            return $this;
         }
 
         if(!$this->_subscriptions->contains($subscription)){
@@ -177,6 +178,17 @@ class Subscriber
            if($subscription->isActive()){return true;}
         }
         return false;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getActiveSubscription()
+    {
+        foreach ($this->_subscriptions as $subscription) {
+           if($subscription->isActive()){return $subscription;}
+        }
+        return null;
     }
 
         /**

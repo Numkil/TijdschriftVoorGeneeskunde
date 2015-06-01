@@ -11,16 +11,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserAdminController extends Controller{
 
-	/**
-	* @Route("/admin/", name="userOverview")
-	*/
-	public function indexAction(){
+    /**
+     * @Route("/admin/", name="userOverview")
+     */
+    public function indexAction(){
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('AppBundle:User')->findAll();
         return $this->render('admin/index.html.twig', array(
             'users' => $users,
         ));
-	}
+    }
 
     /**
      * @Route("/admin/viewuser/{userid}/", name="viewSpecificUser")
@@ -52,7 +52,7 @@ class UserAdminController extends Controller{
             $fosusermanager->updateUser($user);
 
             $this->addFlash(
-               'notice', 'The profile has been created'
+                'notice', 'The profile has been created'
             );
 
             return $this->redirectToRoute('userOverview');
@@ -74,11 +74,11 @@ class UserAdminController extends Controller{
         $password = array('plainPassword' => '');
         $form = $this->createFormBuilder($password)
             ->add('plainPassword', 'repeated', array(
-            'type' => 'password',
-            'first_options' => array('label' => 'New password'),
-            'second_options' => array('label' => 'Repeat password'),
-            'invalid_message' => 'password.mismatch',
-        ))->getForm();
+                'type' => 'password',
+                'first_options' => array('label' => 'New password'),
+                'second_options' => array('label' => 'Repeat password'),
+                'invalid_message' => 'password.mismatch',
+            ))->getForm();
 
         $form->handleRequest($request);
 
@@ -88,7 +88,7 @@ class UserAdminController extends Controller{
             $usermanager->updateUser($user);
 
             $this->addFlash(
-               'notice', 'The password has been changed'
+                'notice', 'The password has been changed'
             );
             return $this->redirectToRoute('viewSpecificUser', array( 'userid' => $userid ));
         }
@@ -125,7 +125,7 @@ class UserAdminController extends Controller{
             $em->flush();
 
             $this->addFlash(
-               'notice', 'The profile has been updated'
+                'notice', 'The profile has been updated'
             );
             return $this->redirectToRoute('viewSpecificUser', array( 'userid' => $userid ));
         }

@@ -17,16 +17,8 @@ class BookstoreController extends Controller
         $books = $this->getDoctrine()
             ->getRepository('AppBundle:Bookstore')->findAll();
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $books,
-            $request->query->getInt('page', 1),
-            10 /* max number of elements per page*/
-        );
-
-        return $this->render('bookstore/index.html.twig', array('pagination' => $pagination));
+        return $this->render('bookstore/index.html.twig', array('bookstores' => $books));
     }
-
 
     /**
      * @Route("/bookstore/new/", name="createBookstore")
