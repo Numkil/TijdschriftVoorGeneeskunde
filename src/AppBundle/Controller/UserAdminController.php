@@ -109,9 +109,19 @@ class UserAdminController extends Controller{
         $user = $em->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
         $form = $this->createForm(new ProfileEditFormType('AppBundle\Entity\User'), $user);
         $form->remove('current_password');
+        $form->add(  'bookstore', 
+                        'entity', 
+                        array(
+                            'class' => 'AppBundle:Bookstore',
+                            'property' => 'name',
+                            ));
+
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            
+            $form->getData['bookstore']->addSubscriber($user);
+
             $em->flush();
 
             $this->addFlash(
@@ -119,6 +129,8 @@ class UserAdminController extends Controller{
             );
             return $this->redirectToRoute('viewSpecificUser', array( 'userid' => $userid ));
         }
+
+
 
         return $this->render('FOSUserBundle::Profile/edit.html.twig', array(
             'form' => $form->createView(),
