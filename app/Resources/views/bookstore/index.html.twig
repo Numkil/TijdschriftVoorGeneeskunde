@@ -11,22 +11,22 @@
     </div>
     {% endif %}
 
-    {{ pagination.getTotalItemCount }}
-
     <div class="row">
     	<div class="col-md-12">
-    		<table class="table table-striped">
+    		<table id="adminBookstoreOverview" class="table table-striped">
 			 	<thead>
-			 		<td>#</td>
-			 		<td>Title</td>
-			 		<td>Creation date</td>
-			 		<td class="span1">Message</td>
-			 		<td>Address</td>
-			 		<td></td>
-			 		<td></td>
+                    <tr>
+			 		<th>#</th>
+			 		<th>Title</th>
+			 		<th>Creation date</th>
+			 		<th class="span1">Message</th>
+			 		<th>Address</th>
+			 		<th></th>
+			 		<th></th>
+                    </tr>
 			 	</thead>
 			 	<tbody>
-			 		{% for bookstore in pagination %}
+			 		{% for bookstore in bookstores %}
 			 		<tr>
 			 			<td>{{ bookstore.id }}</td>
 			 			<td>{{ bookstore.name }}</td>
@@ -41,9 +41,5 @@
 			</table>
 		</div>
 	<div>
-
-	<div class="pagination">
-	    {{ knp_pagination_render(pagination) }}
-	</div>
 
 {% endblock %}
