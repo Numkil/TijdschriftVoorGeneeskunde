@@ -3,6 +3,7 @@ var jslint = require('gulp-jslint');
 var csslint = require('gulp-csslint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var minifyCss = require('gulp-minify-css');
 var merge2 = require('merge2');
 var bowerMain = require('bower-main');
 
@@ -65,7 +66,7 @@ gulp.task('copycss', function(){
 gulp.task('copycssprod', function(){
   return gulp.src('app/Resources/css/**/*.css')
     .pipe(concat('TvG-style.css'))
-    .pipe(uglify())
+    .pipe(minifyCss())
     .pipe(gulp.dest('web/bundles/global/css'));
 });
 
