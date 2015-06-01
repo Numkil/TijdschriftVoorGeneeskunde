@@ -9,6 +9,11 @@
         <a href="{{path('userOverview')}}">{{ 'Manage users'|trans }}</a>
     </li>
     {% endif %}
+    {% if is_granted('ROLE_PRINTER') %}
+    <li>
+        <a href="{{path('pagePrinter')}}">{{ 'Subscribers'|trans }}</a>
+    </li>
+    {% endif %}
     <li>
     <a href="{{path('fos_user_profile_show')}}">
         {{ 'logged_in_as'|trans({'%username%': app.user.username}) }}
