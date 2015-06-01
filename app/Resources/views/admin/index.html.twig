@@ -24,7 +24,7 @@ data-toggle="datatable" id="adminUserOverview">
             <td>{{ user.id  }}</td>
             <td><a href="{{path('viewSpecificUser', {userid: user.id})}}" >{{ user.username }}</a></td>
             <td>{{ user.email}}</td>
-            <td>{{ user.bookstore}}</td>
+            <td>{{ user.bookstore ? user.bookstore.name : '-'}}</td>
             <td><a href="{{path('deleteSpecificUser', {userid: user.id})}}">{{ 'delete' | trans }}</a></td>
         </tr>
         {% endfor %}
