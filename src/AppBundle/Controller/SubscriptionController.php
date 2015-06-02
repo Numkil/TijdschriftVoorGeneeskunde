@@ -133,8 +133,8 @@ class SubscriptionController extends Controller{
             $phpExcelObject->setActiveSheetIndex(0)
                 ->setCellValue('A'.strval($fixedindex), $users[$i]->getName())
                 ->setCellValue('B'.strval($fixedindex), $users[$i]->getFirstname())
-                ->setCellValue('C'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getPostalCode())
-                ->setCellValue('D'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getStreet())
+                ->setCellValue('C'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getStreet())
+                ->setCellValue('D'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getPostalCode())
                 ->setCellValue('E'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getMunicipality())
                 ->setCellValue('F'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getCountry());
         }
