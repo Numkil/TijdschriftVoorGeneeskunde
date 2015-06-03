@@ -10,7 +10,7 @@ security:
         ROLE_PAIDUSER:    ROLE_USER
         ROLE_PRINTER:     ROLE_PAIDUSER
         ROLE_ADMIN:       ROLE_PAIDUSER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_SUPER_ADMIN: ROLE_ADMIN, ROLE_PRINTER
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
@@ -41,4 +41,5 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/notice/new/$, role: ROLE_ADMIN}
+        - { path: ^/printer/, role: ROLE_PRINTER}
         - { path: ^/admin/notice/, role: ROLE_SUPER_ADMIN}

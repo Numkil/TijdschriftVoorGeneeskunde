@@ -33,4 +33,24 @@ class UserRepository extends EntityRepository
 
         return $users;
     }
+
+    /**
+     * Searches all the user objects with a paid subscription and counts the result
+     *
+     * @return int
+     */
+    public function findCountActiveSubscribers()
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->innerJoin('u._subscriber', 's')
+            ->innerJoin('s._deliveryAddress', 'd')
+            ->innerJoin('s._subscriptions', 'sp')
+            ->where('sp.isPaid = 1');
+
+        $users = $qb->getQuery()->getSingleScalarResult();
+
+        return $users;
+    }
+
 }
