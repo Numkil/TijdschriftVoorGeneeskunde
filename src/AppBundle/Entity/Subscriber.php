@@ -38,22 +38,23 @@ class Subscriber
     protected $_graduation;
 
     /**
-     * @ORM\OneToMany(targetEntity="Subscription", mappedBy="subscriber")
+     * @ORM\OneToMany(targetEntity="Subscription", mappedBy="subscriber", cascade={"remove"})
      */
     protected $_subscriptions;
 
     /**
-     * @ORM\OneToOne(targetEntity="Address")
+     * @ORM\OneToOne(targetEntity="Address", cascade={"remove"})
      */
     protected $_facturationAddress;
 
     /**
-     * @ORM\OneToOne(targetEntity="Address")
+     * @ORM\OneToOne(targetEntity="Address", cascade={"remove"})
      */
     protected $_deliveryAddress;
 
     /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="_subscriber")
+     * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      */
     protected $_user;
 

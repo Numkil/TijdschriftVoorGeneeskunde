@@ -107,6 +107,19 @@ class SubscriptionController extends Controller{
      */
     public function pagePrinterAction()
     {
+        $count = $this->getDoctrine()
+            ->getRepository('AppBundle:User')
+            ->findCountActiveSubscribers();
+        return $this->render('::printer/index.html.twig', array(
+            'count' => $count,
+        ));
+    }
+
+    /**
+     * @Route("/printer/download/", name="pagePrinterDownload")
+     */
+    public function pagePrinterDownloadAction()
+    {
         $users = $this->getDoctrine()
             ->getRepository('AppBundle:User')
             ->findActiveSubscribers();
@@ -133,8 +146,8 @@ class SubscriptionController extends Controller{
             $phpExcelObject->setActiveSheetIndex(0)
                 ->setCellValue('A'.strval($fixedindex), $users[$i]->getName())
                 ->setCellValue('B'.strval($fixedindex), $users[$i]->getFirstname())
-                ->setCellValue('C'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getPostalCode())
-                ->setCellValue('D'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getStreet())
+                ->setCellValue('C'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getStreet())
+                ->setCellValue('D'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getPostalCode())
                 ->setCellValue('E'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getMunicipality())
                 ->setCellValue('F'.strval($fixedindex), $users[$i]->getSubscriber()->getDeliveryAddress()->getCountry());
         }
