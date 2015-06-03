@@ -29,7 +29,10 @@ before_script:
   - gulp dev
   - php app/console doctrine:database:create
   - php app/console doctrine:schema:update --force
-  - php app/console doctrine:fixture:load
+  - php app/console doctrine:fixture:load --append
 
 script:
   - phpunit -c app/
+
+after_script:
+  - php app/console doctrine:database:drop --force
