@@ -47,7 +47,7 @@ class User extends BaseUser
      * @var Subscriber
      *
      * @ORM\OneToOne(targetEntity="Subscriber", mappedBy="_user")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      */
     protected $_subscriber;
 
