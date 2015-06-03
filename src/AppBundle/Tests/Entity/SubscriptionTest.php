@@ -7,7 +7,7 @@ use AppBundle\Entity\Subscription;
 /**
  * Class BookstoreTest
  */
-class SubscriberTest extends \PHPUnit_Framework_TestCase
+class SubscriptionTest extends \PHPUnit_Framework_TestCase
 {
     public function testSubscriptionIsActive()
     {
