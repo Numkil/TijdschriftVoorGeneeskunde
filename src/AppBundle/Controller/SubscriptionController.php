@@ -107,6 +107,19 @@ class SubscriptionController extends Controller{
      */
     public function pagePrinterAction()
     {
+        $count = $this->getDoctrine()
+            ->getRepository('AppBundle:User')
+            ->findCountActiveSubscribers();
+        return $this->render('::printer/index.html.twig', array(
+            'count' => $count,
+        ));
+    }
+
+    /**
+     * @Route("/printer/download/", name="pagePrinterDownload")
+     */
+    public function pagePrinterDownloadAction()
+    {
         $users = $this->getDoctrine()
             ->getRepository('AppBundle:User')
             ->findActiveSubscribers();
