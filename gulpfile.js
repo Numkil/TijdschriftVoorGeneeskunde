@@ -38,7 +38,7 @@ gulp.task('bowercssprod', function(){
     gulp.src(bowerMainCssFiles.minified),
     gulp.src(bowerMainCssFiles.minifiedNotFound)
       .pipe(concat('tmp.min.css'))
-      .pipe(uglify())
+      .pipe(minifyCss())
     )
     .pipe(concat('vendor-styles.css'))
     .pipe(gulp.dest('web/bundles/global/vendor'));
