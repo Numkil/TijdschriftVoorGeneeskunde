@@ -23,6 +23,13 @@ matrix:
 before_script:
   - composer selfupdate
   - composer require symfony/symfony:${SYMFONY_VERSION}
+  - npm install
+  - composer install
+  - bower install
+  - gulp dev
+  - php app/console doctrine:database:create
+  - php app/console doctrine:schema:update
+  - php app/console doctrine:fixture:load
 
 script:
   - phpunit -c app/
