@@ -13,7 +13,7 @@ use AppBundle\Form\Type\SubscriberFormType;
 class SubscriptionController extends Controller{
 
     /**
-     * @Route("/subscription/{userid}/new/", name="newSubscription")
+     * @Route("/subscriber/{userid}/new/", name="newSubscription")
      */
     public function newSubscriptionAction(Request $request, $userid){
 
@@ -43,7 +43,6 @@ class SubscriptionController extends Controller{
             $user->setSubscriber($subscriber);
             $subscriber->setUser($user);
 
-
             $em->persist($subscription);
             if($newsubscriber){
                 $em->persist($subscriber->getFacturationAddress());
@@ -60,7 +59,6 @@ class SubscriptionController extends Controller{
             ));
         }
 
-
         return $this->render('subscription/new.html.twig', array(
             'form' => $subscriberform->createView(),
             'newsubscriber' => $newsubscriber,
@@ -69,15 +67,93 @@ class SubscriptionController extends Controller{
     }
 
     /**
-     * @Route("/subscription/{userid}/activate/", name="activateSubscription")
+     * @Route("/subscriber/{userid}/edit/", name="editSubscriber")
      */
-    public function activateSubscriptionAction(Request $request, $userid)
+    public function editSubscriberAction(Request $request, $userid){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
+        $subscriber = $user->getSubscriber();
+
+        $subscriberform = $this->createForm(new SubscriberFormType(), $subscriber);
+        $subscriberform->handleRequest($request);
+
+        if ($subscriberform->isValid())
+        {
+            $em->flush();
+            $this->addFlash(
+                'notice', 'Subscription information updated'
+            );
+            return $this->render('FOSUserBundle::Profile/show.html.twig', array(
+                'user' => $user,
+            ));
+        }
+
+        return $this->render('subscription/new.html.twig', array(
+            'form' => $subscriberform->createView(),
+            'newsubscriber' => false,
+            'userid' => $userid,
+        ));
+    }
+
+    /**
+     * @Route("/subscriber/{userid}/suspend/", name="suspendSubscription")
+     */
+    public function suspendSubscriptionAction(Request $request, $userid){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
+
+        $subscriber = $user->getSubscriber();
+
+        $subscriberform = $this->createForm(new SubscriberFormType(), $subscriber);
+        $subscriberform->handleRequest($request);
+
+        if ($subscriberform->isValid())
+        {
+            $date = clone $subscriber->getActiveSubscription()->getEndDate();
+            $expire = clone $subscriber->getActiveSubscription()->getEndDate();
+            $expire->add(new \DateInterval('P1Y'));
+            //create a new subscription with
+            $subscription = new Subscription($date, $expire);
+            $subscriber->addSubscription($subscription);
+            $subscription->setSubscriber($subscriber);
+
+            $em->persist($subscription);
+            $em->flush();
+
+            $this->addFlash(
+                'notice', 'subscription added'
+            );
+
+            return $this->render('FOSUserBundle::Profile/show.html.twig', array(
+                'user' => $user,
+            ));
+        }
+
+        return $this->render('subscription/new.html.twig', array(
+            'form' => $subscriberform->createView(),
+            'newsubscriber' => false,
+            'userid' => $userid,
+        ));
+    }
+
+    /**
+     * @Route("/subscription/{userid}/{subscriptionid}/activate/", name="activateSubscription")
+     */
+    public function activateSubscriptionAction(Request $request, $userid, $subscriptionid)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
+        $subscr = $em->getRepository('AppBundle:Subscription')
+            ->findOneBy(array('id' => $subscriptionid));
 
-        $user->getSubscriber()->getActiveSubscription()->setPaid(true);
-        $user->addRole('ROLE_PAIDUSER');
+        $subscr->setPaid(true);
+        if($subscr->isActive()){
+            $user->addRole('ROLE_PAIDUSER');
+        }
         $em->flush();
 
         return $this->render('FOSUserBundle::Profile/show.html.twig', array(
@@ -86,20 +162,23 @@ class SubscriptionController extends Controller{
     }
 
     /**
-     * @Route("/subscription/{userid}/deactivate/", name="deActivateSubscription")
+     * @Route("/subscription/{userid}/{subscriptionid}/deactivate/", name="deActivateSubscription")
      */
-    public function deActivateSubscriptionAction(Request $request, $userid)
+    public function deActivateSubscriptionAction(Request $request, $userid, $subscriptionid)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
+        $subscr = $em->getRepository('AppBundle:Subscription')
+            ->findOneBy(array('id' => $subscriptionid));
 
-        $user->getSubscriber()->getActiveSubscription()->setPaid(false);
-        $user->removeRole('ROLE_PAIDUSER');
+        $subscr->setPaid(false);
+        if($subscr->isActive()){
+            $user->removeRole('ROLE_PAIDUSER');
+        }
         $em->flush();
 
         return $this->render('FOSUserBundle::Profile/show.html.twig', array(
             'user' => $user,
         ));
     }
-
 }

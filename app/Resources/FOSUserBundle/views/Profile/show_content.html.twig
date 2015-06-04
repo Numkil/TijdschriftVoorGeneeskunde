@@ -25,27 +25,29 @@
     <div class=" jumbotron">
         <div class="col-md-8">
             {% if 'ROLE_PAIDUSER' in user.roles %}
-            Your subscription is valid until: {{ user.subscriber.getActiveSubscription.enddate |
-            date }}
-            {% if is_granted('ROLE_SUPER_ADMIN')  %}
-            <a href="{{path('deActivateSubscription', { userid: user.id })}}" class="btn
-                btn-danger">{{ 'Deactivate subscription'|trans }}</a>
-            {% endif %}
-            {% else %}
-            {% if user.subscriber and user.subscriber.hasActiveSubscription %}
-                Your subscription is pending, as soon as we receive your payment your account will
-                be activated.
-                {% if is_granted('ROLE_SUPER_ADMIN')  %}
-                <a href="{{path('activateSubscription', { userid: user.id })}}" class="btn btn-primary">{{ 'Activate subscription'|trans }}</a>
+                Your subscription is valid until: {{ user.subscriber.getActiveSubscription.enddate |
+                date }}
+                {% if user.subscriber.getActiveSubscription.enddate|date('d-m-Y') <=
+                "now"|date_modify("+2 month")|date('d-m-Y') %}
+                <a href="{{path('suspendSubscription', { userid: user.id })}}" class="btn
+                    btn-danger">{{ 'Extend subscription' | trans }}</a>
                 {% endif %}
             {% else %}
-                <a href="{{path('newSubscription', { userid: user.id })}}" class="btn btn-primary">{{ 'Add new
-                    subscription'|trans }}</a>
-            {% endif %}
+                {% if user.subscriber and user.subscriber.hasActiveSubscription %}
+                    Your subscription is pending, as soon as we receive your payment your account will
+                    be activated.
+                {% else %}
+                    <a href="{{path('newSubscription', { userid: user.id })}}"
+                        class="btn btn-primary">{{ 'Add new subscription'|trans }}</a>
+                {% endif %}
             {% endif %}
         </div>
 
         {% if user.subscriber %}
+        <a href="{{path('editSubscriber', { userid: user.id })}}" class="btn btn-primary">
+            {{ 'Edit your Subscription information'|trans }}
+        </a>
+
         <table border="0" cellspacing="5" cellpadding="5" class="display table" width="100%"
             data-toggle="datatable">
             <thead>
@@ -53,6 +55,7 @@
                 <tr>
                     <th>{{ 'Start date' | trans }}</th>
                     <th>{{ 'End date' | trans }}</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -60,6 +63,19 @@
                 <tr>
                     <td>{{ subje.startdate | date }}</td>
                     <td>{{ subje.enddate | date }}</td>
+                    <td>
+                    {% if is_granted('ROLE_SUPER_ADMIN')  %}
+                        {% if subje.isPaid %}
+                        <a href="{{path('deActivateSubscription',
+                           { userid: user.id, subscriptionid: subje.id })}}"
+                           class="btn btn-danger">{{ 'Deactivate subscription'|trans }}</a>
+                        {% else %}
+                        <a href="{{path('activateSubscription',
+                           { userid: user.id, subscriptionid: subje.id })}}"
+                           class="btn btn-primary">{{ 'Activate subscription'|trans }}</a>
+                        {% endif %}
+                    {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
