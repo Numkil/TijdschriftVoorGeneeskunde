@@ -1,0 +1,13 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    {{ 'Richtlijnen voor auteurs' | trans }}
+
+    {{ content.content | raw }}
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}
