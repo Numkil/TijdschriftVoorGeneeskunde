@@ -39,6 +39,7 @@ class Subscriber
 
     /**
      * @ORM\OneToMany(targetEntity="Subscription", mappedBy="subscriber", cascade={"remove"})
+     * @ORM\OrderBy({"id" = "DESC"})
      */
     protected $_subscriptions;
 
@@ -51,6 +52,11 @@ class Subscriber
      * @ORM\OneToOne(targetEntity="Address", cascade={"remove"})
      */
     protected $_deliveryAddress;
+
+    /**
+     * @ORM\Column(name="wantsBill", type="boolean")
+     */
+    protected $_wantsBill;
 
     /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="_subscriber")
@@ -241,4 +247,28 @@ class Subscriber
 	public function getUser(){
 		return $this->_user;
 	}
+
+    /**
+     * get wantsBill
+     *
+     * @return boolean
+     */
+    public function getWantsBill()
+    {
+        return $this->_wantsBill;
+    }
+
+    /**
+     * set wantsBill
+     *
+     * @param boolean
+     * @return this
+     */
+    public function setWantsBill($wants)
+    {
+        $this->_wantsBill = $wants;
+        return $this;
+    }
+
+
 }

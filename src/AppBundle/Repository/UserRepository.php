@@ -27,7 +27,9 @@ class UserRepository extends EntityRepository
             ->innerJoin('u._subscriber', 's')
             ->innerJoin('s._deliveryAddress', 'd')
             ->innerJoin('s._subscriptions', 'sp')
-            ->where('sp.isPaid = 1');
+            ->where('sp.isPaid = 1')
+            ->andWhere('sp.endDate >= :today')
+            ->setParameter('today', new \DateTime());
 
         $users = $qb->getQuery()->getResult();
 
@@ -46,7 +48,9 @@ class UserRepository extends EntityRepository
             ->innerJoin('u._subscriber', 's')
             ->innerJoin('s._deliveryAddress', 'd')
             ->innerJoin('s._subscriptions', 'sp')
-            ->where('sp.isPaid = 1');
+            ->where('sp.isPaid = 1')
+            ->andWhere('sp.endDate >= :today')
+            ->setParameter('today', new \DateTime());
 
         $users = $qb->getQuery()->getSingleScalarResult();
 

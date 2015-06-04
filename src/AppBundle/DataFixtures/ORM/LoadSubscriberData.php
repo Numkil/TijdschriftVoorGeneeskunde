@@ -36,9 +36,10 @@ class LoadSubscriberData extends AbstractFixture implements OrderedFixtureInterf
     {
         $subscriber = new Subscriber();
         $subscriber->setPricingType(PaymentType::BOOKSTORE_PRICE);
+        $subscriber->setWantsBill(true);
         $date = new \DateTime();
         $expire = new \DateTime();
-        $expire->add(new \DateInterval('P1Y'));
+        $expire->add(new \DateInterval('P2M'));
         //create a new subscription with
         $subscription = new Subscription($date, $expire);
         $subscription->setPaid(true);
