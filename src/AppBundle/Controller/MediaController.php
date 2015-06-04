@@ -14,27 +14,35 @@ class MediaController extends Controller{
      */
     public function uploadAction(Request $request)
     {
-        $document = new Document();
-        $form = $this->createFormBuilder($document)
-            ->add('name')
-            ->add('file')
-            ->getForm();
+        $dir = $this->_container->get('kernel')->getRootDir() . '/../web/' . $saveDir;
 
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $document->upload();
-
-            $em->persist($document);
-            $em->flush();
-
-            return $this->redirectToRoute('viewSpecificUser', array( 'userid' => $userid ));
-
+        if (!file_exists($dir)) {
+            mkdir($dir, 0775, true);
         }
 
-        return array('form' => $form->createView());
+        if (!is_writable($dir)) {
+            throw new \Exception(sprintf("%s is not writeable", $saveDir));
+        }
+
+        // Create db entity from uploaded file
+        $dbFile = new File($file->getClientOriginalName(), $saveDir, $file->getMimeType());
+
+        $this->_em->persist($dbFile);
+        $this->_em->flush();
+
+        $ext = pathinfo($dbFile->getName(), PATHINFO_EXTENSION); // Get extension from filename
+        $dbFile->setName(sprintf('%s%d.%s', basename($dbFile->getName(), $ext), $dbFile->getId(), $ext));
+
+        if ($file->move($dir, $dbFile->getName())) {
+            $this->_em->flush();
+            // Downscale all incoming images if bigger than 1280 pixels on either width or heigth
+            // Do this after the file has been moved and flushed so we can be sure it's in the
+            // place we created for it.
+        } else {
+            throw new \Exception('File could not be moved.');
+        }
+
+        return $dbFile;
     }
 
 }
