@@ -16,6 +16,7 @@ class SubscriberFormType extends AbstractType{
                 'choices' => PaymentType::getChoices()
             ])
 			->add('graduation', 'date')
+			->add('wantsBill', 'checkbox')
             ->add('deliveryaddress', new AddressFormType())
             ->add('facturationaddress', new AddressFormType())
 			->add('save', 'submit');
