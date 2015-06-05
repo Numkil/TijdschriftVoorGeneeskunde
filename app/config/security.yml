@@ -9,8 +9,8 @@ security:
     role_hierarchy:
         ROLE_PAIDUSER:    ROLE_USER
         ROLE_PRINTER:     ROLE_PAIDUSER
-        ROLE_ADMIN:       ROLE_PAIDUSER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN, ROLE_PRINTER
+        ROLE_ADMIN:       ROLE_PRINTER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
