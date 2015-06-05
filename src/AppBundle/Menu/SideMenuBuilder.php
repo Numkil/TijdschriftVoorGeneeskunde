@@ -20,7 +20,10 @@ class SideMenuBuilder extends ContainerAware
 
         $menu->addChild($this->container->get('translator')->trans('Notices'), array('route' => 'noticeOverview'));
         $menu->addChild($this->container->get('translator')->trans('Editors'), array('route' => 'editors'));
-        $menu->addChild($this->container->get('translator')->trans('Contact'), array('route' => 'contact'));
+        $menu->addChild($this->container->get('translator')->trans('At a glance'), array('route' => 'glance'));
+        $menu->addChild($this->container->get('translator')->trans('Guidelines for authors'), array('route' => 'guidelines'));
+        $menu->addChild($this->container->get('translator')->trans('Interesting links'), array('route' => 'links'));
+        $menu->addChild($this->container->get('translator')->trans('Vacancies & messages'), array('route' => 'vacancies'));
 
         return $menu;
     }

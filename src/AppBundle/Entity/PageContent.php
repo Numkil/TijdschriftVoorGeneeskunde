@@ -21,7 +21,7 @@ class PageContent
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="string")
+     * @ORM\Column(name="content", type="text")
      */
     protected $_content;
 
