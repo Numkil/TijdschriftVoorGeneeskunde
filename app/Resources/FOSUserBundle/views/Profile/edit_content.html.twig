@@ -53,6 +53,18 @@
                 {{ form_widget(form.bookstore, { 'attr' : { 'class': 'form-control' } }) }}
             </div>
         </div>
+        <div class="form-group">
+            <label for="healthcare" class="col-sm-2 control-label">{{ form_label(form.healthcare) }}</label>
+            <div class="col-lg-8">
+                {{ form_widget(form.healthcare, { 'attr' : { 'class': 'form-control' } }) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="role" class="col-sm-2 control-label">{{ form_label(form.role) }}</label>
+            <div class="col-lg-8">
+                {{ form_widget(form.role, { 'attr' : { 'class': 'form-control' } }) }}
+            </div>
+        </div>
     {% endif %}
 
     {{ form_rest(form) }}
