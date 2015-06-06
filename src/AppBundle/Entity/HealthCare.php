@@ -6,14 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Class Bookstore
+ * Class healthcare
  * @ORM\Entity
- * @ORM\Table(name="bookstore")
+ * @ORM\Table(name="healthcare")
  */
-class Bookstore extends Organization
+class HealthCare extends Organization
 {
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="_bookstore")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="_healthcare")
      */
     protected $_subscribers;
 }

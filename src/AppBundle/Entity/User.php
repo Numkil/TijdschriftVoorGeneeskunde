@@ -60,6 +60,14 @@ class User extends BaseUser
     protected $_bookstore;
 
     /**
+     * @var HealthCare
+     *
+     * @ORM\ManyToOne(targetEntity="HealthCare", inversedBy="_subscribers")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    protected $_healthcare;
+
+    /**
      *
      */
     public function __construct()
@@ -173,4 +181,24 @@ class User extends BaseUser
 
         return $this;
     }
+
+    /**
+     * @return HealthCare
+     */
+    public function getHealthCare()
+    {
+        return $this->_healthcare;
+    }
+
+    /**
+     * @param HealthCare
+     * @return this
+     */
+    public function setHealthCare($healthcare)
+    {
+        $this->_healthcare= $healthcare;
+
+        return $this;
+    }
+
 }
