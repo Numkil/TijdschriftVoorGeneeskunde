@@ -40,6 +40,7 @@ class Subscription{
 
     /**
      * @ORM\ManyToOne(targetEntity="Subscriber", inversedBy="_subscriptions")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $subscriber;
 
