@@ -127,5 +127,4 @@ class Subscription{
 	public function getId(){
 		return $this->id;
 	}
-
 }
