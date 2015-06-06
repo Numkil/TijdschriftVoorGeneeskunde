@@ -38,10 +38,15 @@ data-toggle="datatable" id="adminUserOverview">
                 <td>
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </td>
-            
+
             {% endif %}
             <td>{{ user.bookstore ? user.bookstore.name : '-'}}</td>
-            <td><a href="{{path('deleteSpecificUser', {userid: user.id})}}">{{ 'delete' | trans }}</a></td>
+            <td>
+                {% if user.id != app.user.id %}
+                <a data-bb="confirm" href="{{path('deleteSpecificUser', {userid: user.id})}}">
+                    {{ 'delete' | trans }}</a>
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </tbody>
