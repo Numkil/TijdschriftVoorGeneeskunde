@@ -3,9 +3,9 @@
 }
 
 .content{
-  position: relative;
-  height: auto;
-  padding: 10px;
+    position: relative;
+    height: auto;
+    padding-left: 250px;
 }
 
 /* Side Navigation */
