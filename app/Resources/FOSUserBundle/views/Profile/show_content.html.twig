@@ -64,10 +64,7 @@
                 <tr>
                     <td>{{ subje.startdate | date }}</td>
                     <td>{{ subje.enddate | date }}</td>
-                    <td>
-                        <a href="{{path('uploadDocument', { userid: user.id })}}"
-                            class="btn btn-primary">{{ 'Upload'|trans }}</a>
-                    </td>
+                  
                     <td>
                     {% if is_granted('ROLE_SUPER_ADMIN')  %}
                         {% if subje.isPaid %}

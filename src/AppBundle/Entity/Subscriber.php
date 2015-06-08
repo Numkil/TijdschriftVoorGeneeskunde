@@ -59,10 +59,19 @@ class Subscriber
     protected $_wantsBill;
 
     /**
+     * @ORM\Column(name="paperversion", type="boolean", nullable=false)
+     */
+    //protected $_paperVersion;
+
+    /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="_subscriber")
      * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      */
     protected $_user;
+
+    public function __construct(){
+        //$this->setPaperVersion(true);
+    }
 
     /**
      * Get pricingtype
@@ -229,6 +238,24 @@ class Subscriber
     public function getDeliveryAddress(){
         return $this->_deliveryAddress;
     }
+    
+    /*
+    /**
+    *Set if this subscriber's wants paper version or not
+    *@param Address address
+  
+    public function setPaperVersion($boolean){
+        $this->_paperVersion = $boolean;
+    }
+
+    /**
+    * Get if subscriber wants paper version or not
+    *@return boolean paperVersion
+    
+    public function getPaperVersion(){
+        return $this->_paperVersion;
+    }
+    */
 
 	/**
 	* Set user
