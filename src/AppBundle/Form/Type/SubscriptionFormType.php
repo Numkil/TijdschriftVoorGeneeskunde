@@ -7,10 +7,22 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class SubscriptionFormType extends AbstractType{
 
-	public function buildForm(FormBuilderInterface $builder, array $options){
-	}
+    public function buildForm(FormBuilderInterface $builder, array $options){
+        $builder
+            ->add('startDate', 'collot_datetime',
+                array( 'pickerOptions' => array(
+                    'format' => 'dd/mm/yyyy',
+                    'minView' => 'month',
+            )))
+            ->add('enddate', 'collot_datetime',
+                array( 'pickerOptions' => array(
+                    'format' => 'dd/mm/yyyy',
+                    'minView' => 'month',
+            )))
+            ->add('save', 'submit');
+    }
 
-	public function getName(){
-		return 'SubscriptionForm';
-	}
+    public function getName(){
+        return 'SubscriptionForm';
+    }
 }

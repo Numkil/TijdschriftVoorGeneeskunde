@@ -2,7 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ExecutionContextInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -119,13 +120,25 @@ class Subscription{
         return $this->isPaid;
     }
 
-	public function setId($id){
-		$this->id = $id;
+    public function setId($id){
+        $this->id = $id;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function getId(){
-		return $this->id;
-	}
+    public function getId(){
+        return $this->id;
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function isEndGreater(ExecutionContextInterface $context)
+    {
+        if ($this->startDate->getTimestamp() > $this->endDate->getTimestamp()) {
+            $context->buildViolation('The end date must be larger than the start date')
+                ->atPath('endDate')
+                ->addViolation();
+        }
+    }
 }

@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
 
             //Our own bundles
             new AppBundle\AppBundle(),
