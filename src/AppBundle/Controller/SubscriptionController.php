@@ -9,6 +9,7 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\Subscriber;
 use AppBundle\Entity\Subscription;
 use AppBundle\Form\Type\SubscriberFormType;
+use AppBundle\Form\Type\SubscriptionFormType;
 
 class SubscriptionController extends Controller{
 
@@ -180,5 +181,32 @@ class SubscriptionController extends Controller{
         return $this->render('FOSUserBundle::Profile/show.html.twig', array(
             'user' => $user,
         ));
+    }
+
+    /**
+     * @Route("/subscription/{userid}/{subscriptionid}/edit", name="editSubscription")
+     */
+    public function editSubscription(Request $request, $userid, $subscriptionid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
+        $subscr = $em->getRepository('AppBundle:Subscription')
+            ->findOneBy(array('id' => $subscriptionid));
+
+        $subscriptionform = $this->createForm(new SubscriptionFormType(), $subscr);
+        $subscriptionform->handleRequest($request);
+
+        if($subscriptionform->isValid()){
+            $em->flush();
+            return $this->render('FOSUserBundle::Profile/show.html.twig', array(
+                'user' => $user,
+            ));
+        }
+
+        return $this->render('::subscription/edit.html.twig', array(
+            'form' => $subscriptionform->createView(),
+            'userid' => $user->getId(),
+        ));
+
     }
 }

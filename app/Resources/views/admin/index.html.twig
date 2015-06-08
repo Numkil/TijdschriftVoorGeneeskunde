@@ -26,19 +26,19 @@ data-toggle="datatable" id="adminUserOverview">
             <td>{{ user.id  }}</td>
             <td><a href="{{path('viewSpecificUser', {userid: user.id})}}" >{{ user.username }}</a></td>
             <td>{{ user.email}}</td>
-            {% if user.subscriber == null %}
+            {% if user.subscriber == null or not user.subscriber.hasActiveSubscription %}
                 <td>
                     <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                 </td>
-            {% elseif user.subscriber.hasPaidSubscription == false %}
+            {% elseif user.subscriber.hasActiveSubscription and
+                not user.subscriber.getActiveSubscription.isPaid %}
                 <td>
                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                 </td>
-            {% elseif user.subscriber.hasActiveSubscription == true %}
+            {% else %}
                 <td>
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 </td>
-
             {% endif %}
             <td>{{ user.bookstore ? user.bookstore.name : '-'}}</td>
             <td>

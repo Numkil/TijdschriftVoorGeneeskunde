@@ -11,20 +11,12 @@
 {% endblock %}
 
 {% block content %}
-    {% if newsubscriber %}
-    <h1>New Subscription</h1>
-    {% else %}
-    <h1>Please Check your subscription details</h1>
-    {% endif %}
+<h1>{{'Here you can change the date on this subscription'|trans }}</h1>
     {{ form_start(form) }}
     	{{ form_errors(form) }}
 
         {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
-        {% if userid == app.user.id %}
-            <a href="{{path('fos_user_profile_show')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
-        {% else %}
-            <a href="{{path('viewSpecificUser', {userid: userid})}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
-        {% endif %}
+        <a href="{{path('viewSpecificUser', {userid: userid})}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
 
     	{{ form_rest(form) }}
     {{ form_end(form) }}

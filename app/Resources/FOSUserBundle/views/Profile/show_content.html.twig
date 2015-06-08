@@ -24,7 +24,8 @@
 
     <div class=" jumbotron">
         <div class="col-md-8">
-            {% if 'ROLE_PAIDUSER' in user.roles %}
+            {% if user.subscriber and user.subscriber.hasActiveSubscription and
+            user.subscriber.getActiveSubscription.isPaid %}
                 Your subscription is valid until: {{ user.subscriber.getActiveSubscription.enddate |
                 date }}
                 {% if user.subscriber.getActiveSubscription.enddate|date('d-m-Y') <=
@@ -61,8 +62,14 @@
             <tbody>
             {% for subje in user.subscriber.subscriptions %}
                 <tr>
-                    <td>{{ subje.startdate | date }}</td>
-                    <td>{{ subje.enddate | date }}</td>
+                    <td>
+                        <a href="{{path('editSubscription', {userid: user.id, subscriptionid:
+                            subje.id})}}">{{ subje.startdate | date('d-m-Y') }}</a>
+                    </td>
+                    <td>
+                        <a href="{{path('editSubscription', {userid: user.id, subscriptionid:
+                            subje.id})}}">{{ subje.enddate | date('d-m-Y') }}</a>
+                    </td>
                     <td>
                     {% if is_granted('ROLE_SUPER_ADMIN')  %}
                         {% if subje.isPaid %}

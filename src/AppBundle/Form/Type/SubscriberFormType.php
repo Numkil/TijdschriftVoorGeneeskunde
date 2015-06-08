@@ -15,7 +15,11 @@ class SubscriberFormType extends AbstractType{
             ->add('pricingtype', 'choice', [
                 'choices' => PaymentType::getChoices()
             ])
-			->add('graduation', 'date')
+            ->add('graduation', 'collot_datetime',
+                array( 'pickerOptions' => array(
+                    'format' => 'dd/mm/yyyy',
+                    'minView' => 'month',
+            )))
             ->add('wantsBill', 'checkbox',
                 array(
                     'required' => false,
