@@ -46,8 +46,8 @@ class SubscriptionController extends Controller{
 
             $em->persist($subscription);
             if($newsubscriber){
-                $em->persist($subscriber->getFacturationAddress());
                 $em->persist($subscriber->getDeliveryAddress());
+                $em->persist($subscriber->getFacturationAddress());
                 $em->persist($subscriber);
             }
 

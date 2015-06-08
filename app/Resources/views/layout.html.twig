@@ -19,7 +19,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="{{path('homepage')}}" class="navbar-brand">TvG</a>
+                    <a href="{{path('homepage')}}" class="navbar-brand"><img src="{{ asset('images/logo.png', version='1.0') }}" /></a>
                 </div>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {% include '::loggedin/menu.html.twig' %}

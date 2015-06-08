@@ -10,10 +10,20 @@ class AddressFormType extends AbstractType{
 
 	public function buildForm(FormBuilderInterface $builder, array $options){
 		$builder
-			->add('street')
-			->add('postalCode')
-			->add('municipality')
-			->add('country');
+			->add('street', 'text', array(
+					'attr' => array('id' => 'street'),
+				))
+			->add('postalCode', 'text', array(
+					'attr' => array('id' => 'postalCode'),
+				))
+			->add('municipality', 'text', array(
+					'attr' => array('id' => 'municipality'),
+				))
+			->add('country', 'text', array(
+					'attr' => array('id' => 'country'),
+				)); 
+
+			//TODO: country vervangen door dropdown
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
