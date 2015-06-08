@@ -72,7 +72,7 @@ class UserAdminController extends Controller{
 
         if ($form->isValid()) {
 
-            $user->addRole($form->get('Role')->getData());
+            $user->addRole($form->get('role')->getData());
 
             if($user->getBookstore()){
                 $user->getBookstore()->addSubscriber($user);
