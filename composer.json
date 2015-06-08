@@ -28,7 +28,8 @@
         "knplabs/knp-paginator-bundle": "^2.4",
         "liuggio/excelbundle": "^2.0",
         "egeloen/ckeditor-bundle": "^3.0",
-        "stephanecollot/datetimepicker-bundle": "^1.0"
+        "stephanecollot/datetimepicker-bundle": "^1.0",
+        "royopa/fpdf-symfony2": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
