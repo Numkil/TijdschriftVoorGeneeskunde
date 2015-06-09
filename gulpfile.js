@@ -34,7 +34,7 @@ gulp.task('bowercss', function() {
 });
 
 gulp.task('copyfonts', function() {
-   gulp.src('./bower_components/bootstrap/fonts/**/*.{ttf,woff,eof,svg}')
+  return gulp.src('./bower_components/bootstrap/fonts/**/*.{ttf,woff,eof,svg}')
    .pipe(gulp.dest('web/bundles/global/fonts'));
 });
 
