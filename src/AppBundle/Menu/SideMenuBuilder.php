@@ -41,7 +41,6 @@ class SideMenuBuilder extends ContainerAware
         $menu->addChild($this->container->get('translator')->trans('Interesting links'), array('route' => 'links'));
         $menu->addChild($this->container->get('translator')->trans('Vacancies & messages'), array('route' => 'vacancies'));
         $menu->addChild($this->container->get('translator')->trans('Contact'), array('route' => 'contact'));
-
         return $menu;
     }
 }
