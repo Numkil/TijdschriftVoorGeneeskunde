@@ -32,7 +32,7 @@ class FactuurPDF extends \FPDF_FPDF {
   	$this->setXY(20, 230);
   	$this->Cell(170, 5, 'i.o. prof. dr. J. Lauweryns');
   	$this->setXY(20, 235);
-  	$this->Cell(170, 5, 'Roxane Lecompte');
+  	$this->Cell(170, 5, 'Leen Hernalsteen');
   	$this->setXY(20, 240);
   	$this->Cell(170, 5, 'Redactiemedewerker');
   	$this->setXY(20, 245);
@@ -221,22 +221,24 @@ class PdfGenerator{
 		$pdf->setXY(138, 57.5);
 		$pdf->Cell(50, 5, $municipalityAddress, 0, 0, 'R');
 
-		$pdf->setXY(86, 62.5);
-		$pdf->Cell(50, 5, 'BTW of VAT nummer:', 0, 0, 'R');
-
-		$pdf->setXY(138, 62.5);
-		$pdf->Cell(50, 5, $vatNumber, 0, 0, 'R');
-
 		//Factuurnummer
 		$pdf->setXY(20, 75);
 		$pdf->Cell(75, 5, 'Factuurnummer:    ' .  strval($invoiceNumber));
 
 		//Bestelbon nummer
-		$pdf->setXY(86, 75);
-		$pdf->Cell(50, 5, 'Bestelbon nummer:', 0, 0, 'R');
+		if($orderNumber !== ''){
+			$pdf->setXY(86, 75);
+			$pdf->Cell(50, 5, 'Bestelbon nummer:', 0, 0, 'R');
 
-		$pdf->setXY(138, 75);
-		$pdf->Cell(50, 5, $orderNumber, 0, 0, 'R');
+			$pdf->setXY(138, 75);
+			$pdf->Cell(50, 5, $orderNumber, 0, 0, 'R');
+		}
+		//BTW nummer
+		$pdf->setXY(86, $orderNumber !== '' ? 80 : 75);
+		$pdf->Cell(50, 5, 'BTW of VAT nummer:', 0, 0, 'R');
+
+		$pdf->setXY(138, $orderNumber !== '' ? 80 : 75);
+		$pdf->Cell(50, 5, $vatNumber, 0, 0, 'R');
 
 		//Ordergegevens
 		$pdf->setXY(20, 95);
