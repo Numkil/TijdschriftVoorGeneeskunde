@@ -39,6 +39,7 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/article/, role: ROLE_PAIDUSER }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/notice/new/$, role: ROLE_ADMIN}
         - { path: ^/printer/, role: ROLE_PRINTER}

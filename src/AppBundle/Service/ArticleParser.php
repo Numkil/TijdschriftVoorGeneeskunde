@@ -97,54 +97,43 @@ class ArticleParser{
 		return $this->password;
 	}
 
-
+    /**
+     * @return array[] article
+     */
 	public function fetchAllArticles(){
 
-		$response = file_get_contents($this->hostname);
-		$articleArray = json_decode($response);
-//TODO: check if returns array
+        $curl = curl_init('http://'.$this->getHostname());
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $curl_response = curl_exec($curl);
+        $response = json_decode($curl_response, true);
+        curl_close($curl);
+        return $response;
 	}
 
-	public function fetchArticle($url){
-		/*
-		this url contains the service url + the url containing 
-		the parameters for fetching the correct article from peeters server
-		*/
-		$requestURL = $this->hostname . $url;
-//TODO: exceptions		
-		$response = file_get_contents($requestURL);
-		$articleArray = json_decode($response);
-		$article = parseArticle($articleArray);
+    /**
+     * TODO:  Don't forget to escape the query in controller
+     * @param String query
+     * @return array[] article
+     */
+	public function fetchAllArticlesForQuery($query){
 
-		return $article;
-	}
-
-	/**
-	* Parse article
-	* @return Article article
-	*/
-	private function parseArticle(array $arrayArticle){
-		/*
-			this function will wrap the decoded json array into a Article object
-		*/
-		$article = new Article();
-
-		$article->id = $arrayArticle['id'];
-		$article->type = $arrayArticle['type'];
-		$article->title = $arrayArticle['title'];
-		$article->subtitle = $arrayArticle['subtitle'];
-		$article->summery = $arrayArticle['summery'];
-		$article->authors = $arrayArticle['authors'];
-		$article->tags = $arrayArticle['tags'];
-		$article->categories = $arrayArticle['categories'];
-		$article->collumns = $arrayArticle['collumn'];
-		$article->year = $arrayArticle['year'];
-		$article->volume = $arrayArticle['volume'];
-		$article->number = $arrayArticle['number'];
-		$article->startPage = $arrayArticle['startPage'];
-		$article->endPage = $arrayArticle['endPage'];
-		$article->classification = $arrayArticle['classification'];
-
-		return $article;
+        $url = $this->getHostname();
+        foreach ($query as $key => $value) {
+            if($value){
+            if (strpos($url, '?') === false) {
+                $url = $url.'?';
+            }else{
+                $url = $url.'&';
+            }
+            $url = $url.$key.'='.$value;
+            }
+        }
+        echo($url);
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $curl_response = curl_exec($curl);
+        $response = json_decode($curl_response, true);
+        curl_close($curl);
+        return $response;
 	}
 }
