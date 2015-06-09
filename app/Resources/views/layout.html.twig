@@ -21,7 +21,8 @@
                     </button>
                     <a href="{{path('homepage')}}" class="navbar-brand"><img src="{{ asset('images/logo.png', version='1.0') }}" /></a>
                 </div>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') or
+                is_granted('IS_AUTHENTICATED_FULLY') %}
                     {% include '::loggedin/menu.html.twig' %}
                 {% else %}
                     {% include '::notloggedin/menu.html.twig' %}
@@ -40,7 +41,8 @@
                 {% endfor %}
             {% endfor %}
             {% block sidebar %}
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') or
+            is_granted('IS_AUTHENTICATED_FULLY') %}
                 {% include '::loggedin/sidebar.html.twig' %}
             {% else %}
                 {% include '::notloggedin/sidebar.html.twig' %}
