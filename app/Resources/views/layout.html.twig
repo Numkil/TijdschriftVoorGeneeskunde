@@ -23,7 +23,8 @@
                     <h1 class="banner-title">Tijdschrift voor Geneeskunde</h1>
                     <h5 class="banner-subtitle">Gesticht door de Nederlandstalige Medische Faculteiten in België en hun Alumni-Verenigingen</h5>
                 </div>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') or
+                is_granted('IS_AUTHENTICATED_FULLY') %}
                     {% include '::loggedin/menu.html.twig' %}
                 {% else %}
                     {% include '::notloggedin/menu.html.twig' %}
@@ -43,7 +44,8 @@
                 {% endfor %}
             {% endfor %}
             {% block sidebar %}
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') or
+            is_granted('IS_AUTHENTICATED_FULLY') %}
                 {% include '::loggedin/sidebar.html.twig' %}
             {% else %}
                 {% include '::notloggedin/sidebar.html.twig' %}

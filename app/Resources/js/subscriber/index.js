@@ -4,6 +4,7 @@
 "use strict";
 
 $(document).ready(function () {
+
     $('#sameAddress').click(function () {
         if (document.getElementById('SubscriberForm_sameaddress').checked === true) {
             document.getElementById('facturationAddress').style.display = 'none';
@@ -11,8 +12,8 @@ $(document).ready(function () {
             document.getElementById('facturationAddress').style.display = 'block';
         }
     });
+
     $(document.getElementById('SubscriberForm_save')).click(function () {
-        window.alert("test'");
         if (document.getElementById('SubscriberForm_sameaddress').checked === true) {
             document.getElementById('SubscriberForm_facturationaddress_street').value = document.getElementById('SubscriberForm_deliveryaddress_street').value;
             document.getElementById('SubscriberForm_facturationaddress_postalCode').value = document.getElementById('SubscriberForm_deliveryaddress_postalCode').value;
