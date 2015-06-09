@@ -1,7 +1,7 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <h1>Notice overview<h1>
+    <h1>Notice overview</h1>
 
     {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
@@ -19,7 +19,7 @@
 			 		<td>#</td>
 			 		<td>Title</td>
 			 		<td>Creation date</td>
-			 		<td class="span1">Message</td>
+			 		<td class="span1">Message</td>	
 			 		<td></td>
 			 		<td></td>
                     </tr>
@@ -38,5 +38,5 @@
 			 	</tbody>
 			</table>
 		</div>
-	<div>
+	</div>
 {% endblock %}

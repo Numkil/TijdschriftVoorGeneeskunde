@@ -1,25 +1,33 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <h1>Notice overview<h1>
+    <h1>Notice overview</h1>
 
     {{ pagination.getTotalItemCount }}
 
     <div class="row">
     {% for notice in pagination %}
     	<div class="col-md-12">
-		    <div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">{{ notice.title }}</h3>
-				</div>
-				<div class="panel-body">
-					{{ notice.creationDate|date("d/m/Y h:i") }}
-					{{ notice.message }}
+		    <div class="notice-panel-container">
+			    <div class="notice-panel">
+					<div class="notice-panel-heading">
+						<div class="notice-panel-title">
+							<h3 class="notice-panel-title">{{ notice.title }}</h3>
+						</div>
+						<div class="notice-panel-title">
+							<h4 class="notice-panel-title">
+								<span class="glyphicon glyphicon-calendar">{{ notice.creationDate|date("d/m/Y h:i") }}</span>
+							</h4>
+						</div>
+					</div>
+					<div class="notice-panel-body">
+						{{ notice.message }}
+					</div>
 				</div>
 			</div>
 		</div>
 	{% endfor %}
-	<div>
+	</div>
 
 	<div class="pagination">
 	    {{ knp_pagination_render(pagination) }}
