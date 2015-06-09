@@ -33,6 +33,11 @@ gulp.task('bowercss', function() {
     .pipe(gulp.dest('web/bundles/global/vendor'));
 });
 
+gulp.task('copyfonts', function() {
+  return gulp.src('./bower_components/bootstrap/fonts/**/*.{ttf,woff,eof,svg}')
+   .pipe(gulp.dest('web/bundles/global/fonts'));
+});
+
 gulp.task('bowercssprod', function(){
   return merge2(
     gulp.src(bowerMainCssFiles.minified),
@@ -98,5 +103,5 @@ gulp.task('csslint', function () {
     .pipe(csslint.reporter());
 });
 
-gulp.task('dev', ['bower', 'bowercss', 'jslint', 'csslint', 'copyjs', 'copycss']);
-gulp.task('prod', ['bowerprod', 'bowercssprod', 'jslint', 'csslint', 'copyjsprod', 'copycssprod']);
+gulp.task('dev', ['bower', 'bowercss', 'jslint', 'csslint', 'copyjs', 'copycss', 'copyfonts']);
+gulp.task('prod', ['bowerprod', 'bowercssprod', 'jslint', 'csslint', 'copyjsprod', 'copycssprod', 'copyfonts']);

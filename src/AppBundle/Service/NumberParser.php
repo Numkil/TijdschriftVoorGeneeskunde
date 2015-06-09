@@ -150,7 +150,7 @@ class NumberParser{
 		$result .= $this->parseSmallNumber($number);
 
 		//honderdsten apart doen	
-		if($rest > 0) $result .= ' en ' . $this->parseSmallNumber($rest * 100) . ' honderdsten';
+		if($rest > 0) $result .= ' en ' . $this->parseSmallNumber(round($rest * 100)) . ' honderdsten';
 
 		return trim($result);
 	}
@@ -166,6 +166,7 @@ class NumberParser{
 		}
 		$tenthsAndOnes = $smallNumber % 100;
 		$hundreds = ($smallNumber - $tenthsAndOnes) / 100;
-		return $this->_smallNumberMapping[$hundreds] . 'honderd' . $this->_smallNumberMapping[$tenthsAndOnes];
+		$hundredsString = $hundreds != 1 ? $this->_smallNumberMapping[$hundreds] : '';
+		return $hundredsString . 'honderd' . $this->_smallNumberMapping[$tenthsAndOnes];
 	}
 }
