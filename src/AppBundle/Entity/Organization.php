@@ -49,6 +49,11 @@ abstract class Organization
     protected $_address;
 
     /**
+     * @ORM\Column(name="vatNumber", type="string", nullable=true, length=150)
+     */
+    protected $_vatNumber;
+
+    /**
     *Set this bookstore's id
     *@param String id
     */
@@ -190,5 +195,21 @@ abstract class Organization
     public function amountSubscribers()
     {
         return $this->_subscribers->count();
+    }
+
+    /**
+    *Set this organizations's vat number
+    *@param string vatNumber
+    */
+    public function setVatNumber($vatNumber){
+        $this->_vatNumber = $vatNumber;
+    }
+
+    /**
+    * Get this organizations's vat number
+    *@return string vatNumber
+    */
+    public function getVatNumber(){
+        return $this->_vatNumber;
     }
 }
