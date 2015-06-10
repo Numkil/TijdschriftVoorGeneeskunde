@@ -102,7 +102,7 @@ class ArticleParser{
      */
 	public function fetchAllArticles(){
 
-        $curl = curl_init('http://'.$this->getHostname());
+        $curl = curl_init('http://'.$this->getHostname().'?jaar='.date('Y').'&order1=jaar');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $curl_response = curl_exec($curl);
         $response = json_decode($curl_response, true);
@@ -128,8 +128,7 @@ class ArticleParser{
             $url = $url.$key.'='.$value;
             }
         }
-        echo($url);
-        $curl = curl_init($url);
+        $curl = curl_init('http://'.$url.'&order1=jaar');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $curl_response = curl_exec($curl);
         $response = json_decode($curl_response, true);
