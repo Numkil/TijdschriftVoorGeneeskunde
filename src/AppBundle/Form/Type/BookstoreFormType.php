@@ -15,6 +15,7 @@ class BookstoreFormType extends AbstractType{
 			->add('telephone', 'tel', array('default_region' => 'BE',
             'format' => PhoneNumberFormat::NATIONAL))
 			->add('address', new AddressFormType())
+			->add('vatNumber', 'text', array('required' => false))
 			->add('save', 'submit');
 	}
 

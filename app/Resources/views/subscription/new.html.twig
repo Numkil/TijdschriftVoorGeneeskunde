@@ -20,39 +20,76 @@
     	{{ form_errors(form) }}
 
     	<div class="form-group">
-    		<label for="title">{{ form_label(form.school) }}</label>
+    		{{ form_label(form.school) }}
     		{{ form_widget(form.school) }}
     	</div>
 
     	<div class="form-group">
-    		<label for="title">{{ form_label(form.pricingtype) }}</label>
+    		{{ form_label(form.pricingtype) }}
     		{{ form_widget(form.pricingtype) }}
     	</div>
 
     	<div class="form-group">
-    		<label for="title">{{ form_label(form.graduation) }}</label>
+    		{{ form_label(form.graduation) }}
     		{{ form_widget(form.graduation) }}
     	</div>
 
     	<div class="form-group">
-    		<label for="title">{{ form_label(form.wantsBill) }}</label>
+    		{{ form_label(form.wantsBill) }}
     		{{ form_widget(form.wantsBill) }}
     	</div>
 
-    	<div class="form-group" id="deliveryAddress">
-    		<label for="title">{{ form_label(form.deliveryaddress) }}</label>
-    		{{ form_widget(form.deliveryaddress) }}
+    	<div class="form-group" id="deliveryAddressStreet">
+    		{{ form_label(form.deliveryaddress.street) }}
+    		{{ form_widget(form.deliveryaddress.street) }}
     	</div>
 
-		<div class="form-group" id="facturationAddress">
-    		<label for="title">{{ form_label(form.facturationaddress) }}</label>
-    		{{ form_widget(form.facturationaddress) }}
-    	</div>
+        <div class="form-group" id="deliveryAddressPostalCode">
+            {{ form_label(form.deliveryaddress.postalCode) }}
+            {{ form_widget(form.deliveryaddress.postalCode) }}
+        </div>
+
+        <div class="form-group" id="deliveryAddressMunicipality">
+            {{ form_label(form.deliveryaddress.municipality) }}
+            {{ form_widget(form.deliveryaddress.municipality) }}
+        </div>
+
+        <div class="form-group" id="deliveryAddressCountry">
+            {{ form_label(form.deliveryaddress.country) }}
+            {{ form_widget(form.deliveryaddress.country) }}
+        </div>
+
+        <div id="facturationAddress">
+            <div class="form-group" id="facturationAddressStreet">
+                {{ form_label(form.facturationaddress.street) }}
+                {{ form_widget(form.facturationaddress.street) }}
+            </div>
+
+            <div class="form-group" id="facturationAddressPostalCode">
+                {{ form_label(form.facturationaddress.postalCode) }}
+                {{ form_widget(form.facturationaddress.postalCode) }}
+            </div>
+
+            <div class="form-group" id="deliveryAddressMunicipality">
+                {{ form_label(form.facturationaddress.municipality) }}
+                {{ form_widget(form.facturationaddress.municipality) }}
+            </div>
+
+            <div class="form-group" id="facturationAddressCountry">
+                {{ form_label(form.facturationaddress.country) }}
+                {{ form_widget(form.facturationaddress.country) }}
+            </div>
+        </div>
 
     	<div class="form-group" id="sameAddress">
-    		<label for="title">{{ form_label(form.sameaddress) }}</label>
+    		{{ form_label(form.sameaddress) }}
     		{{ form_widget(form.sameaddress) }}
     	</div>
+
+        <div class="form-group" id="vatNumber">
+            {{ form_label(form.vatNumber) }}
+            {{ form_widget(form.vatNumber) }}
+        </div>
 
 		{{ form_rest(form) }}
 

@@ -69,6 +69,11 @@ class Subscriber
      */
     protected $_user;
 
+    /**
+     * @ORM\Column(name="vatNumber", type="string", nullable=true, length=150)
+     */
+    protected $_vatNumber;
+
     public function __construct(){
         //$this->setPaperVersion(true);
     }
@@ -223,7 +228,7 @@ class Subscriber
         return $this->_facturationAddress;
     }
 
-        /**
+    /**
     *Set this subscriber's delivery address
     *@param Address address
     */
@@ -295,6 +300,22 @@ class Subscriber
     {
         $this->_wantsBill = $wants;
         return $this;
+    }
+
+    /**
+    *Set this subscriber's vat number
+    *@param string vatNumber
+    */
+    public function setVatNumber($vatNumber){
+        $this->_vatNumber = $vatNumber;
+    }
+
+    /**
+    * Get this subscriber's vat number
+    *@return string vatNumber
+    */
+    public function getVatNumber(){
+        return $this->_vatNumber;
     }
 
 

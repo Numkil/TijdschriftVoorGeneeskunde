@@ -11,14 +11,16 @@ class SubscriberFormType extends AbstractType{
 
 	public function buildForm(FormBuilderInterface $builder, array $options){
 		$builder
-			->add('school')
+			->add('school', 'text', array('required' => false))
             ->add('pricingtype', 'choice', [
                 'choices' => PaymentType::getChoices()
             ])
             ->add('graduation', 'collot_datetime',
-                array( 'pickerOptions' => array(
-                    'format' => 'dd/mm/yyyy',
-                    'minView' => 'month',
+                array( 
+                    'required' => false,
+                    'pickerOptions' => array(
+                        'format' => 'dd/mm/yyyy',
+                        'minView' => 'month',
             )))
             ->add('wantsBill', 'checkbox',
                 array(
@@ -32,6 +34,7 @@ class SubscriberFormType extends AbstractType{
             		'mapped' => false,
             		'data' => false,
             	))
+            ->add('vatNumber', 'text', array('required' => false))
             /*->add('paperversion', 'checkbox', array(
 				    'label'    => 'I want to receive a paper version',
 				    'required' => false,
