@@ -1,31 +1,82 @@
 {% extends '::layout.html.twig' %}
 
-{% block content %}
-    <h1>Notice overview<h1>
+{% block stylesheets %}
+    {{ parent() }}
+    {{ form_stylesheet(form) }}
+{% endblock %}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+{% block javascripts %}
+    {{ parent() }}
+    {{ form_javascript(form) }}
+{% endblock %}
+
+{% block content %}
+    <h1>Article overview</h1>
+
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal'}})}}
+
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        <label for="titel">{{ form_label(form.titel) }}</label>
+        {{ form_widget(form.titel, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        <label for="subtitel">{{ form_label(form.subtitel) }}</label>
+        {{ form_widget(form.subtitel, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        <label for="vakgebieden">{{ form_label(form.vakgebieden) }}</label>
+        {{ form_widget(form.vakgebieden, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        <label for="auteur">{{ form_label(form.auteur) }}</label>
+        {{ form_widget(form.auteur, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        <label for="trefwoorden">{{ form_label(form.trefwoorden) }}</label>
+        {{ form_widget(form.trefwoorden, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        <label for="jaar">{{ form_label(form.jaar) }}</label>
+        {{ form_widget(form.jaar, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    {{form_widget(form.search, { 'attr': {'class': 'btn btn-primary'}})}}
+
+    {{ form_rest(form) }}
     {{ form_end(form) }}
 
-    {{ pagination.getTotalItemCount }}
+    <p> {% trans %} Please notice that because our search results are limited to 500 books, you
+    might have to specify your search more if you notice you are getting a lot of results and can't
+    find the article you expected.{% endtrans %}</p>
 
-    <div class="row">
-    {% for article in pagination %}
-    	<div class="col-md-12">
-		    <div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">{{ article.jaar }}</h3>
-				</div>
-				<div class="panel-body">
-                    {{ article.titel }}
-				</div>
-			</div>
-		</div>
-	{% endfor %}
-	<div>
-
-	<div class="pagination">
-	    {{ knp_pagination_render(pagination) }}
-	</div>
-
+    <table border="0" cellspacing="5" cellpadding="5" class="display table" width="100%"
+    data-toggle="datatable" id="articleOverview">
+        <thead>
+            <tr>
+                <th>{{ 'author' | trans }}</th>
+                <th>{{ 'title' | trans }}</th>
+                <th>{{ 'year' | trans }}</th>
+                <th>{{ 'number' | trans }}</th>
+                <th>{{ 'pages' | trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+            <tr>
+                <td>{{article.auteur}}</td>
+                <td>{{article.titel}}</td>
+                <td>{{article.jaar}}</td>
+                <td>{{article.nummer}}</td>
+                <td>{{article.endpage}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

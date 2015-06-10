@@ -19,13 +19,6 @@ class ArticleController extends Controller{
         $articles = $articleParser->fetchAllArticles();
         $articles = array_reverse($articles);
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $articles,
-            $request->query->getInt('page', 1),
-            10 /* max number of elements per page*/
-        );
-
         $data = array();
         $form = $this->createFormBuilder($data)
             ->add('titel', 'text', array(
@@ -44,6 +37,15 @@ class ArticleController extends Controller{
             ->add('trefwoorden', 'text', array(
                 'required' => false,
             ))
+            ->add('jaar', 'collot_datetime', array(
+                'pickerOptions' => array(
+                    'format' => 'yyyy',
+                    'startView' => 'decade',
+                    'minView' => 'decade',
+                ),
+                'required' => false,
+                'input' => 'string',
+            ))
             ->add('search', 'submit')
             ->getForm();;
         $form->handleRequest($request);
@@ -51,16 +53,10 @@ class ArticleController extends Controller{
             $data = $form->getData();
             $articles = $articleParser->fetchAllArticlesForQuery($data);
             $articles = array_reverse($articles);
-            $pagination = $paginator->paginate(
-                $articles,
-                $request->query->getInt('page', 1),
-                10 /* max number of elements per page*/
-            );
-
         }
         return $this->render('article/index.html.twig',
             array(
-                'pagination' => $pagination,
+                'articles' => $articles,
                 'form' => $form->createView(),
             ));
     }
