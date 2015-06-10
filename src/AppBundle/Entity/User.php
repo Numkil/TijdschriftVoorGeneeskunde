@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -66,6 +67,13 @@ class User extends BaseUser
      * @ORM\JoinColumn(nullable=true)
      */
     protected $_healthcare;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created", type="datetime")
+     * @var \DateTime
+     */
+    protected $_created;
 
     /**
      *
@@ -201,4 +209,21 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @return DateTime
+     */
+    public function getCreated()
+    {
+        return $this->_created;
+    }
+
+    /**
+     * @param Datetime $created
+     */
+    public function setCreated($created)
+    {
+        $this->_created = $created;
+
+        return $this;
+    }
 }
