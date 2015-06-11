@@ -4,5 +4,10 @@
 "use strict";
 
 $(document).ready(function () {
-    $('#articleOverview').DataTable();
+    $('#articleOverview').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.7/i18n/Dutch.json"
+        }
+    });
+
 });

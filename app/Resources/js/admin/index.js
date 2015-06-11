@@ -4,7 +4,11 @@
 "use strict";
 
 $(document).ready(function () {
-    $('#adminUserOverview').DataTable();
+    $('#adminUserOverview').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.7/i18n/Dutch.json"
+        }
+    });
     $(document).on("click", "a[data-bb]", function (e) {
         var link = $(this).attr('href');
         e.preventDefault();

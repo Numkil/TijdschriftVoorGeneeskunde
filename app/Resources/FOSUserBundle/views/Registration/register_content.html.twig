@@ -8,6 +8,8 @@
 
     class="form-horizontal">
 
+    {{ form_errors(form) }}
+
     <div class="form-group">
         <label for="username" class="col-sm-2 control-label">{{ form_label(form.username) }}</label>
         <div class="col-sm-8">
@@ -16,11 +18,11 @@
     </div>
 
     <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">{{ form_label(form.name) }}</label>
+        <label for="name" class="col-sm-2 control-label">{{ form_label(form.name) }}:</label>
         <div class="col-sm-4">
             {{ form_widget(form.name, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
-        <label for="firstname" class="col-sm-2 control-label">{{ form_label(form.firstname) }}</label>
+        <label for="firstname" class="col-sm-2 control-label">{{ form_label(form.firstname) }}:</label>
         <div class="col-sm-4" >
             {{ form_widget(form.firstname, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
@@ -34,7 +36,7 @@
     </div>
 
     <div class="form-group">
-        <label for="telephone" class="col-sm-2 control-label">{{ form_label(form.telephone) }}</label>
+        <label for="telephone" class="col-sm-2 control-label">{{ form_label(form.telephone) }}:</label>
         <div class="col-lg-8">
             {{ form_widget(form.telephone, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
@@ -52,19 +54,19 @@
 
     {% else %}
         <div class="form-group">
-            <label for="bookstore" class="col-sm-2 control-label">{{ form_label(form.bookstore) }}</label>
+            <label for="bookstore" class="col-sm-2 control-label">{{ form_label(form.bookstore) }}:</label>
             <div class="col-lg-8">
                 {{ form_widget(form.bookstore, { 'attr' : { 'class': 'form-control' } }) }}
             </div>
         </div>
         <div class="form-group">
-            <label for="healthcare" class="col-sm-2 control-label">{{ form_label(form.healthcare) }}</label>
+            <label for="healthcare" class="col-sm-2 control-label">{{ form_label(form.healthcare) }}:</label>
             <div class="col-lg-8">
                 {{ form_widget(form.healthcare, { 'attr' : { 'class': 'form-control' } }) }}
             </div>
         </div>
         <div class="form-group">
-            <label for="role" class="col-sm-2 control-label">{{ form_label(form.role) }}</label>
+            <label for="role" class="col-sm-2 control-label">{{ form_label(form.role) }}:</label>
             <div class="col-lg-8">
                 {{ form_widget(form.role, { 'attr' : { 'class': 'form-control' } }) }}
             </div>
@@ -72,9 +74,9 @@
     {% endif %}
 
     {{ form_rest(form) }}
-
     <div>
         <button type="submit" class="btn btn-primary"> {{ 'registration.submit'|trans }} </button>
+        {% trans_default_domain '' %}
         {% if '/register/' in app.request.requestUri %}
             <a href="{{path('homepage')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
         {% else %}

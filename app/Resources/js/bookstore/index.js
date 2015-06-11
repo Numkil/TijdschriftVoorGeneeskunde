@@ -4,5 +4,9 @@
 "use strict";
 
 $(document).ready(function () {
-    $('#adminBookstoreOverview').DataTable();
+    $('#adminBookstoreOverview').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.7/i18n/Dutch.json"
+        }
+    });
 });
