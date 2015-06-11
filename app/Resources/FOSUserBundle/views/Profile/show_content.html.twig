@@ -1,10 +1,8 @@
-{% trans_default_domain 'FOSUserBundle' %}
-
 <div class="row">
     <div class="col-md-8">
         <div class="fos_user_user_show">
-            <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-            <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+            <p>{{ 'Username'|trans }}: {{ user.username }}</p>
+            <p>{{ 'Email'|trans }}: {{ user.email }}</p>
         </div>
 
         {% if app.user.id == user.id %}
@@ -26,8 +24,8 @@
         <div class="col-md-8">
             {% if user.subscriber and user.subscriber.hasActiveSubscription and
             user.subscriber.getActiveSubscription.isPaid %}
-                Your subscription is valid until: {{ user.subscriber.getActiveSubscription.enddate |
-                date }}
+            {% trans %}Your subscription is valid until{% endtrans %}:
+            {{ user.subscriber.getActiveSubscription.enddate | date('d-m-Y')}}
                 {% if user.subscriber.getActiveSubscription.enddate|date('d-m-Y') <=
                 "now"|date_modify("+2 month")|date('d-m-Y') %}
                 <a href="{{path('suspendSubscription', { userid: user.id })}}" class="btn
@@ -35,8 +33,9 @@
                 {% endif %}
             {% else %}
                 {% if user.subscriber and user.subscriber.hasActiveSubscription %}
-                    Your subscription is pending, as soon as we receive your payment your account will
-                    be activated.
+                {% trans %}
+                    Your subscription is pending, as soon as we receive your payment your account will be activated.
+                {% endtrans %}
                 {% else %}
                     <a href="{{path('newSubscription', { userid: user.id })}}"
                         class="btn btn-primary">{{ 'Add new subscription'|trans }}</a>
@@ -46,7 +45,7 @@
 
         {% if user.subscriber %}
         <a href="{{path('editSubscriber', { userid: user.id })}}" class="btn btn-primary">
-            {{ 'Edit your Subscription information'|trans }}
+            {{ 'Edit your subscription information'|trans }}
         </a>
 
         <table border="0" cellspacing="5" cellpadding="5" class="display table" width="100%"

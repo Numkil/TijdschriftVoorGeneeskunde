@@ -1,12 +1,12 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <h1>Bookstore overview</h1>
+<h1>{% trans %}Bookstore overview{% endtrans %}</h1>
 
     {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
     	<div class="col-md-12">
-    		<a href="{{path('createBookstore')}}" class="btn btn-primary">Add bookstore</a>
+            <a href="{{path('createBookstore')}}" class="btn btn-primary">{% trans %}Add bookstore{% endtrans %}</a>
     	</div>
     </div>
     {% endif %}
@@ -17,10 +17,10 @@
 			 	<thead>
                     <tr>
 			 		<th>#</th>
-			 		<th>Title</th>
-			 		<th>Creation date</th>
-			 		<th class="span1">Message</th>
-			 		<th>Address</th>
+                    <th>{{ 'Title'|trans }}</th>
+                    <th>{{ 'Telephone'|trans }}</th>
+                    <th>{{ 'Email'|trans }}</th>
+                    <th>{{ 'Address'|trans }}</th>
 			 		<th></th>
 			 		<th></th>
                     </tr>
@@ -33,13 +33,15 @@
 			 			<td>{{ bookstore.telephone }}</td>
 			 			<td>{{ bookstore.email }}</td>
 			 			<td>{{ bookstore.address.street}}, {{ bookstore.address.postalcode}} {{ bookstore.address.municipality }}</td>
-			 			<td><a href="{{path('updateBookstore', {id:bookstore.id})}}" class="btn btn-link">Update</a></td>
-			 			<td><a href="{{path('removeBookstore', {id:bookstore.id})}}" class="btn btn-danger">Remove</a></td>
+			 			<td><a href="{{path('updateBookstore', {id:bookstore.id})}}" class="btn
+                                btn-link">{{ 'Update' | trans }}</a></td>
+			 			<td><a href="{{path('removeBookstore', {id:bookstore.id})}}" class="btn
+                                btn-danger">{{ 'Remove' | trans }}</a></td>
 			 		</tr>
 					{% endfor %}
 			 	</tbody>
 			</table>
 		</div>
-	<div>
+	</div>
 
 {% endblock %}

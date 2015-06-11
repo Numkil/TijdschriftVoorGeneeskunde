@@ -11,7 +11,6 @@
 </div>
 {% endif %}
 <form class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
-    <h2 class="form-signin-heading">{% trans %}Please sign in{% endtrans %}</h2>
     <div class="form-group">
         <input type="text" placeholder="{% trans %}Email or Username{% endtrans %}" name="_username"
         required="required" autofocus class="form-control"/>
@@ -25,7 +24,7 @@
     <label for="remember_me">{% trans %}Remember me{% endtrans %}</label>
     <input type="hidden" name="_csrf_token" value="{{ fos_csrf_provider.generateCsrfToken('authenticate') }}" />
 
-    <button class="btn btn-lg btn-block btn-primary" type="submit">{% trans %}Submit{% endtrans %}</button>
+    <button class="btn btn-lg btn-block btn-primary" type="submit">{% trans %}Sign in{% endtrans %}</button>
     <a href="{{path('fos_user_resetting_request')}}" class="text-warning">{{ 'Forgotten password'|trans }}</a>
 </form>
 

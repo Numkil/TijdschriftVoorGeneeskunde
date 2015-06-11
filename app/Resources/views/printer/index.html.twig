@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<p>{{ 'Current amount of subscribers:' | trans }} {{count}}</p>
+<p>{{ 'Current amount of subscribers' | trans }}:{{count}}</p>
 <div class="row">
     <div class="col-md-12">
-        <a href="{{path('pagePrinterDownload')}}" class="btn btn-primary">Download list
-            subscribers</a>
+        <a href="{{path('pagePrinterDownload')}}" class="btn btn-primary">
+            {% trans %}Download list subscribers{% endtrans %}</a>
     </div>
 </div>
 

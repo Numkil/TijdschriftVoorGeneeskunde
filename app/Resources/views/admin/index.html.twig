@@ -1,10 +1,10 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-<h1>User overview</h1>
+<h1> {% trans %}User overview{% endtrans %}</h1>
 <div class="row">
     <div class="col-md-12">
-        <a href="{{path('createUser')}}" class="btn btn-primary">Add User</a>
+        <a href="{{path('createUser')}}" class="btn btn-primary">{{'Add user'| trans }}</a>
     </div>
 </div>
 
@@ -12,11 +12,11 @@
 data-toggle="datatable" id="adminUserOverview">
     <thead>
         <tr>
-            <th>{{ 'id' | trans }}</th>
-            <th>{{ 'username' | trans }}</th>
-            <th>{{ 'email' | trans }}</th>
-            <th>{{ 'status' | trans }}</th>
-            <th>{{ 'bookstore' | trans }}</th>
+            <th>{{ 'ID' | trans }}</th>
+            <th>{{ 'Username' | trans }}</th>
+            <th>{{ 'Email' | trans }}</th>
+            <th>{{ 'Status' | trans }}</th>
+            <th>{{ 'Bookstore' | trans }}</th>
             <th></th>
         </tr>
     </thead>
@@ -44,8 +44,8 @@ data-toggle="datatable" id="adminUserOverview">
             <td>{{ user.bookstore ? user.bookstore.name : '-'}}</td>
             <td>
                 {% if user.id != app.user.id %}
-                <a data-bb="confirm" href="{{path('deleteSpecificUser', {userid: user.id})}}">
-                    {{ 'delete' | trans }}</a>
+                <a data-bb="confirm" class="btn btn-danger" href="{{path('deleteSpecificUser', {userid: user.id})}}">
+                    {{ 'Remove' | trans }}</a>
                 {% endif %}
             </td>
         </tr>
