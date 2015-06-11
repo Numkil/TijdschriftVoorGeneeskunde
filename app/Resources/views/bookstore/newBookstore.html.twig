@@ -13,42 +13,42 @@
 
     	<div class="form-group">
             {{ form_label(bookstore.name) }}
-            {{form_widget(bookstore.name) }}
+            {{form_widget(bookstore.name, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
 
         <div class="form-group">
             {{ form_label(bookstore.telephone) }}
-            {{form_widget(bookstore.telephone) }}
+            {{form_widget(bookstore.telephone, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
 
         <div class="form-group">
             {{ form_label(bookstore.email) }}
-            {{form_widget(bookstore.email) }}
+            {{form_widget(bookstore.email, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
 
         <div class="form-group">
             {{ form_label(bookstore.address.street) }}
-            {{form_widget(bookstore.address.street) }}
+            {{form_widget(bookstore.address.street, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
 
         <div class="form-group">
             {{ form_label(bookstore.address.postalCode) }}
-            {{form_widget(bookstore.address.postalCode) }}
+            {{form_widget(bookstore.address.postalCode, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
 
         <div class="form-group">
             {{ form_label(bookstore.address.municipality) }}
-            {{form_widget(bookstore.address.municipality) }}
+            {{form_widget(bookstore.address.municipality, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
 
         <div class="form-group">
             {{ form_label(bookstore.address.country) }}
-            {{form_widget(bookstore.address.country) }}
+            {{form_widget(bookstore.address.country, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
 
         <div class="form-group" id="vatNumber">
             {{ form_label(bookstore.vatNumber) }}
-            {{ form_widget(bookstore.vatNumber) }}
+            {{ form_widget(bookstore.vatNumber, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
 
         <a href="{{path('bookstoreOverview')}}" class="btn btn-primary">Cancel</a>

@@ -21,7 +21,7 @@ class Notice{
 	*/
 	private $title;
 	/**
-	* @ORM\Column(name="message", type="string", nullable=false, length=150)
+	* @ORM\Column(name="message", type="text", nullable=false, length=150)
 	*/
 	private $message;
 	/**

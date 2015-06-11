@@ -4,13 +4,14 @@
 <h1>{% trans %}Notice overview{% endtrans %}</h1>
 
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="row">
+    <div class="row add-button">
     	<div class="col-md-12">
             <a href="{{path('createNotice')}}" class="btn btn-primary">{{ 'Add notice'|trans }}</a>
     	</div>
     </div>
     {% endif %}
 
+<<<<<<< Updated upstream
     <div class="row">
     	<div class="col-md-12">
     		<table id="adminNoticeOverview" class="table table-striped">
@@ -41,4 +42,30 @@
 			</table>
 		</div>
 	</div>
+=======
+	<table id="adminNoticeOverview" border="0" cellspacing="5" cellpadding="5" class="display table" width="100%" data-toggle="datatable" >
+	 	<thead>
+            <tr>
+		 		<th>#</th>
+		 		<th>Title</th>
+		 		<th>Creation hate</th>
+		 		<th>Message</th>	
+		 		<th></th>
+		 		<th></th>
+            </tr>
+	 	</thead>
+	 	<tbody>
+	 		{% for notice in notices%}
+	 		<tr>
+	 			<td>{{ notice.id }}</td>
+	 			<td>{{ notice.title }}</td>
+	 			<td>{{ notice.creationDate|date("d/m/Y h:i") }}</td>
+	 			<td>{{ notice.message }}</td>
+	 			<td><a href="{{path('updateNotice', {id:notice.id})}}" class="btn btn-link">Update</a></td>
+	 			<td><a href="{{path('removeNotice', {id:notice.id})}}" class="btn btn-danger">Remove</a></td>
+	 		</tr>
+			{% endfor %}
+	 	</tbody>
+	</table>
+>>>>>>> Stashed changes
 {% endblock %}

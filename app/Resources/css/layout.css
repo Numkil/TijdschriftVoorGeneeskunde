@@ -19,14 +19,14 @@
     .side-nav {
         position: fixed;
         top: 50px;
-        left: 225px;
-        width: 225px;
-        margin-left: -225px;
+        left: 200px;
+        width: 200px;
+        margin-left: -200px;
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        border-top-color: #004050;
-        background-color: #004050;
+        border-top-color: #75C1D4;
+        background-color: #75C1D4;
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
@@ -53,24 +53,38 @@
     margin-top: 2px;
 }
 
-.side-nav>li>ul>li>a {
+.side-nav li ul li a {
     display: block;
     padding: 10px 15px 10px 38px;
     text-decoration: none;
     color: #004050; /*999*/
 }
 
+.side-nav ul li span{
+    visibility: hidden;
+}
+
+.side-nav ul li:hover span{
+    visibility: visible;
+}
 
 .navbar.navbar-inverse.navbar-fixed-top {
     height: 100px;
-    background-color: #004050;  
+    background-color: #75C1D4;  
     z-index: 1;
-    border-bottom-color: #004050;
+    border-bottom-color: #75C1D4;
 }
 
-.container{
+.navbar.navbar-inverse.navbar-fixed-top .container{
     width: 100%;
     left: 200px;
+    height: auto;
+}
+
+.navbar-header{
+    padding-left: 200px;
+    width: auto;
+    height: auto;
 }
 
 .collapse.navbar-collapse.pull-right{
@@ -80,21 +94,34 @@
 .beginpage.container{
     margin-top: 100px;
     width: 75%;
-    left: 10%;
+    left: 250px;
 }
 
 .nav.navbar-nav.side-nav{
     margin-top: 50px;
     width: 200px;
+    overflow:hidden;
+    text-align:justify;
+}
+
+.banner{
+    width: 100%;
+    color: white;
+    height: auto;
+    float: top-left;
+}
+
+.banner img{
+    float: left;
 }
 
 .banner-title{
-    color: #fff;    
+    padding-left: 30px;
 }
 
 .banner-subtitle{
-    color: #fff;
     padding-left: 52px;
+
 }
 
 .notice-panel-container{
@@ -103,11 +130,10 @@
     padding: 20px;
     background-color: #fff;
     margin-top: 20px;
-    
 }
 
 .notice-panel{
-    padding: 5px; 
+    padding: 3px; 
     color: #000;
 }
 
@@ -120,15 +146,35 @@
 }
 
 .notice-panel-title{
-    width: 40%;
+    font-size: 2em;
+    float: left;
+}
+
+.notice-panel-date{
+    text-align: right;
+    font-size: 1.5em;
 }
 
 .notice-panel-body{
-
+    text-align: left;
+    padding: 10px 10px 0px 0px;
 }
 
-.navbar-header{
-    padding-left: 200px;
+.collapse .navbar-collapse .navbar-ex1-collapse li{
+    background: linear-gradient(to left, white 50%, #004050 50%);
+    background-size: 200% 100%;
+    background-position:left bottom;
+    margin-left:10px;
+    transition:all 2s ease;
+}
+
+.collapse .navbar-collapse .navbar-ex1-collapse li:hover {
+    background-position:right bottom;
+}
+
+.add-button{
+    float: right;
+    margin-bottom: 10px;
 }
 
 /*#004050;
