@@ -56,32 +56,40 @@ class FactuurPDF extends \FPDF_FPDF {
 */
 class PdfGenerator{
 
-	public function generateTransferForm($imagePath, $amount, $fullName, $streetAddress, $municipalityAddress, $ogm){
+	public function generateTransferForm($imagePath, $amount, $nameOrderer, $streetAddressOrderer, $municipalityAddressOrderer, $ibanReceiver, $bicReceiver, $nameReceiver, $streetAddressReceiver, $municipalityAddressReceiver, $ogm){
 		$pdf  = new \FPDF_FPDF();
 
         $amountstring = sprintf("%.2f",$amount); 
         $strlenamount = strlen($amountstring);
 
         $amountY = 216;
-        $nameY = 231;
-        $streetAddressY = 235;
-        $municipalityAddressY = 238.75;
+        $nameOrdererY = 231;
+        $streetAddressOrdererY = 235;
+        $municipalityAddressOrdererY = 238.75;
+        $ibanReceiverY = 246.75;
+        $bicReceiverY = 254.75;
+        $nameReceiverY = 261.75;
+        $streetAddressReceiverY = 265.75;
+        $municipalityAddressReceiverY = 269.75;
         $messageY = 277.5;
+
 
         $pdf->AddPage();
         $pdf->SetFont('Arial','B', 16);
-        $pdf->Cell(190, 10, 'Overschrijving tijdschrift voor geneesheren', 0, 1, 'C');
+        $pdf->Cell(190, 10, 'Betalingsinformatie tijdschrift voor geneesheren', 0, 1, 'C');
         $pdf->Ln(10);
 
         $pdf->SetFont('Arial','', 14);
-        $pdf->Write(5, 'Beste abonnee, hieronder vindt u het overschrijvingsformulier voor de betaling van uw abonnement. Van zodra wij uw betaling gecontroleerd hebben wordt uw nieuwe abonnement geactiveerd.');
+        $pdf->Write(5, 'Beste abonnee, hieronder vindt u de betalingsinformatie voor de betaling van uw abonnement. Van zodra wij uw betaling gecontroleerd hebben wordt uw nieuwe abonnement geactiveerd.');
         $pdf->Ln(20);
         $pdf->Write(5, 'Na activatie blijft uw abonnement 12 maanden geldig, u ontvangt dus 24 nummers van het magazine.');
+        $pdf->Ln(20);
+        $pdf->Write(5, 'Dit overschrijvingsformulier kan NIET gepost worden naar de bank.');
 
 
         $pdf->SetFont('Arial','B', 13);
 
-        $pdf->Image($imagePath . '/Resources/Images/overschrijvingsformulier.png', 10, 190, 190, 90);
+        $pdf->Image($imagePath . 'overschrijvingsformulier.png', 10, 190, 190, 90);
 
         //BEDRAG
         //veld tienduizendtallen
@@ -99,18 +107,43 @@ class PdfGenerator{
         //veld honderdsten
         $pdf->Text(193.5, $amountY, $amountstring{$strlenamount -1});
 
-        //NAAM
+        //NAAM KLANT
         $pdf->SetFont('Arial','', 11);
-        for($i = 0; $i < min(26,strlen($fullName)); $i++){
-            $pdf->Text(42 + 4.575 * $i, $nameY, $fullName{$i});
+        for($i = 0; $i < min(26,strlen($nameOrderer)); $i++){
+            $pdf->Text(42 + 4.575 * $i, $nameOrdererY, $nameOrderer{$i});
         }
-        //STRAAT
-        for($i = 0; $i < min(26,strlen($streetAddress)); $i++){
-            $pdf->Text(42 + 4.575 * $i, $streetAddressY, $streetAddress{$i});
+        //STRAAT KLANT
+        for($i = 0; $i < min(26,strlen($streetAddressOrderer)); $i++){
+            $pdf->Text(42 + 4.575 * $i, $streetAddressOrdererY, $streetAddressOrderer{$i});
         }
-        //GEMEENTE
-        for($i = 0; $i < min(26,strlen($municipalityAddress)); $i++){
-            $pdf->Text(42 + 4.575 * $i, $municipalityAddressY, $municipalityAddress{$i});
+        //GEMEENTE KLANT
+        for($i = 0; $i < min(26,strlen($municipalityAddressOrderer)); $i++){
+            $pdf->Text(42 + 4.575 * $i, $municipalityAddressOrdererY, $municipalityAddressOrderer{$i});
+        }
+        //IBAN TVG
+        $pdf->SetFont('Arial','', 14);
+        for($i = 0; $i < 16; $i++){
+            $pdf->Text(41.5 + 4.575 * $i, $ibanReceiverY, $ibanReceiver{$i});
+        }
+
+         //BIC TVG
+        $pdf->SetFont('Arial','', 14);
+        for($i = 0; $i < 8; $i++){
+            $pdf->Text(41.5 + 4.575 * $i, $bicReceiverY, $bicReceiver{$i});
+        }
+
+        //NAAM TVG
+        $pdf->SetFont('Arial','', 11);
+        for($i = 0; $i < min(26,strlen($nameReceiver)); $i++){
+            $pdf->Text(42 + 4.575 * $i, $nameReceiverY, $nameReceiver{$i});
+        }
+        //STRAAT TVG
+        for($i = 0; $i < min(26,strlen($streetAddressReceiver)); $i++){
+            $pdf->Text(42 + 4.575 * $i, $streetAddressReceiverY, $streetAddressReceiver{$i});
+        }
+        //GEMEENTE TVG
+        for($i = 0; $i < min(26,strlen($municipalityAddressReceiver)); $i++){
+            $pdf->Text(42 + 4.575 * $i, $municipalityAddressReceiverY, $municipalityAddressReceiver{$i});
         }
 
         //OGM
@@ -144,27 +177,34 @@ class PdfGenerator{
         $pdf->Text(101.25, $messageY, $ogm{8});
 
         $pdf->Text(106, $messageY, $ogm{9});
+
+        $pdf->Text(110.75, $messageY, $ogm{10});
+
+        $pdf->Text(115.5, $messageY, $ogm{11});
+
         // +kes
-        $pdf->Text(110.75, $messageY,'+');
-        $pdf->Text(115.25, $messageY,'+');
-        $pdf->Text(119.75, $messageY,'+');
+        $pdf->Text(120.25, $messageY,'+');
+        $pdf->Text(125, $messageY,'+');
+        $pdf->Text(129.75, $messageY,'+');
 
         $pdf->Output();
-        exit();
 	}
 
-	public function generateSubscriberInvoice($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $subscriberNumber, $price, $discount, $ogm){
+	public function generateSubscriberInvoice($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $subscriberNumber, $price, $discount, $ogm, $output = "", $filePath = ""){
 		$pdf = $this->generateInvoiceDefaults($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, 1, $price, $discount, $ogm);
 
 		//Abonneenummer in geval het een abonnee is en geen organisatie
 		$pdf->setXY(20, 80);
 		$pdf->Cell(75, 5, 'Abonneenummer:    ' .  strval($subscriberNumber));
-
-		$pdf->Output();
-		exit();
+		if($output === "F"){
+			if(!isset($output) || trim($output) === '') throw new Exception("Filepath can not be null or empty if you want to output the pdf to a file."); 
+			$pdf->Output($filePath, "F");
+		}else{
+			$pdf->Output();
+		}
 	}
 
-	public function generateOrganizationInvoice($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $subscriberNumbers, $price, $discount, $ogm){
+	public function generateOrganizationInvoice($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $subscriberNumbers, $price, $discount, $ogm, $output = "", $fileName = ""){
 		
 		$numberOfSubscriptions = count($subscriberNumbers);
 		$pdf = $this->generateInvoiceDefaults($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $numberOfSubscriptions, $price, $discount, $ogm);
@@ -186,8 +226,12 @@ class PdfGenerator{
 		$subscribersString = substr($subscribersString, 0, -2) . '.';
 		$pdf->Write(5, $subscribersString);
 
-		$pdf->Output();
-		exit();
+		if($output === "F"){
+			if(!isset($output) || trim($output) === '') throw new Exception("Filepath can not be null or empty if you want to output the pdf to a file."); 
+			$pdf->Output($filePath, "F");
+		}else{
+			$pdf->Output();
+		}
 	}
 
 	private function generateInvoiceDefaults($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $numberOfSubscriptions, $price, $discount, $ogm){
