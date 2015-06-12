@@ -8,7 +8,7 @@ body{
 
 .beginpage{
     padding-top: 50px;
-    
+
 }
 
 .content{
@@ -16,10 +16,7 @@ body{
     position: relative;
     height: auto;
     /*padding-left: 250px;*/
-    
 }
-
-
 
 /* Side Navigation */
 
@@ -37,17 +34,16 @@ body{
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
-        z-index: 2; 
+        z-index: 2;
         font-size: 1.3em;
-       
+
     }
 
     .side-nav>li {
         width: 100%
-               
+
     }
-    
-    
+
     .side-nav li a:link,
     .side-nav li a:visited{
         color: #FFF;
@@ -56,13 +52,17 @@ body{
     .side-nav li a:hover,
     .side-nav li a:focus,
     .side-nav li a:active,
-    .current {
+    .current{
         outline: none;
         background-color: #FFF;
         color: #75C1D4;
         transition:all 0.7s linear;
     }
-    
+
+    .current a{
+        color: #75C1D4 !important;
+    }
+
     .side-nav li span{
         visibility: hidden;
     }
@@ -70,7 +70,7 @@ body{
     .side-nav li:hover span{
         visibility: visible;
     }
-    
+
 }
 
 .nav.navbar-nav.side-nav{
@@ -80,39 +80,37 @@ body{
     overflow:hidden;
     text-align:justify;
 
-    
+
 }
 
 .navbar.navbar-inverse.navbar-fixed-top {
    height: auto;
      min-height: 100px;
-    background-color: #75C1D4;  
+    background-color: #75C1D4;
     z-index: 1;
     border-bottom-color: #75C1D4;
-    
+
 }
 
 .navbar.navbar-inverse.navbar-fixed-top .container{
     width: 100%;
     left: 200px;
     height: auto;
-    
+
 }
 
 .navbar-header{
     padding-left: 200px;
     width: auto;
-        
-    
 }
 
 .collapse.navbar-collapse.pull-right{
     margin-top: 25px;
-    
+
 }
 
 .collapse.navbar-collapse.pull-right a{
-    color: #FFF;    
+    color: #FFF;
 }
 
 .banner{
@@ -129,7 +127,7 @@ body{
     font-size: 2em;
     width: 100%;
     color: #FAFAFA;
-    
+
 }
 
 .banner-subtitle{
@@ -155,7 +153,7 @@ body{
     background-position:left bottom;
     margin-left:10px;
     transition:all 2s ease;
-   
+
 }
 
 .collapse .navbar-collapse .navbar-ex1-collapse li:hover {
@@ -175,12 +173,12 @@ body{
 
 .jumbotron h1{
     padding-bottom: 30px;
-    
+
 }
 
 .status-legend table td{
     padding: 5px 10px 5px 10px;
-    text-align: center; 
+    text-align: center;
 }
 
 .subscription-info-active{
@@ -209,7 +207,7 @@ body{
 }
 
 .notice-panel{
-    
+
     background-color: #fff;
     border-radius: 5px 5px 5px 5px;
     border-color: #75C1D4;
