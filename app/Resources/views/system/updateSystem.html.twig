@@ -1,9 +1,16 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <h1>Update System</h1>
+<h1>{% trans %}Update System{% endtrans %}</h1>
     {{ form_start(form) }}
-    	{{ form_errors(form) }}
+        {% for child in form.children %}
+            {% if child.vars.errors is defined and child.vars.errors|length%}
+            <div class="alert alert-block alert-danger">
+                <a class="close" data-dismiss="alert">×</a>
+                {{ form_errors(child) }}
+            </div>
+            {% endif %}
+        {% endfor %}
 
     	<div class="form-group">
     		{{ form_label(form.name) }}
@@ -35,7 +42,8 @@
             {{form_widget(form.bic)}}
         </div>
 
-    	<a href="{{path('homepage')}}">Cancel</a>  -  {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
+        <a href="{{path('homepage')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+        {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
 
     	{{ form_rest(form) }}
 
