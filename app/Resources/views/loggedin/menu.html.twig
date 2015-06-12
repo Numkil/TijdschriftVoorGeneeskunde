@@ -8,19 +8,22 @@
                 aria-expanded="false">{{ 'Manage' | trans}}<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li>
-                    <a href="{{path('adminOverview')}}">{{ 'Manage notices'|trans }}</a>
+                    <a href="{{path('userOverview')}}">{{ 'Manage users'|trans }}</a>
                 </li>
                 <li>
-                    <a href="{{path('userOverview')}}">{{ 'Manage users'|trans }}</a>
+                    <a href="{{path('adminOverview')}}">{{ 'Manage notices'|trans }}</a>
                 </li>
                 <li>
                     <a href="{{path('bookstoreOverview')}}">{{ 'Manage bookstores'|trans }}</a>
                 </li>
                 <li>
-                    <a href="{{path('updateSystem')}}">{{ 'Manage system'|trans }}</a>
+                    <a href="{{path('bookstoreOverview')}}">{{ 'Manage healthcares'|trans }}</a>
                 </li>
                 <li>
                     <a href="{{path('promoOverview')}}">{{ 'Manage promos'|trans }}</a>
+                </li>
+                <li>
+                    <a href="{{path('updateSystem')}}">{{ 'Manage system'|trans }}</a>
                 </li>
             </ul>
     </li>
