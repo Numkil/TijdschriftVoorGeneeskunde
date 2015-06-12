@@ -9,4 +9,6 @@ $(document).ready(function () {
             "url": "https://cdn.datatables.net/plug-ins/1.10.7/i18n/Dutch.json"
         }
     });
+
+    //Bootbox inherited from admin/index.js
 });

@@ -1,7 +1,7 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <h1>New Notice</h1>
+    <h1>{{ 'New Notice'|trans }}</h1>
     {{ form_start(notice) }}
     	{{ form_errors(notice) }}
 
@@ -15,7 +15,7 @@
     		{{form_widget(notice.message)}}
     	</div>
 
-        <a href="{{path('adminOverview')}}" class="btn btn-primary">Cancel</a>
+        <a href="{{path('adminOverview')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
 
         {{form_widget(notice.save, { 'attr': {'class': 'btn btn-primary'}})}}
 
@@ -23,4 +23,4 @@
 
     {{ form_end(notice) }}
 {% endblock %}
-	
+

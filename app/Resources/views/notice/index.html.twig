@@ -33,7 +33,7 @@
 			 			<td>{{ notice.message }}</td>
 			 			<td><a href="{{path('updateNotice', {id:notice.id})}}" class="btn
                                 btn-link">{{ 'Update'|trans }}</a></td>
-			 			<td><a href="{{path('removeNotice', {id:notice.id})}}" class="btn
+			 			<td><a href="{{path('removeNotice', {id:notice.id})}}" data-bb="confirm" class="btn
                                 btn-danger">{{ 'Remove'|trans }}</a></td>
 			 		</tr>
 					{% endfor %}

@@ -12,7 +12,10 @@ $(document).ready(function () {
     $(document).on("click", "a[data-bb]", function (e) {
         var link = $(this).attr('href');
         e.preventDefault();
-        bootbox.confirm("Are you sure?", function (result) {
+        bootbox.setDefaults({
+            locale: "nl"
+        });
+        bootbox.confirm("Ben je zeker?", function (result) {
             if (result) {
                 window.location = link;
             }

@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Article overview</h1>
+<h1>{% trans %}Article overview{% endtrans %}</h1>
 
     {{ form_start(form, { 'attr': {'class': 'form-horizontal'}})}}
 
@@ -47,14 +47,17 @@
         {{ form_widget(form.jaar, { 'attr': {'class': 'form-control'} }) }}
     </div>
 
+    <div class="form-group">
+        <label for="boekbespreking">{{ 'Book review?' | trans }}</label>
+        {{ form_widget(form.boekbespreking, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
     {{form_widget(form.search, { 'attr': {'class': 'btn btn-primary'}})}}
 
     {{ form_rest(form) }}
     {{ form_end(form) }}
 
-    <p> {% trans %} Please notice that because our search results are limited to 500 books, you
-    might have to specify your search more if you notice you are getting a lot of results and can't
-    find the article you expected.{% endtrans %}</p>
+    <p>{% trans %}search500resultsnotice{% endtrans %}</p>
 
     <table border="0" cellspacing="5" cellpadding="5" class="display table" width="100%"
     data-toggle="datatable" id="articleOverview">

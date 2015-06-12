@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1>New Bookstore</h1>
+    <h1>{{ 'New Bookstore'|trans }}</h1>
     {% if '/bookstore/new/' in app.request.requestUri %}
     <form action="{{ path('createBookstore') }}" method="POST"
     {% else %}
@@ -51,7 +51,7 @@
             {{ form_widget(bookstore.vatNumber) }}
         </div>
 
-        <a href="{{path('bookstoreOverview')}}" class="btn btn-primary">Cancel</a>
+        <a href="{{path('bookstoreOverview')}}" class="btn btn-danger">{% trans %}Cancel{% endtrans %}</a>
 
         {{form_widget(bookstore.save, { 'attr': {'class': 'btn btn-primary'}})}}
 
