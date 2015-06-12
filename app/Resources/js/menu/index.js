@@ -1,12 +1,17 @@
 /*Following lines show jslint to not throw error's for jquery*/
 /*jslint browser: true*/
 /*global $, jQuery, bootbox*/
-"use strict";
+/*"use strict";
 
 $(document).ready(function () {
-    $(".side-nav li a").each(function (element) {
-        element.append("<span class='glyphicon glyphicon-menu-right'></span>");
-        console.log(element);
+    $(".side-nav li a").each(function () {
+        //element.append("<span class='glyphicon glyphicon-menu-right'></span>");
+        $(this).append("<span class='glyphicon glyphicon-menu-right' style='float:right;margin-left:15px;visibility:hidden;'></span>");
     });
-    console.log($(".side-nav li"));
-});
+    $(".side-nav li a").hover(function () {
+        $(".side-nav li span").css({visibility: "visible"});
+    }, function () {
+        $(".side-nav li span").css({visibility: "hidden"});
+    });
+
+});*/

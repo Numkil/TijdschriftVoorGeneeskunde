@@ -2,8 +2,25 @@
 
 {% block content %}
 <h1> {% trans %}User overview{% endtrans %}</h1>
+
+
+
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8 status-legend">
+        <table>
+            <tr>
+                <td><span class="glyphicon glyphicon-minus"></span></td>
+                <td><span class="glyphicon glyphicon-star-empty"></span></td>
+                <td><span class="glyphicon glyphicon-star"></span></td>
+            </tr>
+            <tr>
+                <td>No subscription</td>
+                <td>Pending</td>
+                <td>Subscriber</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4  add-button">
         <a href="{{path('createUser')}}" class="btn btn-primary">{{'Add user'| trans }}</a>
     </div>
 </div>

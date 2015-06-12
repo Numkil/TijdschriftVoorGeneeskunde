@@ -4,7 +4,7 @@
 <h1>{% trans %}Notice overview{% endtrans %}</h1>
 
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="row">
+    <div class="row add-button">
     	<div class="col-md-12">
             <a href="{{path('createNotice')}}" class="btn btn-primary">{{ 'Add notice'|trans }}</a>
     	</div>
@@ -19,7 +19,7 @@
 			 		<th>#</th>
                     <th>{{ 'Title' | trans }}</th>
                     <th>{{ 'Creation date' | trans }}</th>
-                    <th class="span1">{{ 'Message'|trans }}</th>
+                    <th>{{ 'Message'|trans }}</th>
 			 		<th></th>
 			 		<th></th>
                     </tr>

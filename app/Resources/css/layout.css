@@ -1,9 +1,14 @@
-.body{
-    background-color: #75c1d4;/*#4EE3DC*/
+html{
+    /**background-color: #75C1D4;*/
+}
+
+body{
+    /*background-color: #75C1D4;/*#4EE3DC*/
 }
 
 .beginpage{
     padding-top: 50px;
+    
 }
 
 .content{
@@ -11,7 +16,10 @@
     position: relative;
     height: auto;
     /*padding-left: 250px;*/
+    
 }
+
+
 
 /* Side Navigation */
 
@@ -19,24 +27,30 @@
     .side-nav {
         position: fixed;
         top: 50px;
-        left: 225px;
-        width: 225px;
-        margin-left: -225px;
+        left: 200px;
+        margin-left: -200px;
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        border-top-color: #004050;
-        background-color: #004050;
+        border-top-color: #75C1D4;
+        background-color: #75C1D4;
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
         z-index: 2; 
-        color: #75C1D4;       
-
+        font-size: 1.3em;
+       
     }
 
-    .side-nav>li>a {
-        width: 225px;
+    .side-nav>li {
+        width: 100%
+               
+    }
+    
+    
+    .side-nav li a:link,
+    .side-nav li a:visited{
+        color: #FFF;
     }
 
     .side-nav li a:hover,
@@ -44,92 +58,187 @@
     .side-nav li a:active,
     .current {
         outline: none;
-        background-color: #FFF; 
+        background-color: #FFF;
+        color: #75C1D4;
+        transition:all 0.7s linear;
+    }
+    
+    .side-nav li span{
+        visibility: hidden;
     }
 
-}
-
-.side-nav>li>ul {
-    margin-top: 2px;
-}
-
-.side-nav>li>ul>li>a {
-    display: block;
-    padding: 10px 15px 10px 38px;
-    text-decoration: none;
-    color: #004050; /*999*/
-}
-
-
-.navbar.navbar-inverse.navbar-fixed-top {
-    height: 100px;
-    background-color: #004050;  
-    z-index: 1;
-    border-bottom-color: #004050;
-}
-
-.container{
-    width: 100%;
-    left: 200px;
-}
-
-.collapse.navbar-collapse.pull-right{
-    margin-top: 25px;
-}
-
-.beginpage.container{
-    margin-top: 100px;
-    width: 75%;
-    left: 10%;
+    .side-nav li:hover span{
+        visibility: visible;
+    }
+    
 }
 
 .nav.navbar-nav.side-nav{
     margin-top: 50px;
-    width: 200px;
-}
+    min-width: 220px;
+    width: 14%;
+    overflow:hidden;
+    text-align:justify;
 
-.banner-title{
-    color: #fff;    
-}
-
-.banner-subtitle{
-    color: #fff;
-    padding-left: 52px;
-}
-
-.notice-panel-container{
-    border-radius: 25px;
-    border: 2px solid #004050;
-    padding: 20px;
-    background-color: #fff;
-    margin-top: 20px;
     
 }
 
-.notice-panel{
-    padding: 5px; 
-    color: #000;
+.navbar.navbar-inverse.navbar-fixed-top {
+   height: auto;
+     min-height: 100px;
+    background-color: #75C1D4;  
+    z-index: 1;
+    border-bottom-color: #75C1D4;
+    
 }
 
-.notice-panel-header{
-    border-radius: 25px;
-    border: 2px solid #004050;
-    padding: 20px;
-    background-color: #004050;
-    color: #FFF;   
-}
-
-.notice-panel-title{
-    width: 40%;
-}
-
-.notice-panel-body{
-
+.navbar.navbar-inverse.navbar-fixed-top .container{
+    width: 100%;
+    left: 200px;
+    height: auto;
+    
 }
 
 .navbar-header{
     padding-left: 200px;
+    width: auto;
+        
+    
 }
+
+.collapse.navbar-collapse.pull-right{
+    margin-top: 25px;
+    
+}
+
+.collapse.navbar-collapse.pull-right a{
+    color: #FFF;    
+}
+
+.banner{
+    width: 100%;
+    color: white;
+}
+
+.banner img{
+    float: left;
+}
+
+.banner-title{
+    padding-left: 10%;
+    font-size: 2em;
+    width: 100%;
+    color: #FAFAFA;
+    
+}
+
+.banner-subtitle{
+    padding-left: 10%;
+    font-size: 0.8em;
+    width: 100%;
+    color: #FAFAFA;
+}
+
+
+.beginpage.container{
+    margin-top: 100px;
+    margin-right: 10px;
+    width: 84%;
+    margin-left: 220px;
+    float: right;
+}
+
+
+.collapse .navbar-collapse .navbar-ex1-collapse li{
+    background: linear-gradient(to left, white 50%, #004050 50%);
+    background-size: 200% 100%;
+    background-position:left bottom;
+    margin-left:10px;
+    transition:all 2s ease;
+   
+}
+
+.collapse .navbar-collapse .navbar-ex1-collapse li:hover {
+    background-position:right bottom;
+}
+
+.add-button{
+    float: right;
+    margin-bottom: 10px;
+    width: 50%
+}
+
+.jumbotron{
+    border: 1px solid #75C1D4;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.jumbotron h1{
+    padding-bottom: 30px;
+    
+}
+
+.status-legend table td{
+    padding: 5px 10px 5px 10px;
+    text-align: center; 
+}
+
+.subscription-info-active{
+    color: white;
+    background-color: green;
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.subscription-info-pending{
+    color: white;
+    background-color: orange;
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
+.subscription-info-new{
+    color: white;
+    background-color: transparent;
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.notice-panel{
+    
+    background-color: #fff;
+    border-radius: 5px 5px 5px 5px;
+    border-color: #75C1D4;
+    border-width: 1px;
+    border-style: solid;
+    margin: 10px 0px 10px 0px;
+}
+
+.notice-title{
+    padding: 10px 10px 10px 10px;
+    width: 80%;
+    float: left;
+    font-size: 1.5em;
+    margin: 10px 0px 10px 0px;
+
+}
+
+.notice-date{
+    width: 20%
+    font-size: 1.2em;
+    padding: 10px 0px 10px 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+.notice-message{
+    padding: 10px 10px 10px 10px;
+    margin: 10px 0px 10px 0px;
+}
+
 
 /*#004050;
 75C1D4*/

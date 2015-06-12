@@ -17,60 +17,60 @@
     {% endfor %}
 
     <div class="form-group">
-        <label for="username" class="col-sm-2 control-label">{{ form_label(form.username) }}</label>
         <div class="col-sm-8">
+            {{ form_label(form.username) }}
             {{ form_widget(form.username, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
     </div>
 
     <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">{{ form_label(form.name) }}</label>
         <div class="col-sm-4">
+            {{ form_label(form.name) }}
             {{ form_widget(form.name, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
-        <label for="firstname" class="col-sm-2 control-label">{{ form_label(form.firstname) }}</label>
         <div class="col-sm-4" >
+            {{ form_label(form.firstname) }}
             {{ form_widget(form.firstname, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
     </div>
 
     <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">{{ form_label(form.email) }}</label>
         <div class="col-lg-8">
+            {{ form_label(form.email) }}
             {{ form_widget(form.email, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
     </div>
 
     <div class="form-group">
-        <label for="telephone" class="col-sm-2 control-label">{{ form_label(form.telephone) }}</label>
         <div class="col-lg-8">
+            {{ form_label(form.telephone) }}
             {{ form_widget(form.telephone, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
     </div>
 
     {% if '/profile/edit' in app.request.requestUri %}
     <div class="form-group">
-        <label for="password" class="col-sm-2 control-label">{{ form_label(form.current_password) }}</label>
         <div class="col-lg-8">
+            {{ form_label(form.current_password) }}
             {{ form_widget(form.current_password, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
     </div>
     {% else %}
         <div class="form-group">
-            <label for="bookstore" class="col-sm-2 control-label">{{ form_label(form.bookstore) }}</label>
             <div class="col-lg-8">
+                {{ form_label(form.bookstore) }}
                 {{ form_widget(form.bookstore, { 'attr' : { 'class': 'form-control' } }) }}
             </div>
         </div>
         <div class="form-group">
-            <label for="healthcare" class="col-sm-2 control-label">{{ form_label(form.healthcare) }}</label>
             <div class="col-lg-8">
+                {{ form_label(form.healthcare) }}
                 {{ form_widget(form.healthcare, { 'attr' : { 'class': 'form-control' } }) }}
             </div>
         </div>
         <div class="form-group">
-            <label for="role" class="col-sm-2 control-label">{{ form_label(form.role) }}</label>
             <div class="col-lg-8">
+                {{ form_label(form.role) }}
                 {{ form_widget(form.role, { 'attr' : { 'class': 'form-control' } }) }}
             </div>
         </div>
