@@ -77,8 +77,11 @@ class UserAdminController extends Controller{
             if($user->getBookstore()){
                 $user->getBookstore()->addSubscriber($user);
             }
+            if($user->getHealthCare()){
+                $user->getHealthCare()->addSubscriber($user);
+            }
+
             $fosusermanager->updateUser($user);
-            $em->flush();
 
             $this->addFlash(
                 'notice', $this->get('translator')->trans('The profile has been created')
@@ -170,8 +173,12 @@ class UserAdminController extends Controller{
             if($user->getBookstore()){
                 $user->getBookstore()->addSubscriber($user);
             }
+            if($user->getHealthCare()){
+                $user->getHealthCare()->addSubscriber($user);
+            }
 
-            $em->flush();
+            $usermanager = $this->get('fos_user.user_manager');
+            $usermanager->updateUser($user);
 
             $this->addFlash(
                 'notice', $this->get('translator')->trans('The profile has been updated')
