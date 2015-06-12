@@ -12,9 +12,9 @@
 
 {% block content %}
     {% if newsubscriber %}
-    <h1>New Subscription</h1>
+    <h1>{{'New subscription'|trans }}</h1>
     {% else %}
-    <h1>Please Check your subscription details</h1>
+    <h1>{{'Please check your subscription details'|trans }}</h1>
     {% endif %}
     {{ form_start(form) }}
     	{{ form_errors(form) }}
@@ -91,9 +91,9 @@
             {{ form_widget(form.vatNumber) }}
         </div>
 
+        {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
 		{{ form_rest(form) }}
 
-        {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
         {% if userid == app.user.id %}
             <a href="{{path('fos_user_profile_show')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
         {% else %}

@@ -1,2 +1,5 @@
 logout: "Sign out"
 logged_in_as: "Logged in as: %username%"
+"search500resultsnotice": "Please notice that because our search results are limited to 500 books, you might have to specify your search more if you notice you are getting a lot of results and can't find the article you expected."
+"change_password.submit": "Change password"
+"Wants bill": "I want a bill"
