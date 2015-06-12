@@ -3,6 +3,7 @@
 
 {% block content %}
     {% if newsubscriber %}
+<<<<<<< HEAD
     <div class="row">
         <div class="col-md-12">
             <h1>New Subscription</h1>
@@ -102,4 +103,102 @@
             {{ form_end(form) }}
         </div>
     </div>
+=======
+    <h1>{{'New subscription'|trans }}</h1>
+    {% else %}
+    <h1>{{'Please check your subscription details'|trans }}</h1>
+    {% endif %}
+    {{ form_start(form) }}
+        {% for child in form.children %}
+            {% if child.vars.errors is defined and child.vars.errors|length%}
+            <div class="alert alert-block alert-danger">
+                <a class="close" data-dismiss="alert">×</a>
+                {{ form_errors(child) }}
+            </div>
+            {% endif %}
+        {% endfor %}
+
+    	<div class="form-group">
+    		{{ form_label(form.school) }}
+    		{{ form_widget(form.school) }}
+    	</div>
+
+    	<div class="form-group">
+    		{{ form_label(form.pricingtype) }}
+    		{{ form_widget(form.pricingtype) }}
+    	</div>
+
+    	<div class="form-group">
+    		{{ form_label(form.graduation) }}
+    		{{ form_widget(form.graduation) }}
+    	</div>
+
+    	<div class="form-group">
+    		{{ form_label(form.wantsBill) }}
+    		{{ form_widget(form.wantsBill) }}
+    	</div>
+
+    	<div class="form-group" id="deliveryAddressStreet">
+    		{{ form_label(form.deliveryaddress.street) }}
+    		{{ form_widget(form.deliveryaddress.street) }}
+    	</div>
+
+        <div class="form-group" id="deliveryAddressPostalCode">
+            {{ form_label(form.deliveryaddress.postalCode) }}
+            {{ form_widget(form.deliveryaddress.postalCode) }}
+        </div>
+
+        <div class="form-group" id="deliveryAddressMunicipality">
+            {{ form_label(form.deliveryaddress.municipality) }}
+            {{ form_widget(form.deliveryaddress.municipality) }}
+        </div>
+
+        <div class="form-group" id="deliveryAddressCountry">
+            {{ form_label(form.deliveryaddress.country) }}
+            {{ form_widget(form.deliveryaddress.country) }}
+        </div>
+
+        <div id="facturationAddress">
+            <div class="form-group" id="facturationAddressStreet">
+                {{ form_label(form.facturationaddress.street) }}
+                {{ form_widget(form.facturationaddress.street) }}
+            </div>
+
+            <div class="form-group" id="facturationAddressPostalCode">
+                {{ form_label(form.facturationaddress.postalCode) }}
+                {{ form_widget(form.facturationaddress.postalCode) }}
+            </div>
+
+            <div class="form-group" id="deliveryAddressMunicipality">
+                {{ form_label(form.facturationaddress.municipality) }}
+                {{ form_widget(form.facturationaddress.municipality) }}
+            </div>
+
+            <div class="form-group" id="facturationAddressCountry">
+                {{ form_label(form.facturationaddress.country) }}
+                {{ form_widget(form.facturationaddress.country) }}
+            </div>
+        </div>
+
+    	<div class="form-group" id="sameAddress">
+    		{{ form_label(form.sameaddress) }}
+    		{{ form_widget(form.sameaddress) }}
+    	</div>
+
+        <div class="form-group" id="vatNumber">
+            {{ form_label(form.vatNumber) }}
+            {{ form_widget(form.vatNumber) }}
+        </div>
+
+        {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
+		{{ form_rest(form) }}
+
+        {% if userid == app.user.id %}
+            <a href="{{path('fos_user_profile_show')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+        {% else %}
+            <a href="{{path('viewSpecificUser', {userid: userid})}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+        {% endif %}
+
+    {{ form_end(form) }}
+>>>>>>> fb8d94c3b2ff66b2c93f44bf047a1fbfb415b5e3
 {% endblock %}

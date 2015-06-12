@@ -46,6 +46,9 @@ class ArticleController extends Controller{
                 'required' => false,
                 'input' => 'string',
             ))
+            ->add('boekbespreking', 'checkbox', array(
+                'required' => false,
+            ))
             ->add('search', 'submit')
             ->getForm();;
         $form->handleRequest($request);

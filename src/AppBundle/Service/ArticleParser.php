@@ -118,15 +118,25 @@ class ArticleParser{
 	public function fetchAllArticlesForQuery($query){
 
         $url = $this->getHostname();
+        $hasquery = false;
         foreach ($query as $key => $value) {
             if($value){
-            if (strpos($url, '?') === false) {
-                $url = $url.'?';
-            }else{
-                $url = $url.'&';
+                if (strpos($url, '?') === false) {
+                    $url = $url.'?';
+                }else{
+                    $url = $url.'&';
+                }
+                if($key == "boekbespreking")
+                {
+                    $url = $url.'boek=y';
+                }else{
+                    $url = $url.$key.'='.$value;
+                }
+                $hasquery = true;
             }
-            $url = $url.$key.'='.$value;
-            }
+        }
+        if (!$hasquery) {
+            return $this->fetchAllArticles();
         }
         $curl = curl_init('http://'.$url.'&order1=jaar');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

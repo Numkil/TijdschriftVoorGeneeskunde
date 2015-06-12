@@ -77,11 +77,14 @@ class UserAdminController extends Controller{
             if($user->getBookstore()){
                 $user->getBookstore()->addSubscriber($user);
             }
+            if($user->getHealthCare()){
+                $user->getHealthCare()->addSubscriber($user);
+            }
+
             $fosusermanager->updateUser($user);
-            $em->flush();
 
             $this->addFlash(
-                'notice', 'The profile has been created'
+                'notice', $this->get('translator')->trans('The profile has been created')
             );
 
             return $this->redirectToRoute('userOverview');
@@ -117,7 +120,7 @@ class UserAdminController extends Controller{
             $usermanager->updateUser($user);
 
             $this->addFlash(
-                'notice', 'The password has been changed'
+                'notice', $this->get('translator')->trans('The password has been changed')
             );
             return $this->redirectToRoute('viewSpecificUser', array( 'userid' => $userid ));
         }
@@ -165,16 +168,20 @@ class UserAdminController extends Controller{
 
         if ($form->isValid()) {
 
-            $user->addRole($form->get('Role')->getData());
+            $user->addRole($form->get('role')->getData());
 
             if($user->getBookstore()){
                 $user->getBookstore()->addSubscriber($user);
             }
+            if($user->getHealthCare()){
+                $user->getHealthCare()->addSubscriber($user);
+            }
 
-            $em->flush();
+            $usermanager = $this->get('fos_user.user_manager');
+            $usermanager->updateUser($user);
 
             $this->addFlash(
-                'notice', 'The profile has been updated'
+                'notice', $this->get('translator')->trans('The profile has been updated')
             );
             return $this->redirectToRoute('viewSpecificUser', array( 'userid' => $userid ));
         }

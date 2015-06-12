@@ -36,7 +36,7 @@
 			 			<td><a href="{{path('updateBookstore', {id:bookstore.id})}}" class="btn
                                 btn-link">{{ 'Update' | trans }}</a></td>
 			 			<td><a href="{{path('removeBookstore', {id:bookstore.id})}}" class="btn
-                                btn-danger">{{ 'Remove' | trans }}</a></td>
+                                btn-danger" data-bb="confirm">{{ 'Remove' | trans }}</a></td>
 			 		</tr>
 					{% endfor %}
 			 	</tbody>

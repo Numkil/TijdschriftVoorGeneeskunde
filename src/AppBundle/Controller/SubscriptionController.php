@@ -53,7 +53,7 @@ class SubscriptionController extends Controller{
 
             $em->flush();
             $this->addFlash(
-                'notice', 'subscription added'
+                'notice', $this->get('translator')->trans('Subscription added')
             );
             return $this->render('FOSUserBundle::Profile/show.html.twig', array(
                 'user' => $user,
@@ -84,7 +84,7 @@ class SubscriptionController extends Controller{
         {
             $em->flush();
             $this->addFlash(
-                'notice', 'Subscription information updated'
+                'notice', $this->get('translator')->trans('Subscription information updated')
             );
             return $this->render('FOSUserBundle::Profile/show.html.twig', array(
                 'user' => $user,
@@ -126,7 +126,7 @@ class SubscriptionController extends Controller{
             $em->flush();
 
             $this->addFlash(
-                'notice', 'subscription added'
+                'notice', $this->get('translator')->trans('Your subscription has been extended')
             );
 
             return $this->render('FOSUserBundle::Profile/show.html.twig', array(

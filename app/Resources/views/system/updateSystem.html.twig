@@ -1,0 +1,51 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+<h1>{% trans %}Update System{% endtrans %}</h1>
+    {{ form_start(form) }}
+        {% for child in form.children %}
+            {% if child.vars.errors is defined and child.vars.errors|length%}
+            <div class="alert alert-block alert-danger">
+                <a class="close" data-dismiss="alert">×</a>
+                {{ form_errors(child) }}
+            </div>
+            {% endif %}
+        {% endfor %}
+
+    	<div class="form-group">
+    		{{ form_label(form.name) }}
+    		{{ form_widget(form.name) }}
+    	</div>
+
+    	<div class="form-group">
+    		{{ form_label(form.street) }}
+    		{{form_widget(form.street)}}
+    	</div>
+
+        <div class="form-group">
+            {{ form_label(form.municipality) }}
+            {{form_widget(form.municipality)}}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.postalCode) }}
+            {{form_widget(form.postalCode)}}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.iban) }}
+            {{form_widget(form.iban)}}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.bic) }}
+            {{form_widget(form.bic)}}
+        </div>
+
+        <a href="{{path('homepage')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+        {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
+
+    	{{ form_rest(form) }}
+
+    {{ form_end(form) }}
+{% endblock %}

@@ -13,7 +13,14 @@
 {% block content %}
 <h1>{{'Here you can change the date on this subscription'|trans }}</h1>
     {{ form_start(form) }}
-    	{{ form_errors(form) }}
+        {% for child in form.children %}
+            {% if child.vars.errors is defined and child.vars.errors|length%}
+            <div class="alert alert-block alert-danger">
+                <a class="close" data-dismiss="alert">×</a>
+                {{ form_errors(child) }}
+            </div>
+            {% endif %}
+        {% endfor %}
 
         {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
         <a href="{{path('viewSpecificUser', {userid: userid})}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
