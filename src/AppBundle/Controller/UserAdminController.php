@@ -81,7 +81,7 @@ class UserAdminController extends Controller{
             $em->flush();
 
             $this->addFlash(
-                'notice', 'The profile has been created'
+                'notice', $this->get('translator')->trans('The profile has been created')
             );
 
             return $this->redirectToRoute('userOverview');
@@ -117,7 +117,7 @@ class UserAdminController extends Controller{
             $usermanager->updateUser($user);
 
             $this->addFlash(
-                'notice', 'The password has been changed'
+                'notice', $this->get('translator')->trans('The password has been changed')
             );
             return $this->redirectToRoute('viewSpecificUser', array( 'userid' => $userid ));
         }
@@ -174,7 +174,7 @@ class UserAdminController extends Controller{
             $em->flush();
 
             $this->addFlash(
-                'notice', 'The profile has been updated'
+                'notice', $this->get('translator')->trans('The profile has been updated')
             );
             return $this->redirectToRoute('viewSpecificUser', array( 'userid' => $userid ));
         }
