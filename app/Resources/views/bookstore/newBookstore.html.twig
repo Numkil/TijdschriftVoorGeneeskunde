@@ -9,7 +9,15 @@
     <form action="{{ path('updateBookstore', {id: bookstoreID}) }}" method="POST"
     {% endif %}
         class="form-horizontal">
-    	{{ form_errors(bookstore) }}
+
+        {% for child in bookstore.children %}
+            {% if child.vars.errors is defined and child.vars.errors|length%}
+            <div class="alert alert-block alert-danger">
+                <a class="close" data-dismiss="alert">×</a>
+                {{ form_errors(child) }}
+            </div>
+            {% endif %}
+        {% endfor %}
 
     	<div class="form-group">
             {{ form_label(bookstore.name) }}

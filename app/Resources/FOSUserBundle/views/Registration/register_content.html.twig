@@ -5,10 +5,16 @@
 {% else %}
 <form action="{{ path('createUser') }}" {{ form_enctype(form) }} method="POST"
 {% endif %}
+class="form-horizontal">
 
-    class="form-horizontal">
-
-    {{ form_errors(form) }}
+    {% for child in form.children %}
+        {% if child.vars.errors is defined and child.vars.errors|length%}
+        <div class="alert alert-block alert-danger">
+            <a class="close" data-dismiss="alert">×</a>
+            {{ form_errors(child) }}
+        </div>
+        {% endif %}
+    {% endfor %}
 
     <div class="form-group">
         <label for="username" class="col-sm-2 control-label">{{ form_label(form.username) }}</label>

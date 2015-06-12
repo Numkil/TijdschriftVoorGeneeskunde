@@ -15,7 +15,14 @@
 
     {{ form_start(form, { 'attr': {'class': 'form-horizontal'}})}}
 
-    {{ form_errors(form) }}
+    {% for child in form.children %}
+        {% if child.vars.errors is defined and child.vars.errors|length%}
+        <div class="alert alert-block alert-danger">
+            <a class="close" data-dismiss="alert">×</a>
+            {{ form_errors(child) }}
+        </div>
+        {% endif %}
+    {% endfor %}
 
     <div class="form-group">
         <label for="titel">{{ form_label(form.titel) }}</label>
