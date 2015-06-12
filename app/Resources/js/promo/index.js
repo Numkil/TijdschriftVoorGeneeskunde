@@ -4,11 +4,17 @@
 "use strict";
 
 $(document).ready(function () {
-    $('#adminPromoOverview').DataTable();
-    $(document).on("click", "a[data-bb]", function (e) {
+    $('#adminPromoOverview').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.7/i18n/Dutch.json"
+        }
+    });
+    $(document).on("click", "a[data-bbpromo]", function (e) {
         e.preventDefault();
-        bootbox.prompt("New promo code", function (result) {
+        bootbox.prompt("Nieuwe promo code", function (result) {
             $.post("admin/promo/new/{id}", result);
         });
     });
+
+    //Bootbox from admin/index.js inherited for deletion confirm
 });
