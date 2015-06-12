@@ -1,91 +1,129 @@
 <div class="row">
-    <div class="col-md-8">
-        <div class="fos_user_user_show">
-            <p>{{ 'Username'|trans }}: {{ user.username }}</p>
-            <p>{{ 'Email'|trans }}: {{ user.email }}</p>
-        </div>
+    <div class="col-md-12">
+        <div class=" jumbotron">
+            <h1>Profile: {{ user.username }}</h1>
+            <div class="row">
+                <div class="col-md-9">
+                   
+                    <div class="form-group">
+                        <fieldset>
+                            <legend>Personal information</legend>
 
-        {% if app.user.id == user.id %}
-        <a href="{{path('fos_user_profile_edit')}}" class="btn btn-primary">{{ 'Edit account'|trans }}</a>
-        <a href="{{path('fos_user_change_password')}}" class="btn btn-danger">{{ 'Change password'|trans }}</a>
-        {% else %}
-        {% if is_granted('ROLE_SUPER_ADMIN')  %}
-        <a href="{{path('editSpecificUser', { userid: user.id })}}" class="btn btn-primary">
-            {{ 'Edit account'|trans }}
-        </a>
-        <a href="{{path('changePasswordSpecificUser', { userid: user.id })}}" class="btn btn-danger">
-            {{ 'Change password'|trans }}
-        </a>
-        {% endif %}
-        {% endif %}
-    </div>
+                            <ul>
+                                <li>{{ 'Name'|trans }}: {{ user.firstname }} {{ user.name }}</li>
+                                <li>{{ 'Email'|trans }}: {{ user.email }}</li>
+                                <li>{{ 'Telephone'|trans }}: {{ user.telephone }}</li>
+                            </ul>
+                           
+                    </fieldset>
+                    </div>
+                </div>
 
-    <div class=" jumbotron">
-        <div class="col-md-8">
-            {% if user.subscriber and user.subscriber.hasActiveSubscription and
-            user.subscriber.getActiveSubscription.isPaid %}
-            {% trans %}Your subscription is valid until{% endtrans %}:
-            {{ user.subscriber.getActiveSubscription.enddate | date('d-m-Y')}}
-                {% if user.subscriber.getActiveSubscription.enddate|date('d-m-Y') <=
-                "now"|date_modify("+2 month")|date('d-m-Y') %}
-                <a href="{{path('suspendSubscription', { userid: user.id })}}" class="btn
-                    btn-danger">{{ 'Extend subscription' | trans }}</a>
+                <div class="col-md-3">
+                    <fieldset>
+                            <legend>Manage user</legend>
+                            {% if app.user.id == user.id %}
+                                    <div class="list-group">
+                                         <a href="{{path('fos_user_profile_edit')}}" class="list-group-item"><span class="glyphicon glyphicon-wrench"></span> {{ 'Edit account'|trans }}</a>
+                                        <a href="{{path('fos_user_change_password')}} " class="list-group-item">{{ 'Change password'|trans }}</a>
+                                    </div>
+                               
+                            {% else %}
+                                {% if is_granted('ROLE_SUPER_ADMIN')  %}
+                                        <div class="list-group">
+                                            <a href="{{path('editSpecificUser', { userid: user.id })}}" class="list-group-item">
+                                             <span class="glyphicon glyphicon-wrench"></span> {{ 'Edit account'|trans }}
+                                             </a>
+                                             <a href="{{path('changePasswordSpecificUser', { userid: user.id })}}" class="list-group-item">
+                                             {{ 'Change password'|trans }}
+                                            </a>
+                                        </div>
+                                {% endif %}
+                            {% endif %}
+                        </fieldset>
+                </div>
+            </div>
+            <div class="row">
+                
+                <div class="col-md-9">
+                {% if user.subscriber %}
+                <table border="0" cellspacing="5" cellpadding="5" class="display table" width="100%"
+                    data-toggle="datatable">
+                    <thead>
+                        <h3>{{'Your subscription archive' | trans}}</h3>
+                        <tr>
+                            <th>{{ 'Start date' | trans }}</th>
+                            <th>{{ 'End date' | trans }}</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for subje in user.subscriber.subscriptions %}
+                        <tr>
+                            <td>
+                                <a href="{{path('editSubscription', {userid: user.id, subscriptionid:subje.id})}}">{{ subje.startdate | date('d-m-Y') }}</a>
+                            </td>
+                            <td>
+                                <a href="{{path('editSubscription', {userid: user.id, subscriptionid:subje.id})}}">{{ subje.enddate | date('d-m-Y') }}</a>
+                            </td>
+                            <td>
+                            {% if is_granted('ROLE_SUPER_ADMIN')  %}
+                                {% if subje.isPaid %}
+                                <div>
+                                    <a href="{{path('deActivateSubscription',
+                                       { userid: user.id, subscriptionid: subje.id })}}"
+                                       class="btn btn-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>{{ ' Deactivate subscription'|trans }}</a>
+                                </div>
+                                {% else %}
+                                <div>
+                                    <a href="{{path('activateSubscription',
+                                       { userid: user.id, subscriptionid: subje.id })}}"
+                                       class="btn btn-success">{{ 'Activate subscription'|trans }}</a>
+                                </div>
+                                {% endif %}
+                            {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
                 {% endif %}
-            {% else %}
-                {% if user.subscriber and user.subscriber.hasActiveSubscription %}
-                {% trans %}
-                    Your subscription is pending, as soon as we receive your payment your account will be activated.
-                {% endtrans %}
-                {% else %}
-                    <a href="{{path('newSubscription', { userid: user.id })}}"
-                        class="btn btn-primary">{{ 'Add new subscription'|trans }}</a>
-                {% endif %}
-            {% endif %}
-        </div>
-
-        {% if user.subscriber %}
-        <a href="{{path('editSubscriber', { userid: user.id })}}" class="btn btn-primary">
-            {{ 'Edit your subscription information'|trans }}
-        </a>
-
-        <table border="0" cellspacing="5" cellpadding="5" class="display table" width="100%"
-            data-toggle="datatable">
-            <thead>
-                <h3>{{'Your subscription archive' | trans}}</h3>
-                <tr>
-                    <th>{{ 'Start date' | trans }}</th>
-                    <th>{{ 'End date' | trans }}</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for subje in user.subscriber.subscriptions %}
-                <tr>
-                    <td>
-                        <a href="{{path('editSubscription', {userid: user.id, subscriptionid:
-                            subje.id})}}">{{ subje.startdate | date('d-m-Y') }}</a>
-                    </td>
-                    <td>
-                        <a href="{{path('editSubscription', {userid: user.id, subscriptionid:
-                            subje.id})}}">{{ subje.enddate | date('d-m-Y') }}</a>
-                    </td>
-                    <td>
-                    {% if is_granted('ROLE_SUPER_ADMIN')  %}
-                        {% if subje.isPaid %}
-                        <a href="{{path('deActivateSubscription',
-                           { userid: user.id, subscriptionid: subje.id })}}"
-                           class="btn btn-danger">{{ 'Deactivate subscription'|trans }}</a>
-                        {% else %}
-                        <a href="{{path('activateSubscription',
-                           { userid: user.id, subscriptionid: subje.id })}}"
-                           class="btn btn-primary">{{ 'Activate subscription'|trans }}</a>
+            </div>
+            <div class="col-md-3">
+                <fieldset>
+                    <legend>Manage subscription</legend>
+                    {% if user.subscriber and user.subscriber.hasActiveSubscription and user.subscriber.getActiveSubscription.isPaid %}
+                    <div class="list-group">
+                        <div class="subscription-info-active">
+                        {% trans %}Your subscription is valid until{% endtrans %}:
+                            {{ user.subscriber.getActiveSubscription.enddate | date('d-m-Y')}}
+                        </div>
+                            {% if user.subscriber.getActiveSubscription.enddate|date('d-m-Y') <= "now"|date_modify("+2 month")|date('d-m-Y') %}
+                                    <a href="{{path('editSubscriber', { userid: user.id })}}" class="list-group-item">
+                                                <span class="glyphicon glyphicon-wrench"></span> {{ 'Edit your subscription information'|trans }}
+                                                </a>
+                                    <a href="{{path('suspendSubscription', { userid: user.id })}}" class="list-group-item">{{ 'Extend subscription' | trans }}</a>
                         {% endif %}
+                    {% else %}
+                        {% if user.subscriber and user.subscriber.hasActiveSubscription %}
+                        <div class="subscription-info-pending">
+                            {% trans %}
+                                Your subscription is pending, as soon as we receive your payment your account will be activated.
+                            {% endtrans %}
+                        </div>
+                        {% else %}
+                            <div class="subscription-info-new">
+                                <a href="{{path('newSubscription', { userid: user.id })}}" class="btn btn-success">{{ 'Add new subscription'|trans }}</a>
+                            </div>
+                        {% endif %}
+                        </div>
+                    </div>
                     {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
+             </fieldset>
+            </div>
+        </div>
+
+        </div>
     </div>
 </div>

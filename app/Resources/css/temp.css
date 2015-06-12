@@ -8,7 +8,6 @@ body{
 
 .beginpage{
     padding-top: 50px;
-    
 }
 
 .content{
@@ -16,7 +15,6 @@ body{
     position: relative;
     height: auto;
     /*padding-left: 250px;*/
-    
 }
 
 
@@ -115,6 +113,9 @@ body{
     color: #FFF;    
 }
 
+
+
+
 .banner{
     width: 100%;
     color: white;
@@ -142,7 +143,6 @@ body{
 
 .beginpage.container{
     margin-top: 100px;
-    margin-right: 10px;
     width: 84%;
     margin-left: 220px;
     float: right;
@@ -164,22 +164,16 @@ body{
 
 .add-button{
     float: right;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
-.jumbotron{
-    border-radius: 5px 5px 5px 5px;
-    border-color: #75C1D4;
-    border-width: 1px;
-    border-style: solid;
-}
 
 .jumbotron h1{
     padding-bottom: 30px;
     
 }
 
-.subscription-info-active{
+.subscription-info{
     color: white;
     background-color: green;
     padding: 20px 20px 20px 20px;
@@ -187,52 +181,42 @@ body{
     text-align: center;
 }
 
-.subscription-info-pending{
-    color: white;
-    background-color: orange;
-    padding: 20px 20px 20px 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    
-}
-
-.subscription-info-new{
-    color: white;
-    background-color: transparent;
-    padding: 20px 20px 20px 20px;
-    margin-bottom: 20px;
-    text-align: center;
+.notice-panel-container{
+    border-radius: 25px;
+    border: 2px solid #004050;
+    padding: 20px;
+    background-color: #fff;
+    margin-top: 20px;
 }
 
 .notice-panel{
+    padding: 3px; 
+    color: #000;
     
-    background-color: #fff;
-    border-radius: 5px 5px 5px 5px;
-    border-color: #75C1D4;
-    border-width: 1px;
-    border-style: solid;
-    margin: 10px 0px 10px 0px;
 }
 
-.notice-title{
-    padding: 10px 10px 10px 10px;
-    width: 80%;
+.notice-panel-header{
+    border-radius: 25px;
+    border: 2px solid #004050;
+    padding: 20px;
+    background-color: #004050;
+    color: #FFF;   
+}
+
+.notice-panel-title{
+    font-size: 2em;
     float: left;
+    
+}
+
+.notice-panel-date{
+    text-align: right;
     font-size: 1.5em;
-    margin: 10px 0px 10px 0px;
-
 }
 
-.notice-date{
-    width: 20%
-    font-size: 1.2em;
-    padding: 10px 0px 10px 10px;
-    margin: 10px 0px 10px 0px;
-}
-
-.notice-message{
-    padding: 10px 10px 10px 10px;
-    margin: 10px 0px 10px 0px;
+.notice-panel-body{
+    text-align: left;
+    padding: 10px 10px 0px 0px;
 }
 
 

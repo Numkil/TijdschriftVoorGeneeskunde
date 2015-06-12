@@ -1,7 +1,7 @@
 /*Following lines show jslint to not throw error's for jquery*/
 /*jslint browser: true*/
 /*global $, jQuery, bootbox*/
-"use strict";
+/*"use strict";
 
 $(document).ready(function () {
     $(".side-nav li a").each(function () {
@@ -14,4 +14,4 @@ $(document).ready(function () {
         $(".side-nav li span").css({visibility: "hidden"});
     });
 
-});
+});*/

@@ -20,13 +20,13 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a href="{{path('homepage')}}" class="navbar-brand">
-                        <div class="banner">
+                    <div class="banner">
+                        <a href="{{path('homepage')}}" class="navbar-brand">
                             <img src="{{ asset('images/logo.png', version='1.0') }}" />
-                            <h1 class="banner-title">Tijdschrift voor Geneeskunde</h1>
-                            <h5 class="banner-subtitle">Gesticht door de Nederlandstalige Medische Faculteiten in België en hun Alumni-Verenigingen</h5>
-                        </div>
-                    </a>
+                            <p class="banner-title">Tijdschrift voor Geneeskunde</p>
+                            <p class="banner-subtitle">Gesticht door de Nederlandstalige Medische Faculteiten in België en hun Alumni-Verenigingen</p>
+                        </a>
+                    </div>
                 </div>
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') or
                 is_granted('IS_AUTHENTICATED_FULLY') %}
