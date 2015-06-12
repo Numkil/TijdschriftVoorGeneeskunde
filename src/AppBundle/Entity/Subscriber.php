@@ -79,6 +79,16 @@ class Subscriber
     }
 
     /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Get pricingtype
      *
      * @return string

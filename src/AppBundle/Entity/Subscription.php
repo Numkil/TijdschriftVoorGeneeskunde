@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ExecutionContextInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+
 
 /**
  *Class Subscription
@@ -44,6 +46,12 @@ class Subscription{
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $subscriber;
+
+    /**
+     * @DoctrineAssert\Enum(entity="AppBundle\Entity\Types\PaymentType")
+     * @ORM\Column(name="pricingtype", type="PaymentType", nullable=false)
+     */
+    protected $_pricingtype;
 
     public function __construct(\DateTime $startDate, \DateTime $endDate){
         $this->setStartDate($startDate);
@@ -140,5 +148,28 @@ class Subscription{
                 ->atPath('endDate')
                 ->addViolation();
         }
+    }
+
+    /**
+     * Get pricingtype
+     *
+     * @return string
+     */
+    public function getPricingType()
+    {
+        return $this->_pricingtype;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $type
+     * @return this
+     */
+    public function setPricingType($type)
+    {
+        $this->_pricingtype = $type;
+
+        return $this;
     }
 }

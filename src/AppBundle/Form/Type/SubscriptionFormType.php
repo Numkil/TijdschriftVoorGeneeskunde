@@ -4,6 +4,7 @@ namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SubscriptionFormType extends AbstractType{
 
@@ -20,6 +21,13 @@ class SubscriptionFormType extends AbstractType{
                     'minView' => 'month',
             )))
             ->add('save', 'submit');
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\Subscription',
+        ));
     }
 
     public function getName(){

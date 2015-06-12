@@ -43,6 +43,7 @@ class LoadSubscriberData extends AbstractFixture implements OrderedFixtureInterf
         //create a new subscription with
         $subscription = new Subscription($date, $expire);
         $subscription->setPaid(true);
+        $subscription->setPricingType($subscriber->getPricingType());
         $subscriber->addSubscription($subscription);
         $subscription->setSubscriber($subscriber);
 
