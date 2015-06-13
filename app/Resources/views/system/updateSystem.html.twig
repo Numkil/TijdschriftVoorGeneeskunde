@@ -42,8 +42,8 @@
             {{form_widget(form.bic)}}
         </div>
 
-        <a href="{{path('homepage')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
         {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
+        <a href="{{path('homepage')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
 
     	{{ form_rest(form) }}
 

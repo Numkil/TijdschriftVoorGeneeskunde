@@ -59,9 +59,8 @@
             {{ form_widget(bookstore.vatNumber, { 'attr' : { 'class': 'form-control' } }) }}
         </div>
 
-        <a href="{{path('bookstoreOverview')}}" class="btn btn-danger">{% trans %}Cancel{% endtrans %}</a>
-
         {{form_widget(bookstore.save, { 'attr': {'class': 'btn btn-primary'}})}}
+        <a href="{{path('bookstoreOverview')}}" class="btn btn-danger">{% trans %}Cancel{% endtrans %}</a>
 
     	{{ form_rest(bookstore) }}
 
