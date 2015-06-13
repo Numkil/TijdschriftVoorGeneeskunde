@@ -4,6 +4,10 @@ namespace AppBundle\Service;
 
 use Exception;
 use AppBundle\Service\NumberParser;
+use AppBundle\Entity\Invoice;
+use Appbundle\Entity\Organization;
+use Appbundle\Entity\Subscription;
+use DateInterval;
 
 /**
 *Class FactuurPDF
@@ -190,8 +194,23 @@ class PdfGenerator{
         $pdf->Output();
 	}
 
-	public function generateSubscriberInvoice($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $subscriberNumber, $price, $discount, $ogm, $output = "", $filePath = ""){
-		$pdf = $this->generateInvoiceDefaults($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, 1, $price, $discount, $ogm);
+  /**
+  * @param Invoice invoice
+  */
+  public function generateInvoicePdf($invoice){
+    if(isset($invoice->getOrganization)){
+      $subscriberNumbers = array();
+      foreach ($invoice->getOrganization()->getSubscribers() as $subscriber) {
+        array_push($subscriberNumbers, $subscriber->getId());
+      }
+      $this->generateOrganizationInvoice($invoice->getDate(), $invoice->getName(), $invoice->getStreet(), $invoice->getPostalCode() . " " . $invoice->getMunicipality(), $invoice->getvatNumber(), $invoice->getOrderNumber(), $invoice->getInvoiceNumber(), $subscriberNumbers, $invoice->getPrice(), $invoice->getDiscount(), $invoice->getOgm(), $output = "", $fileName = "");
+    }else{
+      $this->generateSubscriberInvoice($invoice->getDate(), $invoice->getName(), $invoice->getStreet(), $invoice->getPostalCode() . " " . $invoice->getMunicipality(), $invoice->getvatNumber(), $invoice->getOrderNumber(), $invoice->getInvoiceNumber(), $invoice->getSubscription()->getSubscriber()->getId(), $invoice->getPrice(), $invoice->getDiscount(), $invoice->getOgm(), $output = "", $filePath = "");
+    }
+  }
+
+	public function generateSubscriberInvoice($date, $name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $subscriberNumber, $price, $discount, $ogm, $output = "", $filePath = ""){
+		$pdf = $this->generateInvoiceDefaults($date, $name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, 1, $price, $discount, $ogm);
 
 		//Abonneenummer in geval het een abonnee is en geen organisatie
 		$pdf->setXY(20, 80);
@@ -204,7 +223,7 @@ class PdfGenerator{
 		}
 	}
 
-	public function generateOrganizationInvoice($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $subscriberNumbers, $price, $discount, $ogm, $output = "", $fileName = ""){
+	public function generateOrganizationInvoice($date, $name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $subscriberNumbers, $price, $discount, $ogm, $output = "", $fileName = ""){
 		
 		$numberOfSubscriptions = count($subscriberNumbers);
 		$pdf = $this->generateInvoiceDefaults($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $numberOfSubscriptions, $price, $discount, $ogm);
@@ -234,7 +253,7 @@ class PdfGenerator{
 		}
 	}
 
-	private function generateInvoiceDefaults($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $numberOfSubscriptions, $price, $discount, $ogm){
+	private function generateInvoiceDefaults($date, $name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $numberOfSubscriptions, $price, $discount, $ogm){
 
 		if(strlen($name) > 35) $name = substr($name, 0, 35);
 		if(strlen($streetAddress) > 35) $streetAddress = substr($streetAddress, 0, 35);
@@ -253,7 +272,7 @@ class PdfGenerator{
 		//Plaats en datum
 		$pdf->SetFont('Arial','', 11);
 		$pdf->setXY(20, 55);
-		$pdf->Cell(50, 10, 'Leuven, ' . date('d/m/Y', time()));
+		$pdf->Cell(50, 10, 'Leuven, ' . date('d/m/Y', $date->getTimestamp()));
 
 		//Gegevens klant
 		$pdf->setXY(138, 47.5);
@@ -353,7 +372,7 @@ class PdfGenerator{
 		//Mededelingen betaling
 
 		$pdf->setXY(20, 147);
-		$pdf->Cell(150, 5, 'Deze factuur dient betaald te worden ten laatste op ' . date('d/m/Y', strtotime('+1 month')) . '.');
+		$pdf->Cell(150, 5, 'Deze factuur dient betaald te worden ten laatste op ' . date('d/m/Y', date_add($date, DateInterval::createFromDateString('1 month'))->getTimestamp()) . '.');
 
 		$pdf->setXY(20, 152);
 		$pdf->Cell(150, 5, "Gelieve als gestructureerde mededeling '" . $ogm . "' te vermelden bij betaling.");
