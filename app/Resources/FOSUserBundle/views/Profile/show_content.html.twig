@@ -55,6 +55,9 @@
                             <th>{{ 'Start date' | trans }}</th>
                             <th>{{ 'End date' | trans }}</th>
                             <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
 
                         </tr>
                     </thead>
@@ -66,6 +69,15 @@
                             </td>
                             <td>
                                 <a href="{{path('editSubscription', {userid: user.id, subscriptionid:subje.id})}}">{{ subje.enddate | date('d-m-Y') }}</a>
+                            </td>
+                            <td>
+                                <a href="{{path('getTransferForm', {userid: user.id, subscriptionid:subje.id})}}">download transfer form</a>
+                            </td>
+                            <td>
+                                <a class="invoiceDownload" href="{{path('createInvoice', {userid: user.id, subscriptionid:subje.id})}}">generate invoice</a>
+                            </td>
+                            <td>
+                                <a href="{{path('subscriptionInvoiceOverview', {subscriptionid: subje.id})}}">view generated invoices</a>
                             </td>
                             <td>
                             {% if is_granted('ROLE_SUPER_ADMIN')  %}

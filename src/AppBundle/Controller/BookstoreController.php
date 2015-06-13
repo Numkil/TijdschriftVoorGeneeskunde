@@ -45,7 +45,7 @@ class BookstoreController extends Controller
             "bookstore" => $form->createView(),
         );
 
-        return $this->render('bookstore/newBookstore.html.twig', $parameters);
+        return $this->render('bookstore/new.html.twig', $parameters);
     }
 
     /**
@@ -76,7 +76,7 @@ class BookstoreController extends Controller
             'bookstoreID' => $bookstore->getId(),
         );
 
-        return $this->render('bookstore/newBookstore.html.twig', $parameters);
+        return $this->render('bookstore/new.html.twig', $parameters);
     }
 
     /**

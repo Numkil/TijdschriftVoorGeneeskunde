@@ -8,8 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Subscriber;
 use AppBundle\Entity\Subscription;
+use AppBundle\Entity\Invoice;
 use AppBundle\Form\Type\SubscriberFormType;
 use AppBundle\Form\Type\SubscriptionFormType;
+use AppBundle\Service\PdfGenerator;
+use AppBundle\Entity\Types\PaymentType;
 
 class SubscriptionController extends Controller{
 
@@ -43,6 +46,7 @@ class SubscriptionController extends Controller{
             $subscription->setSubscriber($subscriber);
             $user->setSubscriber($subscriber);
             $subscriber->setUser($user);
+            $subscription->setPricingType($subscriber->getPricingType());
 
             $em->persist($subscription);
             if($newsubscriber){
@@ -142,7 +146,7 @@ class SubscriptionController extends Controller{
     }
 
     /**
-     * @Route("/subscription/{userid}/{subscriptionid}/activate/", name="activateSubscription")
+     * @Route("/admin/subscription/{userid}/{subscriptionid}/activate/", name="activateSubscription")
      */
     public function activateSubscriptionAction(Request $request, $userid, $subscriptionid)
     {
@@ -163,7 +167,7 @@ class SubscriptionController extends Controller{
     }
 
     /**
-     * @Route("/subscription/{userid}/{subscriptionid}/deactivate/", name="deActivateSubscription")
+     * @Route("/admin/subscription/{userid}/{subscriptionid}/deactivate/", name="deActivateSubscription")
      */
     public function deActivateSubscriptionAction(Request $request, $userid, $subscriptionid)
     {
@@ -184,7 +188,7 @@ class SubscriptionController extends Controller{
     }
 
     /**
-     * @Route("/subscription/{userid}/{subscriptionid}/edit", name="editSubscription")
+     * @Route("/admin/subscription/{userid}/{subscriptionid}/edit", name="editSubscription")
      */
     public function editSubscription(Request $request, $userid, $subscriptionid)
     {
@@ -208,5 +212,87 @@ class SubscriptionController extends Controller{
             'userid' => $user->getId(),
         ));
 
+    }
+
+    /**
+     * @Route("/subscriber/{userid}/transferform/{subscriptionid}", name="getTransferForm")
+     */
+    public function getTransferForm(Request $request, $userid, $subscriptionid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $system = $em->getRepository('AppBundle:System')->find(1);
+        $user = $em->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
+        $subscription = $em->getRepository('AppBundle:Subscription')
+            ->findOneBy(array('id' => $subscriptionid));
+        $pdfGenerator = new PdfGenerator();
+        $pdfGenerator->generateTransferForm($this->get('kernel')->getRootDir() . "/Resources/Images/",
+                            PaymentType::getPrice($subscription->getPricingType()),
+                            $user->getFirstName() . " " . $user->getName(),
+                            $user->getSubscriber()->getFacturationAddress()->getStreet(),
+                            $user->getSubscriber()->getFacturationAddress()->getPostalCode() . ' ' . $user->getSubscriber()->getFacturationAddress()->getMunicipality(),
+                            $system->getIban(),
+                            $system->getBic(),
+                            $system->getName(),
+                            $system->getStreet(),
+                            $system->getPostalCode() . " " . $system->getMunicipality(),
+                            substr(date('Y'), 1) . date("dm") . sprintf('%05d', $user->getSubscriber()->getId()));
+        exit();
+
+    }
+
+    /**
+     * @Route("/subscriber/{userid}/invoice/{subscriptionid}/{ordernumber}", name="createInvoice", defaults={"ordernumber" = ""})
+     */
+    public function createInvoice(Request $request, $userid, $subscriptionid, $ordernumber){
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
+        $subscription = $this->getDoctrine()->getRepository('AppBundle:Subscription')->findOneBy(array('id' => $subscriptionid));
+        $invoiceNumber = $this->getDoctrine()->getRepository('AppBundle:System')->getInvoiceNumber();
+        $em = $this->getDoctrine()->getManager();
+
+        //var_dump($user->getFirstName() . " " . $user->getName());
+
+        $invoice = new Invoice();
+        $invoice->setDate(new \DateTime());
+        $invoice->setName($user->getFirstName() . " " . $user->getName());
+        $invoice->setStreet($user->getSubscriber()->getFacturationAddress()->getStreet());
+        $invoice->setPostalCode($user->getSubscriber()->getFacturationAddress()->getPostalCode());
+        $invoice->setMunicipality($user->getSubscriber()->getFacturationAddress()->getMunicipality());
+        $invoice->setVatNumber($user->getSubscriber()->getVatNumber());
+        $invoice->setOrderNumber($ordernumber);
+        $invoice->setInvoiceNumber(date('Y') . '-' . strval($invoiceNumber));
+        $invoice->setSubscription($subscription);
+        $invoice->setPrice(PaymentType::getPrice($subscription->getPricingType()));
+        $invoice->setDiscount(PaymentType::getDiscount($subscription->getPricingType()));
+        $invoice->setOgm(substr(date('Y'), 1) . sprintf('%04d', $invoiceNumber) . sprintf('%05d', $user->getSubscriber()->getId()));
+
+        $em->persist($invoice);
+        $subscription->addInvoice($invoice);
+        $em->flush();
+        $this->getDoctrine()->getRepository('AppBundle:System')->incrementInvoiceNumber();
+
+        $pdfGenerator = new PdfGenerator();
+        $pdfGenerator->generateInvoicePdf($invoice);
+        exit();
+    }
+
+    /**
+     * @Route("/invoice/{invoiceid}/", name="getInvoice")
+     */
+    public function getInvoice(Request $request, $invoiceid){
+        $invoice = $this->getDoctrine()->getRepository('AppBundle:Invoice')->find($invoiceid);
+
+        $pdfGenerator = new PdfGenerator();
+        $pdfGenerator->generateInvoicePdf($invoice);
+        exit();
+    }
+
+    /**
+     * @Route("/subscription/{subscriptionid}/invoices/", name="subscriptionInvoiceOverview")
+     */
+    public function indexAction(Request $request, $subscriptionid){
+        $invoices = $this->getDoctrine()
+            ->getRepository('AppBundle:Invoice')->findBy(array('_subscription' => $subscriptionid), array('_invoiceNumber' => 'ASC'));
+
+        return $this->render('invoice/index.html.twig', array('invoices' => $invoices));
     }
 }
