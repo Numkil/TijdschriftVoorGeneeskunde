@@ -33,6 +33,7 @@
             {% endif %}
         {% endfor %}
 
+
     	<div class="form-group">
     		{{ form_label(notice.title) }}
     		{{ form_widget(notice.title) }}
@@ -41,12 +42,17 @@
     		{{ form_label(notice.message) }}
     		{{form_widget(notice.message)}}
     	</div>
+        
+    </div>
+
+            <a href="{{path('adminOverview')}}" class="btn btn-primary">Cancel</a>
+
+            {{form_widget(notice.save, { 'attr': {'class': 'btn btn-primary'}})}}
 
         <a href="{{path('adminOverview')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
 
         {{form_widget(notice.save, { 'attr': {'class': 'btn btn-primary'}})}}
-
-    	{{ form_rest(notice) }}
+            {{ form_rest(notice) }}
 
 
     {{ form_end(notice) }}

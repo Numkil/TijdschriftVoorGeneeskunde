@@ -8,7 +8,6 @@ body{
 
 .beginpage{
     padding-top: 50px;
-    
 }
 
 .content{
@@ -37,17 +36,14 @@ body{
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
-        z-index: 2; 
+        z-index: 2;
         font-size: 1.3em;
-       
     }
 
     .side-nav>li {
         width: 100%
-               
     }
-    
-    
+
     .side-nav li a:link,
     .side-nav li a:visited{
         color: #FFF;
@@ -56,7 +52,7 @@ body{
     .side-nav li a:hover,
     .side-nav li a:focus,
     .side-nav li a:active,
-    .current {
+    .current{
         outline: none;
         background-color: #FFF;
         color: #75C1D4;
@@ -92,18 +88,48 @@ body{
     
 }
 
+.current a{
+    color: #75C1D4 !important;
+}
+
+.side-nav li span{
+    visibility: hidden;
+}
+
+.side-nav li:hover span{
+    visibility: visible;
+}
+
+}
+
+.nav.navbar-nav.side-nav{
+    margin-top: 50px;
+    min-width: 220px;
+    width: 14%;
+    overflow:hidden;
+    text-align:justify;
+
+
+}
+
+.navbar.navbar-inverse.navbar-fixed-top {
+   height: auto;
+     min-height: 100px;
+    background-color: #75C1D4;
+    z-index: 1;
+    border-bottom-color: #75C1D4;
+
+}
+
 .navbar.navbar-inverse.navbar-fixed-top .container{
     width: 100%;
     left: 200px;
     height: auto;
-    
 }
 
 .navbar-header{
     padding-left: 200px;
     width: auto;
-        
-    
 }
 
 .collapse.navbar-collapse.pull-right{
@@ -111,8 +137,16 @@ body{
     
 }
 
-.collapse.navbar-collapse.pull-right a{
-    color: #FFF;    
+.dropdown-toggle a:link a:visited{
+    
+}
+
+.dropdown-toggle a  a:active a:hover{
+    color: #75C1D4 !important;
+}
+
+.dropdown-menu{
+    background-color: #75C1D4;
 }
 
 .banner{
@@ -129,7 +163,6 @@ body{
     font-size: 2em;
     width: 100%;
     color: #FAFAFA;
-    
 }
 
 .banner-subtitle{
@@ -206,6 +239,10 @@ body{
     padding: 20px 20px 20px 20px;
     margin-bottom: 20px;
     text-align: center;
+}
+
+#facturationAddress{
+    display: none;
 }
 
 .notice-panel{
