@@ -1,5 +1,14 @@
 {% extends '::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ form_stylesheet(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ form_javascript(form) }}
+{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -25,7 +34,7 @@
         <div class="form-group">
             <div class="col-md-12" id="generalInformation">
                 <fieldset>
-                    <legend>General information</legend>
+                    <legend>{{ 'General information'|trans }}</legend>
 
                     {{ form_label(form.school) }}
                     {{ form_widget(form.school) }}
@@ -43,7 +52,7 @@
         </div>
         <div class="col-md-12" id="deliveryAddress">
             <fieldset>
-                <legend>Delivery address</legend>
+                <legend>{{ 'Delivery address'|trans }}</legend>
                 <div id="deliveryAddressStreet">
                     {{ form_label(form.deliveryaddress.street) }}
                     {{ form_widget(form.deliveryaddress.street) }}
@@ -68,7 +77,7 @@
 
         <div class="col-md-12" id="facturationAddress">
             <fieldset>
-                <legend>Facturation address</legend>
+                <legend>{{ 'Facturation address'|trans }}</legend>
                 <div id="facturationAddressStreet">
                     {{ form_label(form.facturationaddress.street) }}
                     {{ form_widget(form.facturationaddress.street) }}
@@ -101,8 +110,6 @@
             {{ form_widget(form.vatNumber) }}
         </div>
 
-        {{ form_rest(form) }}
-
         {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
         {% if userid == app.user.id %}
         <a href="{{path('fos_user_profile_show')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
@@ -110,6 +117,7 @@
         <a href="{{path('viewSpecificUser', {userid: userid})}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
         {% endif %}
 
+        {{ form_rest(form) }}
         {{ form_end(form) }}
     </div>
 </div>

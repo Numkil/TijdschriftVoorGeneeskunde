@@ -17,7 +17,7 @@ class SubscriberFormType extends AbstractType{
                 'choices' => PaymentType::getChoices()
             ])
             ->add('graduation', 'collot_datetime',
-                array( 
+                array(
                     'required' => false,
                     'pickerOptions' => array(
                         'format' => 'dd/mm/yyyy',
@@ -33,7 +33,10 @@ class SubscriberFormType extends AbstractType{
             ->add('sameaddress', 'checkbox', array(
         	   		'label' => 'Delivery address and facturation address are the same',
             		'mapped' => false,
-            		'data' => true,
+
+            		'data' => false,
+                    'required' => false,
+
             	))
             ->add('vatNumber', 'text', array('required' => false))
             /*->add('paperversion', 'checkbox', array(
@@ -41,6 +44,8 @@ class SubscriberFormType extends AbstractType{
 				    'required' => false,
 
 				))*/
+
+            ->add('promo', 'text', array('required' => false))
 			->add('save', 'submit');
 	}
 

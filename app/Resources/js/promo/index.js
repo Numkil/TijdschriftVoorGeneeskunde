@@ -7,24 +7,18 @@
 $(document).ready(function () {
     $('#adminPromoOverview').DataTable({
         "language": {
-            url: https://cdn.datatables.net/plug-ins/1.10.7/i18n/Dutch.json"
+
+            "url": "https://cdn.datatables.net/plug-ins/1.10.7/i18n/Dutch.json"
         }
     });
-    $(document).on("click", "#newPromoButton", function (e) {
-        var link = $(this).attr('href');
+    $(document).on("click", "a[data-bbpromo]", function (e) {
         e.preventDefault();
-        bootbox.prompt("New promo code", function (result) {
-            $.ajax({
-                url: "/admin/promo/new/" + result,
-                type: "POST",
-                data: { "code" : result },
-                success: function (data) {
-                    window.location = link;
-                    console.log(data);
-                }
-            });
+        bootbox.prompt("Nieuwe promo code", function (result) {
+            $.post("admin/promo/new/{id}", result);
         });
     });
+
+    //Bootbox from admin/index.js inherited for deletion confirm
 });
 
 */

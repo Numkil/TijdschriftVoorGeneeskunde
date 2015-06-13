@@ -1,33 +1,33 @@
 <div class="row">
     <div class="col-md-12">
         <div class=" jumbotron">
-            <h1>Profile: {{ user.username }}</h1>
+            <h1>{{'Profile'|trans }}: {{ user.username }}</h1>
             <div class="row">
                 <div class="col-md-9">
-                   
+
                     <div class="form-group">
                         <fieldset>
-                            <legend>Personal information</legend>
+                            <legend>{{ 'Personal information'|trans }}</legend>
 
                             <ul>
                                 <li>{{ 'Name'|trans }}: {{ user.firstname }} {{ user.name }}</li>
                                 <li>{{ 'Email'|trans }}: {{ user.email }}</li>
                                 <li>{{ 'Telephone'|trans }}: {{ user.telephone }}</li>
                             </ul>
-                           
+
                     </fieldset>
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <fieldset>
-                            <legend>Manage user</legend>
+                        <legend>{{ 'Manage user'|trans }}</legend>
                             {% if app.user.id == user.id %}
                                     <div class="list-group">
                                          <a href="{{path('fos_user_profile_edit')}}" class="list-group-item"><span class="glyphicon glyphicon-wrench"></span> {{ 'Edit account'|trans }}</a>
                                         <a href="{{path('fos_user_change_password')}} " class="list-group-item">{{ 'Change password'|trans }}</a>
                                     </div>
-                               
+
                             {% else %}
                                 {% if is_granted('ROLE_SUPER_ADMIN')  %}
                                         <div class="list-group">
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="row">
-                
+
                 <div class="col-md-9">
                 {% if user.subscriber %}
                 <table border="0" cellspacing="5" cellpadding="5" class="display table" width="100%"
@@ -73,7 +73,10 @@
                                 <div>
                                     <a href="{{path('deActivateSubscription',
                                        { userid: user.id, subscriptionid: subje.id })}}"
-                                       class="btn btn-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>{{ ' Deactivate subscription'|trans }}</a>
+                                       class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-exclamation-sign"
+                                            aria-hidden="true"></span>
+                                        {{ 'Deactivate subscription'|trans }}</a>
                                 </div>
                                 {% else %}
                                 <div>
@@ -92,7 +95,7 @@
             </div>
             <div class="col-md-3">
                 <fieldset>
-                    <legend>Manage subscription</legend>
+                    <legend>{{ 'Manage subscription'|trans }}</legend>
                     {% if user.subscriber and user.subscriber.hasActiveSubscription and user.subscriber.getActiveSubscription.isPaid %}
                     <div class="list-group">
                         <div class="subscription-info-active">

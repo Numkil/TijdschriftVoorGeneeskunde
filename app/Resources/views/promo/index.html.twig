@@ -1,7 +1,7 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <h1>Promo overview</h1>
+    <h1>{{ 'Promo overview'|trans }}</h1>
 
     {% if is_granted('ROLE_ADMIN') %}
     {{ form_start(promo) }}
@@ -29,7 +29,9 @@
 	 		<tr>
 	 			<td>{{ promo.id }}</td>
 	 			<td>{{ promo.code }}</td>
-	 			<td><a href="{{path('removePromo', {id:promo.id})}}" class="btn btn-danger">Remove</a></td>
+                <td><a href="{{path('removePromo', {id:promo.id})}}" class="btn btn-danger"
+                        data-bb="confirm">
+                        {{ 'Remove'|trans }}</a></td>
 	 		</tr>
 			{% endfor %}
 	 	</tbody>
