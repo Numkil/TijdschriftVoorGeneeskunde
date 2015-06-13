@@ -10,7 +10,7 @@ class SubscriptionFormType extends AbstractType{
 
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add('startDate', 'collot_datetime',
+            ->add('startdate', 'collot_datetime',
                 array( 'pickerOptions' => array(
                     'format' => 'dd/mm/yyyy',
                     'minView' => 'month',

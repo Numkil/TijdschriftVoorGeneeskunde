@@ -1,0 +1,47 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+<h1>{% trans %}Healthcare overview{% endtrans %}</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="row add-button">
+    	<div class="col-md-12">
+            <a href="{{path('createHealthcare')}}" class="btn btn-primary">{% trans %}Add healthcare{% endtrans %}</a>
+    	</div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+    	<div class="col-md-12">
+    		<table id="adminHealthcareOverview" class="table table-striped">
+			 	<thead>
+                    <tr>
+			 		<th>#</th>
+                    <th>{{ 'Title'|trans }}</th>
+                    <th>{{ 'Telephone'|trans }}</th>
+                    <th>{{ 'Email'|trans }}</th>
+                    <th>{{ 'Address'|trans }}</th>
+			 		<th></th>
+			 		<th></th>
+                    </tr>
+			 	</thead>
+			 	<tbody>
+			 		{% for healthcare in healthcares %}
+			 		<tr>
+			 			<td>{{ healthcare.id }}</td>
+			 			<td>{{ healthcare.name }}</td>
+			 			<td>{{ healthcare.telephone }}</td>
+			 			<td>{{ healthcare.email }}</td>
+			 			<td>{{ healthcare.address.street}}, {{ healthcare.address.postalcode}} {{ healthcare.address.municipality }}</td>
+			 			<td><a href="{{path('updateHealthcare', {id:healthcare.id})}}" class="btn
+                                btn-link">{{ 'Update' | trans }}</a></td>
+			 			<td><a href="{{path('removeHealthcare', {id:healthcare.id})}}" class="btn
+                                btn-danger" data-bb="confirm">{{ 'Remove' | trans }}</a></td>
+			 		</tr>
+					{% endfor %}
+			 	</tbody>
+			</table>
+		</div>
+	</div>
+
+{% endblock %}

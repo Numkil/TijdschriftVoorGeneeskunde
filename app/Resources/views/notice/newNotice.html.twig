@@ -3,14 +3,15 @@
 {% block content %}
     <h1>{{ 'New Notice'|trans }}</h1>
     {{ form_start(notice) }}
-        {% for child in notice.children %}
-            {% if child.vars.errors is defined and child.vars.errors|length%}
-            <div class="alert alert-block alert-danger">
-                <a class="close" data-dismiss="alert">×</a>
-                {{ form_errors(child) }}
-            </div>
-            {% endif %}
-        {% endfor %}
+
+    {% for child in notice.children %}
+        {% if child.vars.errors is defined and child.vars.errors|length%}
+        <div class="alert alert-block alert-danger">
+            <a class="close" data-dismiss="alert">×</a>
+            {{ form_errors(child) }}
+        </div>
+        {% endif %}
+    {% endfor %}
 
     <div class="form-group">
         <div class="col-sm-8">
@@ -25,14 +26,10 @@
         </div>
     </div>
 
-            <a href="{{path('adminOverview')}}" class="btn btn-primary">Cancel</a>
+    {{form_widget(notice.save, { 'attr': {'class': 'btn btn-primary'}})}}
+    <a href="{{path('adminOverview')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
 
-            {{form_widget(notice.save, { 'attr': {'class': 'btn btn-primary'}})}}
-
-        <a href="{{path('adminOverview')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
-
-        {{form_widget(notice.save, { 'attr': {'class': 'btn btn-primary'}})}}
-            {{ form_rest(notice) }}
+    {{ form_rest(notice) }}
 
     {{ form_end(notice) }}
 {% endblock %}
