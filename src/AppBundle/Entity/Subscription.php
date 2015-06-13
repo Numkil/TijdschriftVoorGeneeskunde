@@ -5,11 +5,12 @@ namespace AppBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ExecutionContextInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 
 
 /**
- *Class Subscription
+ * Class Subscription
  * @ORM\Entity
  * @ORM\Table(name="subscription")
  */
@@ -53,6 +54,12 @@ class Subscription{
      */
     protected $_pricingtype;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Invoice", mappedBy="_subscription", cascade={"remove"})
+     * @ORM\OrderBy({"id" = "DESC"})
+     */
+    protected $_invoices;
+
     public function __construct(\DateTime $startDate, \DateTime $endDate){
         $this->setStartDate($startDate);
         $this->setEndDate($endDate);
@@ -63,12 +70,14 @@ class Subscription{
      * @param Subscriber
      * @return this
      */
-
     public function setSubscriber($subscriber){
         $this->subscriber = $subscriber;
         return $this;
     }
 
+    /**
+     * @return Subscriber subscriber
+     */
     public function getSubscriber(){
         return $this->subscriber;
     }
@@ -170,6 +179,46 @@ class Subscription{
     {
         $this->_pricingtype = $type;
 
+        return $this;
+    }
+
+    /**
+     * @param Invoice[] $invoices
+     * @return this
+     */
+    public function setInvoices($invoices)
+    {
+        if(!is_array($invoices)){
+           $invoices = array($invoices);
+        }
+        $this->_invoices = new ArrayCollection($invoices);
+
+        return $this;
+    }
+
+    /**
+     * @return Invoice[] invoices
+     */
+    public function getInvoices()
+    {
+        return $this->_invoices;
+    }
+
+    /**
+     * Add one invoice
+     * @param Invoice
+     * @return this
+     */
+    public function addInvoice($invoice)
+    {
+        if(!$this->_invoices){
+            $this->setInvoices($invoice);
+            return $this;
+        }
+
+        if(!$this->_invoices->contains($invoice)){
+            $this->_invoices->add($invoice);
+        }
         return $this;
     }
 }
