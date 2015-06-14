@@ -1,36 +1,48 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <h1>{{ 'New Notice'|trans }}</h1>
-    {{ form_start(notice) }}
+    <div class="col-sm-6">
+        <div class="jumbotron">
+            <h1>{{ 'New Notice'|trans }}</h1>
+            {{ form_start(notice) }}
 
-    {% for child in notice.children %}
-        {% if child.vars.errors is defined and child.vars.errors|length%}
-        <div class="alert alert-block alert-danger">
-            <a class="close" data-dismiss="alert">×</a>
-            {{ form_errors(child) }}
-        </div>
-        {% endif %}
-    {% endfor %}
 
-    <div class="form-group">
-        <div class="col-sm-8">
-            {{ form_label(notice.title) }}
-            {{ form_widget(notice.title, { 'attr' : { 'class': 'form-control' } }) }}
+            {% for child in notice.children %}
+                {% if child.vars.errors is defined and child.vars.errors|length%}
+                <div class="alert alert-block alert-danger">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ form_errors(child) }}
+                </div>
+                {% endif %}
+            {% endfor %}
+
+
+                {{ form_errors(notice) }}
+            <div class="row">
+                <div class="form-group">
+                        <div class="col-sm-12">
+                            {{ form_label(notice.title) }}
+                            {{ form_widget(notice.title, { 'attr' : { 'class': 'form-control' } }) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_label(notice.message) }}
+                            {{ form_widget(notice.message, { 'attr' : { 'class': 'form-control' } }) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        {{form_widget(notice.save, { 'attr': {'class': 'btn btn-primary'}})}}
+                        <a href="{{path('adminOverview')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+                    </div>
+            </div>
+           
+                
+
+
+            {{ form_rest(notice) }}
+
+
+            {{ form_end(notice) }}
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-sm-8">
-            {{ form_label(notice.message) }}
-            {{ form_widget(notice.message, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
-    </div>
-
-    {{form_widget(notice.save, { 'attr': {'class': 'btn btn-primary'}})}}
-    <a href="{{path('adminOverview')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
-
-    {{ form_rest(notice) }}
-
-    {{ form_end(notice) }}
 {% endblock %}
 

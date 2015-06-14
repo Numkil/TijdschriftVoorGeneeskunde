@@ -15,7 +15,6 @@ body{
     position: relative;
     height: auto;
     /*padding-left: 250px;*/
-    
 }
 
 
@@ -36,14 +35,17 @@ body{
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
-        z-index: 2;
+        z-index: 2; 
         font-size: 1.3em;
+       
     }
 
     .side-nav>li {
         width: 100%
+               
     }
-
+    
+    
     .side-nav li a:link,
     .side-nav li a:visited{
         color: #FFF;
@@ -52,7 +54,7 @@ body{
     .side-nav li a:hover,
     .side-nav li a:focus,
     .side-nav li a:active,
-    .current{
+    .current {
         outline: none;
         background-color: #FFF;
         color: #75C1D4;
@@ -88,48 +90,18 @@ body{
     
 }
 
-.current a{
-    color: #75C1D4 !important;
-}
-
-.side-nav li span{
-    visibility: hidden;
-}
-
-.side-nav li:hover span{
-    visibility: visible;
-}
-
-}
-
-.nav.navbar-nav.side-nav{
-    margin-top: 50px;
-    min-width: 220px;
-    width: 14%;
-    overflow:hidden;
-    text-align:justify;
-
-
-}
-
-.navbar.navbar-inverse.navbar-fixed-top {
-   height: auto;
-     min-height: 100px;
-    background-color: #75C1D4;
-    z-index: 1;
-    border-bottom-color: #75C1D4;
-
-}
-
 .navbar.navbar-inverse.navbar-fixed-top .container{
     width: 100%;
     left: 200px;
     height: auto;
+    
 }
 
 .navbar-header{
     padding-left: 200px;
     width: auto;
+        
+    
 }
 
 .collapse.navbar-collapse.pull-right{
@@ -137,17 +109,12 @@ body{
     
 }
 
-.dropdown-toggle a:link a:visited{
-    
+.collapse.navbar-collapse.pull-right a{
+    color: #FFF;    
 }
 
-.dropdown-toggle a  a:active a:hover{
-    color: #75C1D4 !important;
-}
 
-.dropdown-menu{
-    background-color: #75C1D4;
-}
+
 
 .banner{
     width: 100%;
@@ -162,20 +129,20 @@ body{
     padding-left: 10%;
     font-size: 2em;
     width: 100%;
-    color: #FAFAFA;
+    color: #fff;
+    
 }
 
 .banner-subtitle{
     padding-left: 10%;
     font-size: 0.8em;
     width: 100%;
-    color: #FAFAFA;
+    color: #fff;
 }
 
 
 .beginpage.container{
     margin-top: 100px;
-    margin-right: 10px;
     width: 84%;
     margin-left: 220px;
     float: right;
@@ -198,25 +165,15 @@ body{
 .add-button{
     float: right;
     margin-bottom: 10px;
-    width: 50%
 }
 
-.jumbotron{
-    border: 1px solid #75C1D4;
-    border-radius: 5px 5px 5px 5px;
-}
 
 .jumbotron h1{
     padding-bottom: 30px;
     
 }
 
-.status-legend table td{
-    padding: 5px 10px 5px 10px;
-    text-align: center; 
-}
-
-.subscription-info-active{
+.subscription-info{
     color: white;
     background-color: green;
     padding: 20px 20px 20px 20px;
@@ -224,56 +181,42 @@ body{
     text-align: center;
 }
 
-.subscription-info-pending{
-    color: white;
-    background-color: orange;
-    padding: 20px 20px 20px 20px;
-    margin-bottom: 20px;
-    text-align: center;
-
-}
-
-.subscription-info-new{
-    color: white;
-    background-color: transparent;
-    padding: 20px 20px 20px 20px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-#facturationAddress{
-    display: none;
+.notice-panel-container{
+    border-radius: 25px;
+    border: 2px solid #004050;
+    padding: 20px;
+    background-color: #fff;
+    margin-top: 20px;
 }
 
 .notice-panel{
+    padding: 3px; 
+    color: #000;
     
-    background-color: #fff;
-    border-radius: 5px 5px 5px 5px;
-    border-color: #75C1D4;
-    border-width: 1px;
-    border-style: solid;
-    margin: 10px 0px 10px 0px;
 }
 
-.notice-title{
-    padding: 10px 10px 10px 10px;
-    width: 80%;
+.notice-panel-header{
+    border-radius: 25px;
+    border: 2px solid #004050;
+    padding: 20px;
+    background-color: #004050;
+    color: #FFF;   
+}
+
+.notice-panel-title{
+    font-size: 2em;
     float: left;
+    
+}
+
+.notice-panel-date{
+    text-align: right;
     font-size: 1.5em;
-    margin: 10px 0px 10px 0px;
-
 }
 
-.notice-date{
-    width: 20%
-    font-size: 1.2em;
-    padding: 10px 0px 10px 10px;
-    margin: 10px 0px 10px 0px;
-}
-
-.notice-message{
-    padding: 10px 10px 10px 10px;
-    margin: 10px 0px 10px 0px;
+.notice-panel-body{
+    text-align: left;
+    padding: 10px 10px 0px 0px;
 }
 
 

@@ -1,11 +1,13 @@
 /*Following lines show jslint to not throw error's for jquery*/
 /*jslint browser: true*/
 /*global $, jQuery, bootbox*/
+/***
 "use strict";
 
 $(document).ready(function () {
     $('#adminPromoOverview').DataTable({
         "language": {
+
             "url": "https://cdn.datatables.net/plug-ins/1.10.7/i18n/Dutch.json"
         }
     });
@@ -18,3 +20,5 @@ $(document).ready(function () {
 
     //Bootbox from admin/index.js inherited for deletion confirm
 });
+
+*/

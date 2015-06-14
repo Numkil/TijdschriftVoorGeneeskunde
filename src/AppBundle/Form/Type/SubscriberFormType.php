@@ -33,8 +33,10 @@ class SubscriberFormType extends AbstractType{
             ->add('sameaddress', 'checkbox', array(
         	   		'label' => 'Delivery address and facturation address are the same',
             		'mapped' => false,
+
             		'data' => false,
                     'required' => false,
+
             	))
             ->add('vatNumber', 'text', array('required' => false))
             /*->add('paperversion', 'checkbox', array(
@@ -42,6 +44,8 @@ class SubscriberFormType extends AbstractType{
 				    'required' => false,
 
 				))*/
+
+            ->add('promo', 'text', array('required' => false))
 			->add('save', 'submit');
 	}
 

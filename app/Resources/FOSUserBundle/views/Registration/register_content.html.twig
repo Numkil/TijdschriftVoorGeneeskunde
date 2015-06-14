@@ -1,93 +1,100 @@
 {% trans_default_domain 'FOSUserBundle' %}
-
-{% if '/register' in app.request.requestUri %}
-<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST"
-{% else %}
-<form action="{{ path('createUser') }}" {{ form_enctype(form) }} method="POST"
-{% endif %}
-class="form-horizontal">
-
-    {% for child in form.children %}
-        {% if child.vars.errors is defined and child.vars.errors|length%}
-        <div class="alert alert-block alert-danger">
-            <a class="close" data-dismiss="alert">×</a>
-            {{ form_errors(child) }}
-        </div>
-        {% endif %}
-    {% endfor %}
-
-    <div class="form-group">
-        <label for="username" class="col-sm-2 control-label">{{ form_label(form.username) }}</label>
-        <div class="col-sm-8">
-            {{ form_widget(form.username, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">{{ form_label(form.name) }}:</label>
-        <div class="col-sm-4">
-            {{ form_widget(form.name, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
-        <label for="firstname" class="col-sm-2 control-label">{{ form_label(form.firstname) }}:</label>
-        <div class="col-sm-4" >
-            {{ form_widget(form.firstname, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">{{ form_label(form.email) }}</label>
-        <div class="col-lg-8">
-            {{ form_widget(form.email, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="telephone" class="col-sm-2 control-label">{{ form_label(form.telephone) }}:</label>
-        <div class="col-lg-8">
-            {{ form_widget(form.telephone, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
-    </div>
-
-    <div class="form-group">
-        {% for passwordField in form.plainPassword %}
-        <label for="password" class="col-sm-2 control-label">{{ form_label(passwordField) }}</label>
-        <div class="col-sm-4">
-            {{ form_widget(passwordField, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
-        {% endfor %}
-    </div>
-    {% if '/register/' in app.request.requestUri %}
-
-    {% else %}
-        <div class="form-group">
-            <label for="bookstore" class="col-sm-2 control-label">{{ form_label(form.bookstore) }}:</label>
-            <div class="col-lg-8">
-                {{ form_widget(form.bookstore, { 'attr' : { 'class': 'form-control' } }) }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="healthcare" class="col-sm-2 control-label">{{ form_label(form.healthcare) }}:</label>
-            <div class="col-lg-8">
-                {{ form_widget(form.healthcare, { 'attr' : { 'class': 'form-control' } }) }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="role" class="col-sm-2 control-label">{{ form_label(form.role) }}:</label>
-            <div class="col-lg-8">
-                {{ form_widget(form.role, { 'attr' : { 'class': 'form-control' } }) }}
-            </div>
-        </div>
-    {% endif %}
-
-    {{ form_rest(form) }}
-    <div>
-        <button type="submit" class="btn btn-primary"> {{ 'registration.submit'|trans }} </button>
-        {% trans_default_domain '' %}
-        {% if '/register/' in app.request.requestUri %}
-            <a href="{{path('homepage')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+<div class="col-sm-6">
+    <div class="jumbotron">
+        <h1>Register</h1>
+        {% if '/register' in app.request.requestUri %}
+        <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST"
         {% else %}
-            <a href="{{path('userOverview')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+        <form action="{{ path('createUser') }}" {{ form_enctype(form) }} method="POST"
         {% endif %}
+        class="form-horizontal">
+
+            {% for child in form.children %}
+                {% if child.vars.errors is defined and child.vars.errors|length%}
+                <div class="alert alert-block alert-danger">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ form_errors(child) }}
+                </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="form-group">
+                <label for="username" class="col-sm-4 control-label">{{ form_label(form.username) }}</label>
+                <div class="col-sm-8">
+                    {{ form_widget(form.username, { 'attr' : { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="col-sm-4 control-label">{{ form_label(form.name) }}:</label>
+                <div class="col-sm-8">
+                    {{ form_widget(form.name, { 'attr' : { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="firstname" class="col-sm-4 control-label">{{ form_label(form.firstname) }}:</label>
+                <div class="col-sm-8" >
+                    {{ form_widget(form.firstname, { 'attr' : { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="col-sm-4 control-label">{{ form_label(form.email) }}</label>
+                <div class="col-lg-8">
+                    {{ form_widget(form.email, { 'attr' : { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="telephone" class="col-sm-4 control-label">{{ form_label(form.telephone) }}:</label>
+                <div class="col-lg-8">
+                    {{ form_widget(form.telephone, { 'attr' : { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            {% for passwordField in form.plainPassword %}
+            <div class="form-group">
+                <label for="password" class="col-sm-4 control-label">{{ form_label(passwordField) }}</label>
+                <div class="col-sm-8">
+                    {{ form_widget(passwordField, { 'attr' : { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+            {% endfor %}
+            {% if '/register/' in app.request.requestUri %}
+
+            {% else %}
+                <div class="form-group">
+                    <label for="bookstore" class="col-sm-4 control-label">{{ form_label(form.bookstore) }}:</label>
+                    <div class="col-lg-8">
+                        {{ form_widget(form.bookstore, { 'attr' : { 'class': 'form-control' } }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="healthcare" class="col-sm-4 control-label">{{ form_label(form.healthcare) }}:</label>
+                    <div class="col-lg-8">
+                        {{ form_widget(form.healthcare, { 'attr' : { 'class': 'form-control' } }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="role" class="col-sm-4 control-label">{{ form_label(form.role) }}:</label>
+                    <div class="col-lg-8">
+                        {{ form_widget(form.role, { 'attr' : { 'class': 'form-control' } }) }}
+                    </div>
+                </div>
+            {% endif %}
+
+            {{ form_rest(form) }}
+            <div>
+                <button type="submit" class="btn btn-primary"> {{ 'registration.submit'|trans }} </button>
+                {% trans_default_domain '' %}
+                {% if '/register/' in app.request.requestUri %}
+                    <a href="{{path('homepage')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+                {% else %}
+                    <a href="{{path('userOverview')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
+                {% endif %}
+            </div>
+            </div>
+        </form>
     </div>
-    </div>
-</form>
+
+</div>
