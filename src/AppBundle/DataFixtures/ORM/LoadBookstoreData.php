@@ -47,6 +47,7 @@ class LoadBookstoreData extends AbstractFixture implements OrderedFixtureInterfa
         $address->setPostalCode(4498);
         $address->setCountry('Belgium');
         $bookstore->setAddress($address);
+        $bookstore->setVatNumber('429996446');
 
         $user = $manager->getRepository('AppBundle:User')->findOneBy(array('username' => 'testuserbookstore'));
         $user->setBookstore($bookstore);
@@ -59,6 +60,7 @@ class LoadBookstoreData extends AbstractFixture implements OrderedFixtureInterfa
         $bookstore = new Bookstore();
         $bookstore->setName('de goeie');
         $bookstore->setEmail('de@goei.zwendel');
+        $bookstore->setVatNumber('445255437');
 
         $number = '0497 623 888';
         $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
@@ -84,6 +86,6 @@ class LoadBookstoreData extends AbstractFixture implements OrderedFixtureInterfa
      */
     public function getOrder()
     {
-        return 4;
+        return 6;
     }
 }

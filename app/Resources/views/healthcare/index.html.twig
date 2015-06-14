@@ -23,6 +23,7 @@
                     <th>{{ 'Address'|trans }}</th>
 			 		<th></th>
 			 		<th></th>
+			 		<th></th>
                     </tr>
 			 	</thead>
 			 	<tbody>
@@ -33,8 +34,8 @@
 			 			<td>{{ healthcare.telephone }}</td>
 			 			<td>{{ healthcare.email }}</td>
 			 			<td>{{ healthcare.address.street}}, {{ healthcare.address.postalcode}} {{ healthcare.address.municipality }}</td>
-			 			<td><a href="{{path('updateHealthcare', {id:healthcare.id})}}" class="btn
-                                btn-link">{{ 'Update' | trans }}</a></td>
+			 			<td><a href="{{path('healthcareDetails', {id:healthcare.id})}}">{{ 'Details' | trans }}</a></td>
+			 			<td><a href="{{path('updateHealthcare', {id:healthcare.id})}}">{{ 'Update' | trans }}</a></td>
 			 			<td><a href="{{path('removeHealthcare', {id:healthcare.id})}}" class="btn
                                 btn-danger" data-bb="confirm">{{ 'Remove' | trans }}</a></td>
 			 		</tr>

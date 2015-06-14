@@ -1,0 +1,48 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+
+<h1>{% trans %}Bookstore details{% endtrans %}</h1>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            {% trans %}Name{% endtrans %}
+        </dt>
+        <dd>
+            {{ bookstore.name }}
+        </dd>
+        <dt>
+            {% trans %}Telephone{% endtrans %}
+        </dt>
+        <dd>
+            {{ bookstore.telephone }}
+        </dd>
+        <dt>
+            {% trans %}Email{% endtrans %}
+        </dt>
+        <dd>
+            {{ bookstore.email }}
+        </dd>
+        <dt>
+            {% trans %}Address{% endtrans %}
+        </dt>
+        <dd>
+            {{ bookstore.email }}
+        </dd>
+        <dt>
+            {% trans %}Vat number{% endtrans %}
+        </dt>
+        <dd>
+            {{ bookstore.vatNumber }}
+        </dd>
+    </dl>
+</div>
+
+<div class="row">
+    <a href="{{path('updateBookstore', {id:bookstore.id})}}" class="btn btn-link">{{ 'Update' | trans }}</a>
+    <a class="invoiceDownload" href="{{path('createBookstoreInvoice', {id: bookstore.id})}}">generate invoice</a>
+    <a href="{{path('bookstoreInvoiceOverview', {id:bookstore.id})}}" class="btn btn-link">{{ 'View generated invoices' | trans }}</a>
+</div>
+
+{% endblock %}
