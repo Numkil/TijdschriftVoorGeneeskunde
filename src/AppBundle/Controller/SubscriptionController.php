@@ -215,6 +215,19 @@ class SubscriptionController extends Controller{
     }
 
     /**
+     * @Route("/admin/subscription/delete/{userid}/{subscriptionid}/", name="deleteSubscription")
+     */
+    public function deleteSubscription(Request $request, $userid, $subscriptionid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('DELETE FROM AppBundle:Subscription s WHERE s.id = '.$subscriptionid);
+        $query->execute();
+
+        return $this->redirectToRoute('viewSpecificUser', array( 'userid' => $userid ));
+
+    }
+
+    /**
      * @Route("/subscriber/{userid}/transferform/{subscriptionid}", name="getTransferForm")
      */
     public function getTransferForm(Request $request, $userid, $subscriptionid)
@@ -241,7 +254,7 @@ class SubscriptionController extends Controller{
     }
 
     /**
-     * @Route("/subscriber/{userid}/invoice/{subscriptionid}/{ordernumber}", name="createInvoice", defaults={"ordernumber" = ""})
+     * @Route("/subscriber/{userid}/invoice/{subscriptionid}/{ordernumber}", name="createSubscriptionInvoice", defaults={"ordernumber" = ""})
      */
     public function createInvoice(Request $request, $userid, $subscriptionid, $ordernumber){
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
