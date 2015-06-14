@@ -58,7 +58,6 @@
                             <th></th>
                             <th></th>
                             <th></th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -98,6 +97,10 @@
                                 </div>
                                 {% endif %}
                             {% endif %}
+                            </td>
+                            <td>
+                                <a data-bb="confirm" class="btn btn-danger" href="{{path('deleteSubscription', {userId: user.id, subscriptionId: subje.id})}}">
+                                    {{ 'Remove' | trans }}</a>
                             </td>
                         </tr>
                     {% endfor %}

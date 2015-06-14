@@ -34,7 +34,7 @@ class SubscriberFormType extends AbstractType{
         	   		'label' => 'Delivery address and facturation address are the same',
             		'mapped' => false,
 
-            		'data' => false,
+            		'data' => true,
                     'required' => false,
 
             	))
@@ -45,8 +45,14 @@ class SubscriberFormType extends AbstractType{
 
 				))*/
 
-            ->add('promo', 'text', array('required' => false))
+            ->add('promoCode', 'text', array(
+                    'required' => false,
+                    'label' => 'Promo code',
+                    'mapped' => false,
+                ))
 			->add('save', 'submit');
+
+            
 	}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -59,4 +65,5 @@ class SubscriberFormType extends AbstractType{
 	public function getName(){
 		return 'SubscriberForm';
 	}
+
 }

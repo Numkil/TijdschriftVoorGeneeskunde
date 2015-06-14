@@ -40,7 +40,7 @@
                     {{ form_widget(form.school) }}
 
                     {{ form_label(form.graduation) }}
-                    {{ form_widget(form.graduation, { 'attr': {'class': 'form-group'}}) }}
+                    {{ form_widget(form.graduation) }}
 
                     {{ form_label(form.pricingtype) }}
                     {{ form_widget(form.pricingtype) }}
@@ -61,7 +61,7 @@
                 <div id="deliveryAddressPostalCode">
                     {{ form_label(form.deliveryaddress.postalCode) }}
                     {{ form_widget(form.deliveryaddress.postalCode) }}
-                </div>
+                </div>/
 
                 <div id="deliveryAddressMunicipality">
                     {{ form_label(form.deliveryaddress.municipality) }}
@@ -108,6 +108,10 @@
         <div class="col-md-12" id="vatNumber">
             {{ form_label(form.vatNumber) }}
             {{ form_widget(form.vatNumber) }}
+        </div>
+        <div class="col-md-12" id="promoCode">
+            {{ form_label(form.promoCode) }} 
+            {{ form_widget(form.promoCode, { 'attr': {'placeholder': 'optional'}}) }}
         </div>
 
         {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}

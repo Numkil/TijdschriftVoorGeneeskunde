@@ -70,6 +70,25 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         //Role of the testuser ==> every access
         $user->setRoles(array('ROLE_USER'));
         $manager->persist($user);
+
+        //FOSUserBundle stuffs
+        $user = $fosusermanager->createUser();
+        $user->setUserName('slacker');
+        $user->setEmail('slack@test.test');
+        $user->setPlainPassword('p@ssword');
+        $user->setEnabled(true);
+
+        //TvG specific data
+        $user->setName('slack');
+        $user->setFirstName('er');
+        $number = '0497 945 789';
+        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+        $benumber = $phoneUtil->parse($number, 'BE');
+        $user->setTelephone($benumber);
+        //Role of the testuser ==> every access
+        $user->setRoles(array('ROLE_USER'));
+
+        $manager->persist($user);
         $manager->flush();
     }
 
