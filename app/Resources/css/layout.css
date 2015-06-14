@@ -73,9 +73,7 @@ body{
     min-width: 220px;
     width: 14%;
     overflow:hidden;
-    text-align:justify;
-
-    
+    text-align:justify; 
 }
 
 .navbar.navbar-inverse.navbar-fixed-top {
@@ -103,18 +101,6 @@ body{
     visibility: visible;
 }
 
-}
-
-.nav.navbar-nav.side-nav{
-    margin-top: 50px;
-    min-width: 220px;
-    width: 14%;
-    overflow:hidden;
-    text-align:justify;
-
-
-}
-
 .navbar.navbar-inverse.navbar-fixed-top {
    height: auto;
      min-height: 100px;
@@ -140,16 +126,24 @@ body{
     
 }
 
-.dropdown-toggle a:link a:visited{
-    
+.nav{
+    color: #FFF !important;
+    background-color: #75C1D4 !important;
 }
 
-.dropdown-toggle a  a:active a:hover{
+.nav a:link, a:visited{
+    color: #FFF !important;
+    background-color: #75C1D4 !important;
+}
+
+.nav a:hover, a:active{
     color: #75C1D4 !important;
+    background-color: #FFF !important;
 }
 
 .dropdown-menu{
-    background-color: #75C1D4;
+    background-color: #75C1D4 !important;
+    color: #FFF !important;
 }
 
 .banner{
@@ -166,10 +160,11 @@ body{
     font-size: 2em;
     width: 100%;
     color: #FAFAFA;
+    margin-top: 10px;
 }
 
 .banner-subtitle{
-    padding-left: 10%;
+    padding: 10px 0px 0px 60px;
     font-size: 0.8em;
     width: 100%;
     color: #FAFAFA;
@@ -212,6 +207,19 @@ body{
 .jumbotron h1{
     padding-bottom: 30px;
     
+}
+
+.search500{
+    padding: 15px 10px 0px 10px;
+    border-radius: 5px;
+    border: 1px solid #75C1D4;
+    margin: 30px 0px 20px 0px;
+    background-color: #FFF;
+}
+
+.search500 p{
+    font-size: 1.1em;
+    text-align: center;
 }
 
 .status-legend table td{

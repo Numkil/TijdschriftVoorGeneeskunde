@@ -1,48 +1,50 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
+<div class="col-sm-12">
+    <div class="jumbotron">
+        <h1>{% trans %}Healthcare organization details{% endtrans %}</h1>
 
-<h1>{% trans %}Healthcare organization details{% endtrans %}</h1>
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    {% trans %}Name{% endtrans %}
+                </dt>
+                <dd>
+                    {{ healthcare.name }}
+                </dd>
+                <dt>
+                    {% trans %}Telephone{% endtrans %}
+                </dt>
+                <dd>
+                    {{ healthcare.telephone }}
+                </dd>
+                <dt>
+                    {% trans %}Email{% endtrans %}
+                </dt>
+                <dd>
+                    {{ healthcare.email }}
+                </dd>
+                <dt>
+                    {% trans %}Address{% endtrans %}
+                </dt>
+                <dd>
+                    {{ healthcare.email }}
+                </dd>
+                <dt>
+                    {% trans %}Vat number{% endtrans %}
+                </dt>
+                <dd>
+                    {{ healthcare.vatNumber }}
+                </dd>
+            </dl>
+        </div>
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            {% trans %}Name{% endtrans %}
-        </dt>
-        <dd>
-            {{ healthcare.name }}
-        </dd>
-        <dt>
-            {% trans %}Telephone{% endtrans %}
-        </dt>
-        <dd>
-            {{ healthcare.telephone }}
-        </dd>
-        <dt>
-            {% trans %}Email{% endtrans %}
-        </dt>
-        <dd>
-            {{ healthcare.email }}
-        </dd>
-        <dt>
-            {% trans %}Address{% endtrans %}
-        </dt>
-        <dd>
-            {{ healthcare.email }}
-        </dd>
-        <dt>
-            {% trans %}Vat number{% endtrans %}
-        </dt>
-        <dd>
-            {{ healthcare.vatNumber }}
-        </dd>
-    </dl>
+        <div class="row">
+            <a href="{{path('updateBookstore', {id:healthcare.id})}}" class="btn btn-link">{{ 'Update' | trans }}</a>
+            <a href="{{path('createHealthcareInvoice', {id: healthcare.id})}}" class="invoiceDownload btn btn-link" >Generate invoice</a>
+            <a href="{{path('healthcareInvoiceOverview', {id:healthcare.id})}}" class="btn btn-link">{{ 'View generated invoices' | trans }}</a>
+        </div>
+    </div>
 </div>
-
-<div class="row">
-    <a href="{{path('updateBookstore', {id:healthcare.id})}}" class="btn btn-link">{{ 'Update' | trans }}</a>
-    <a href="{{path('createHealthcareInvoice', {id: healthcare.id})}}" class="invoiceDownload btn btn-link" >Generate invoice</a>
-    <a href="{{path('healthcareInvoiceOverview', {id:healthcare.id})}}" class="btn btn-link">{{ 'View generated invoices' | trans }}</a>
-</div>
-
 {% endblock %}

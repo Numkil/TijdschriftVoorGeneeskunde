@@ -30,11 +30,11 @@ class SideMenuBuilder extends ContainerAware
             ),
         ));
 
+        $menu->addChild($this->container->get('translator')->trans('Home'), array('route' => 'glance'));
         if($security->isGranted('ROLE_PAIDUSER'))
         {
             $menu->addChild($this->container->get('translator')->trans('Articles'), array('route' => 'articleOverview'));
         }
-        $menu->addChild($this->container->get('translator')->trans('Home'), array('route' => 'glance'));
         $menu->addChild($this->container->get('translator')->trans('Notices'), array('route' => 'noticeOverview'));
         $menu->addChild($this->container->get('translator')->trans('Agenda'), array('route' => 'agenda'));
         $menu->addChild($this->container->get('translator')->trans('Editors'), array('route' => 'editors'));

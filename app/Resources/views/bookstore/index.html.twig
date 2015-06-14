@@ -1,49 +1,52 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-<h1>{% trans %}Bookstore overview{% endtrans %}</h1>
+	<div class="col-sm-12">
+        <div class="jumbotron">
+			<h1>{% trans %}Bookstore overview{% endtrans %}</h1>
 
-    {% if is_granted('ROLE_ADMIN') %}
-    <div class="row add-button">
-    	<div class="col-md-12">
-            <a href="{{path('createBookstore')}}" class="btn btn-primary">{% trans %}Add bookstore{% endtrans %}</a>
-    	</div>
-    </div>
-    {% endif %}
+		    {% if is_granted('ROLE_ADMIN') %}
+		    <div class="row add-button">
+		    	<div class="col-md-12">
+		            <a href="{{path('createBookstore')}}" class="btn btn-primary">{% trans %}Add bookstore{% endtrans %}</a>
+		    	</div>
+		    </div>
+		    {% endif %}
 
-    <div class="row">
-    	<div class="col-md-12">
-    		<table id="adminBookstoreOverview" class="table table-striped">
-			 	<thead>
-                    <tr>
-			 		<th>#</th>
-                    <th>{{ 'Title'|trans }}</th>
-                    <th>{{ 'Telephone'|trans }}</th>
-                    <th>{{ 'Email'|trans }}</th>
-                    <th>{{ 'Address'|trans }}</th>
-                    <th></th>
-			 		<th></th>
-			 		<th></th>
-                    </tr>
-			 	</thead>
-			 	<tbody>
-			 		{% for bookstore in bookstores %}
-			 		<tr>
-			 			<td>{{ bookstore.id }}</td>
-			 			<td>{{ bookstore.name }}</td>
-			 			<td>{{ bookstore.telephone }}</td>
-			 			<td>{{ bookstore.email }}</td>
-			 			<td>{{ bookstore.address.street}}, {{ bookstore.address.postalcode}} {{ bookstore.address.municipality }}</td>
-			 			<td><a href="{{path('bookstoreDetails', {id:bookstore.id})}}">{{ 'Details' | trans }}</a></td>
-			 			<td><a href="{{path('updateBookstore', {id:bookstore.id})}}">{{ 'Update' | trans }}</a></td>
-			 			<td><a href="{{path('removeBookstore', {id:bookstore.id})}}" class="btn
-                                btn-danger" data-bb="confirm">{{ 'Remove' | trans }}</a></td>
-                                
-			 		</tr>
-					{% endfor %}
-			 	</tbody>
-			</table>
+		    <div class="row">
+		    	<div class="col-md-12">
+		    		<table id="adminBookstoreOverview" class="table table-striped">
+					 	<thead>
+		                    <tr>
+					 		<th>#</th>
+		                    <th>{{ 'Title'|trans }}</th>
+		                    <th>{{ 'Telephone'|trans }}</th>
+		                    <th>{{ 'Email'|trans }}</th>
+		                    <th>{{ 'Address'|trans }}</th>
+		                    <th></th>
+					 		<th></th>
+					 		<th></th>
+		                    </tr>
+					 	</thead>
+					 	<tbody>
+					 		{% for bookstore in bookstores %}
+					 		<tr>
+					 			<td>{{ bookstore.id }}</td>
+					 			<td>{{ bookstore.name }}</td>
+					 			<td>{{ bookstore.telephone }}</td>
+					 			<td>{{ bookstore.email }}</td>
+					 			<td>{{ bookstore.address.street}}, {{ bookstore.address.postalcode}} {{ bookstore.address.municipality }}</td>
+					 			<td><a href="{{path('bookstoreDetails', {id:bookstore.id})}}">{{ 'Details' | trans }}</a></td>
+					 			<td><a href="{{path('updateBookstore', {id:bookstore.id})}}">{{ 'Update' | trans }}</a></td>
+					 			<td><a href="{{path('removeBookstore', {id:bookstore.id})}}" class="btn
+		                                btn-danger" data-bb="confirm">{{ 'Remove' | trans }}</a></td>
+		                                
+					 		</tr>
+							{% endfor %}
+					 	</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
-
 {% endblock %}

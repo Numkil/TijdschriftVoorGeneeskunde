@@ -1,41 +1,51 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <h1>{{ 'Promo overview'|trans }}</h1>
+<div class="col-sm-12">
+    <div class="jumbotron">
+	    <h1>{{ 'Promo overview'|trans }}</h1>
 
-    {% if is_granted('ROLE_ADMIN') %}
-    {{ form_start(promo) }}
-        	{{ form_errors(promo) }}
-    	<div class="form-group">
-	        <div class="col-sm-8">
-	        	 {{ form_widget(promo.code, { 'attr' : { 'placeholder': 'Enter promo code' } }) }}
-	            {{form_widget(promo.save, { 'attr': {'class': 'btn btn-success'}})}}
-	            {{ form_rest(promo) }}
-	        </div>
+	    {% if is_granted('ROLE_ADMIN') %}
+	    <div class="row">
+	    	{{ form_start(promo) }}
+	        {{ form_errors(promo) }}
+	    	<div class="form-group">
+	    		<div class="col-sm-8">
+	    		</div>
+		        <div class="col-sm-2">
+		        	 {{ form_widget(promo.code, { 'attr' : { 'class': 'form-control', 'placeholder': 'Enter promo code' } }) }}
+		        </div>
+		        <div class="col-sm-2">
+		        	{{form_widget(promo.save, { 'attr': {'class': 'btn btn-success'}})}}
+		            {{ form_rest(promo) }}
+		        </div>
+		    </div>
 	    </div>
-    </form>
-    {% endif %}
+	    </form>
+	    {% endif %}
 
-	<table id="adminPromoOverview" border="0" cellspacing="5" cellpadding="5" class="display table" width="100%" data-toggle="datatable" >
-	 	<thead>
-            <tr>
-		 		<th>#</th>
-		 		<th>Code</th>
-		 		<th></th>
-            </tr>
-	 	</thead>
-	 	<tbody>
-	 		{% for promo in promos %}
-	 		<tr>
-	 			<td>{{ promo.id }}</td>
-	 			<td>{{ promo.code }}</td>
-                <td><a href="{{path('removePromo', {id:promo.id})}}" class="btn btn-danger"
-                        data-bb="confirm">
-                        {{ 'Remove'|trans }}</a></td>
-	 		</tr>
-			{% endfor %}
-	 	</tbody>
-	</table>
-	{{ form_end(promo) }}
+		<table id="adminPromoOverview" border="0" cellspacing="5" cellpadding="5" class="display table" width="100%" data-toggle="datatable" >
+		 	<thead>
+	            <tr>
+			 		<th>#</th>
+			 		<th>Code</th>
+			 		<th></th>
+	            </tr>
+		 	</thead>
+		 	<tbody>
+		 		{% for promo in promos %}
+		 		<tr>
+		 			<td>{{ promo.id }}</td>
+		 			<td>{{ promo.code }}</td>
+	                <td><a href="{{path('removePromo', {id:promo.id})}}" class="btn btn-danger"
+	                        data-bb="confirm">
+	                        {{ 'Remove'|trans }}</a></td>
+		 		</tr>
+				{% endfor %}
+		 	</tbody>
+		</table>
+		{{ form_end(promo) }}
+    </div>
+</div>
 {% endblock %}
 
