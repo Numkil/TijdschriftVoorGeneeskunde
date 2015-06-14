@@ -10,7 +10,7 @@ use Exception;
 class NumberParser{
 
 	protected $_smallNumberMapping = array(
-		0 => '',
+		0 => 'nul',
 		1 => 'een',
 		2 => 'twee',
 		3 => 'drie',
@@ -119,6 +119,7 @@ class NumberParser{
 	*@return returns a string representing the number in full Dutch text
 	*/
 	public function parseNumber($number){
+		if($number === 0) return 'nul';
 		if($number > 1000000000000) throw new Exception('Number must be smaller than 1000 000 000 000.');
 
 		$result = '';

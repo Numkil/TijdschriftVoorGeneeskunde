@@ -95,6 +95,11 @@ class Invoice
     protected $_healthcare;
 
     /**
+     * @ORM\Column(name="subscriberNumbers", type="string", length=150, nullable=true)
+     */
+    protected $_subscriberNumbers;
+
+    /**
      * @ORM\Column(name="isPaid", type="boolean")
      */
     protected $_isPaid;
@@ -363,4 +368,43 @@ class Invoice
         return $this->_healthcare;
     }
 
+    /**
+    *Set this invoice's subscriberNumbers
+    *@param string[] subscriberNumbers
+    *@return this
+    */
+    public function setSubscriberNumbers($subscriberNumbers){
+        $this->_subscriberNumbers = serialize($subscriberNumbers);
+        return $this;
+    }
+
+    /**
+    *Set this invoice's subscriberNumbers
+    *@return String[] subscriberNumbers
+    */
+    public function getSubscriberNumbers(){
+        return unserialize($this->_subscriberNumbers);
+    }
+
+    /**
+     * set isPaid
+     *
+     * @param boolean
+     * @return this
+     */
+    public function setWantsBill($isPaid)
+    {
+        $this->_isPaid = $isPaid;
+        return $this;
+    }
+
+    /**
+     * get isPaid
+     *
+     * @return boolean
+     */
+    public function getWantsBill()
+    {
+        return $this->_isPaid;
+    }
 }

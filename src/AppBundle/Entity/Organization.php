@@ -159,6 +159,20 @@ abstract class Organization
     }
 
     /**
+     * @return String[] subscriberNumbers
+     */
+    public function getUnpaidSubscriberNumbers()
+    {
+        $unpaidSubscriberNumbers = array();
+        foreach ($this->_subscribers as $subscriber) {
+            if(!$subscriber->getSubscriber()->hasPaidActiveSubscription()){
+                array_push($unpaidSubscriberNumbers, strval($subscriber->getId()));
+            }
+        }
+        return $unpaidSubscriberNumbers;
+    }
+
+    /**
      * Add one user to subscribers
      * @param User $subscriber
      * @return this

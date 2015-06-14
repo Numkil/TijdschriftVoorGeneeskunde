@@ -241,7 +241,7 @@ class SubscriptionController extends Controller{
     }
 
     /**
-     * @Route("/subscriber/{userid}/invoice/{subscriptionid}/{ordernumber}", name="createInvoice", defaults={"ordernumber" = ""})
+     * @Route("/subscriber/{userid}/invoice/{subscriptionid}/{ordernumber}", name="createSubscriptionInvoice", defaults={"ordernumber" = ""})
      */
     public function createInvoice(Request $request, $userid, $subscriptionid, $ordernumber){
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
@@ -276,20 +276,9 @@ class SubscriptionController extends Controller{
     }
 
     /**
-     * @Route("/invoice/{invoiceid}/", name="getInvoice")
-     */
-    public function getInvoice(Request $request, $invoiceid){
-        $invoice = $this->getDoctrine()->getRepository('AppBundle:Invoice')->find($invoiceid);
-
-        $pdfGenerator = new PdfGenerator();
-        $pdfGenerator->generateInvoicePdf($invoice);
-        exit();
-    }
-
-    /**
      * @Route("/subscription/{subscriptionid}/invoices/", name="subscriptionInvoiceOverview")
      */
-    public function indexAction(Request $request, $subscriptionid){
+    public function invoiceIndexAction(Request $request, $subscriptionid){
         $invoices = $this->getDoctrine()
             ->getRepository('AppBundle:Invoice')->findBy(array('_subscription' => $subscriptionid), array('_invoiceNumber' => 'ASC'));
 
