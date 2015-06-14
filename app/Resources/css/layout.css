@@ -88,6 +88,10 @@ body{
     
 }
 
+.navbar.navbar-inverse.navbar-fixed-top a:hover{
+    color: #75C1D4; 
+}
+
 .current a{
     color: #75C1D4 !important;
 }
