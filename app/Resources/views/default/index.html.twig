@@ -1,14 +1,18 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <h1>{{ 'Homepage' | trans }}</h1>
+	<div class="col-sm-12">
+        <div class="jumbotron">
+		    <h1>{{ 'Homepage' | trans }}</h1>
 
 
-    {{ content.content | raw }}
+		    {{ content.content | raw }}
 
-    {% if is_granted('ROLE_SUPER_ADMIN') %}
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
-    {% endif %}
+		    {% if is_granted('ROLE_SUPER_ADMIN') %}
+		        {{ form_start(form) }}
+		        {{ form_widget(form) }}
+		        {{ form_end(form) }}
+		    {% endif %}
+		</div>
+	</div>
 {% endblock %}

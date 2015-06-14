@@ -1,35 +1,36 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
+<div class="col-sm-12">
+    <div class="jumbotron">
+	    <div class="row">
+	    	<div class="jumbotron">
+	        <h1>{% trans %}Notice overview{% endtrans %}</h1>
 
-
-    <div class="row">
-    	<div class="jumbotron">
-        <h1>{% trans %}Notice overview{% endtrans %}</h1>
-
-	    {% for notice in pagination %}
-	    	<div class="row">
-	    		<div class="col-md-12">
-		    		<div class="notice-panel">
-						<div class="notice-title">
-							{{ notice.title }}
-						</div>
-						<div class="notice-date">
-							<span class="glyphicon glyphicon-calendar"></span>
-							{{ notice.creationDate|date("d/m/Y h:i") }}
-						</div>
-						<div class="notice-message">
-							{{ notice.message }}
+		    {% for notice in pagination %}
+		    	<div class="row">
+		    		<div class="col-md-12">
+			    		<div class="notice-panel">
+							<div class="notice-title">
+								{{ notice.title }}
+							</div>
+							<div class="notice-date">
+								<span class="glyphicon glyphicon-calendar"></span>
+								{{ notice.creationDate|date("d/m/Y h:i") }}
+							</div>
+							<div class="notice-message">
+								{{ notice.message }}
+							</div>
 						</div>
 					</div>
-				</div>
-	    	</div>
-		{% endfor %}
+		    	</div>
+			{% endfor %}
+			</div>
 		</div>
-	</div>
 
-	<div class="pagination">
-	    {{ knp_pagination_render(pagination) }}
-	</div>
-
+		<div class="pagination">
+		    {{ knp_pagination_render(pagination) }}
+		</div>
+    </div>
+</div>
 {% endblock %}
