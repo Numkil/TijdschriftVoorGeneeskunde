@@ -104,6 +104,10 @@ class Invoice
      */
     protected $_isPaid;
 
+    public function __construct(){
+        $this->_isPaid = false;
+    }
+
     /**
     *Set this invoice's id
     *@param integer id
