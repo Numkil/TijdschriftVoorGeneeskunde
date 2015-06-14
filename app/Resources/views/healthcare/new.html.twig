@@ -2,67 +2,71 @@
 
 {% block content %}
 
-    <h1>{{ 'New healthcare'|trans }}</h1>
-    {% if '/healthcare/new/' in app.request.requestUri %}
-    <form action="{{ path('createHealthcare') }}" method="POST"
-    {% else %}
-    <form action="{{ path('updateHealthcare', {id: healthcareID}) }}" method="POST"
-    {% endif %}
-        class="form-horizontal">
+    <div class="col-sm-12 jumbotron">
+        <h1>{{ 'New healthcare'|trans }}</h1>
+        {% if '/healthcare/new/' in app.request.requestUri %}
+        <form action="{{ path('createHealthcare') }}" method="POST"
+        {% else %}
+        <form action="{{ path('updateHealthcare', {id: healthcareID}) }}" method="POST"
+        {% endif %}
+            class="form-horizontal">
 
-        {% for child in form.children %}
-            {% if child.vars.errors is defined and child.vars.errors|length%}
-            <div class="alert alert-block alert-danger">
-                <a class="close" data-dismiss="alert">×</a>
-                {{ form_errors(child) }}
+            {% for child in form.children %}
+                {% if child.vars.errors is defined and child.vars.errors|length%}
+                <div class="alert alert-block alert-danger">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ form_errors(child) }}
+                </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="form-group col-sm-6">
+                {{ form_label(form.name) }}
+                {{form_widget(form.name, { 'attr' : { 'class': 'form-control' } }) }}
             </div>
-            {% endif %}
-        {% endfor %}
 
-    	<div class="form-group">
-            {{ form_label(form.name) }}
-            {{form_widget(form.name, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
+            <div class="form-group col-sm-6">
+                {{ form_label(form.telephone) }}
+                {{form_widget(form.telephone, { 'attr' : { 'class': 'form-control' } }) }}
+            </div>
 
-        <div class="form-group">
-            {{ form_label(form.telephone) }}
-            {{form_widget(form.telephone, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
+            <div class="form-group col-sm-6">
+                {{ form_label(form.email) }}
+                {{form_widget(form.email, { 'attr' : { 'class': 'form-control' } }) }}
+            </div>
 
-        <div class="form-group">
-            {{ form_label(form.email) }}
-            {{form_widget(form.email, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
+            <div class="form-group col-sm-6">
+                {{ form_label(form.address.street) }}
+                {{form_widget(form.address.street, { 'attr' : { 'class': 'form-control' } }) }}
+            </div>
 
-        <div class="form-group">
-            {{ form_label(form.address.street) }}
-            {{form_widget(form.address.street, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
+            <div class="form-group col-sm-6">
+                {{ form_label(form.address.postalCode) }}
+                {{form_widget(form.address.postalCode, { 'attr' : { 'class': 'form-control' } }) }}
+            </div>
 
-        <div class="form-group">
-            {{ form_label(form.address.postalCode) }}
-            {{form_widget(form.address.postalCode, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
+            <div class="form-group col-sm-6">
+                {{ form_label(form.address.municipality) }}
+                {{form_widget(form.address.municipality, { 'attr' : { 'class': 'form-control' } }) }}
+            </div>
 
-        <div class="form-group">
-            {{ form_label(form.address.municipality) }}
-            {{form_widget(form.address.municipality, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
+            <div class="form-group col-sm-6">
+                {{ form_label(form.address.country) }}
+                {{form_widget(form.address.country, { 'attr' : { 'class': 'form-control' } }) }}
+            </div>
 
-        <div class="form-group">
-            {{ form_label(form.address.country) }}
-            {{form_widget(form.address.country, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
+            <div class="form-group col-sm-6" id="vatNumber">
+                {{ form_label(form.vatNumber) }}
+                {{ form_widget(form.vatNumber, { 'attr' : { 'class': 'form-control' } }) }}
+            </div>
 
-        <div class="form-group" id="vatNumber">
-            {{ form_label(form.vatNumber) }}
-            {{ form_widget(form.vatNumber, { 'attr' : { 'class': 'form-control' } }) }}
-        </div>
+            <div class="form-group col-sm-12">
+                {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
+                <a href="{{path('healthcareOverview')}}" class="btn btn-danger">{% trans %}Cancel{% endtrans %}</a>
 
-        {{form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}})}}
-        <a href="{{path('healthcareOverview')}}" class="btn btn-danger">{% trans %}Cancel{% endtrans %}</a>
+                {{ form_rest(form) }}
 
-    	{{ form_rest(form) }}
-
-    </form>
+            </div>
+        </form>
+    </div>
 {% endblock %}
