@@ -70,13 +70,17 @@
                                 <a href="{{path('editSubscription', {userid: user.id, subscriptionid:subje.id})}}">{{ subje.enddate | date('d-m-Y') }}</a>
                             </td>
                             <td>
-                                <a href="{{path('getTransferForm', {userid: user.id, subscriptionid:subje.id})}}">download transfer form</a>
+                                <a href="{{path('getTransferForm', {userid: user.id,
+                                subscriptionid:subje.id})}}">{{ 'Download transfer form'|trans }}</a>
                             </td>
                             <td>
-                                <a class="invoiceDownload" href="{{path('createSubscriptionInvoice', {userid: user.id, subscriptionid:subje.id})}}">generate invoice</a>
+                                <a class="invoiceDownload" href="{{path('createSubscriptionInvoice',
+                                {userid: user.id, subscriptionid:subje.id})}}">
+                                    {{ 'Generate invoices'|trans }}</a>
                             </td>
                             <td>
-                                <a href="{{path('subscriptionInvoiceOverview', {subscriptionid: subje.id})}}">view generated invoices</a>
+                                <a href="{{path('subscriptionInvoiceOverview', {subscriptionid: subje.id})}}">
+                                    {{ 'View generated invoices'|trans }}</a>
                             </td>
                             <td>
                             {% if is_granted('ROLE_SUPER_ADMIN')  %}

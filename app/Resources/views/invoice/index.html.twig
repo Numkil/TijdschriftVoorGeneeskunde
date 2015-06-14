@@ -20,7 +20,8 @@
 			 			<td>{{ invoice.date |date("d/m/Y") }}</td>
 			 			<td>{{ invoice.invoiceNumber }}</td>
 			 			<td>{{ invoice.orderNumber }}</td>
-			 			<td><a href="{{path('getInvoice', {invoiceid: invoice.id})}}">download invoice</a></td>
+                        <td><a href="{{path('getInvoice', {invoiceid: invoice.id})}}">
+                                {{ 'download invoice'|trans }}</a></td>
 			 		</tr>
 					{% endfor %}
 			 	</tbody>
