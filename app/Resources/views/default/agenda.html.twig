@@ -1,0 +1,13 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <h1>{{ 'Agenda' | trans }}</h1>
+
+    {{ content.content | raw }}
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}

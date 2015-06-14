@@ -16,8 +16,7 @@
                 {% endif %}
             {% endfor %}
 
-
-                {{ form_errors(notice) }}
+            {{ form_errors(notice) }}
             <div class="row">
                 <div class="form-group">
                         <div class="col-sm-12">
@@ -34,12 +33,8 @@
                         <a href="{{path('adminOverview')}}" class="btn btn-danger">{{ 'Cancel'|trans }}</a>
                     </div>
             </div>
-           
-                
-
 
             {{ form_rest(notice) }}
-
 
             {{ form_end(notice) }}
         </div>

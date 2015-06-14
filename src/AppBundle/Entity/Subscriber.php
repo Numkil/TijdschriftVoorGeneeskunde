@@ -194,10 +194,12 @@ class Subscriber
      */
     public function hasPaidSubscription()
     {
-        foreach ($this->_subscriptions as $subscription) {
-           if($subscription->isPaid()){return true;}
+        if($this->_subscriptions){
+            foreach ($this->_subscriptions as $subscription) {
+               if($subscription->isPaid()){return true;}
+            }
+            return false;
         }
-        return false;
     }
 
     /**
@@ -205,10 +207,12 @@ class Subscriber
      */
     public function hasActiveSubscription()
     {
-        foreach ($this->_subscriptions as $subscription) {
-           if($subscription->isActive()){return true;}
+        if($this->_subscriptions){
+            foreach ($this->_subscriptions as $subscription) {
+               if($subscription->isActive()){return true;}
+            }
+            return false;
         }
-        return false;
     }
 
     /**
@@ -216,9 +220,11 @@ class Subscriber
      */
     public function hasPaidActiveSubscription()
     {
-        foreach ($this->_subscriptions as $subscription) {
-           if($subscription->isActive() && $subscription->isPaid()){return true;}
-        }
+       if($this->_subscriptions){
+            foreach ($this->_subscriptions as $subscription) {
+               if($subscription->isActive() && $subscription->isPaid()){return true;}
+            }
+       }
         return false;
     }
 
@@ -227,10 +233,12 @@ class Subscriber
      */
     public function getActiveSubscription()
     {
-        foreach ($this->_subscriptions as $subscription) {
-           if($subscription->isActive()){return $subscription;}
+        if($this->_subscriptions){
+            foreach ($this->_subscriptions as $subscription) {
+               if($subscription->isActive()){return $subscription;}
+            }
+            return null;
         }
-        return null;
     }
 
         /**

@@ -33,14 +33,23 @@
         <a href="{{path('pagePrinter')}}">{{ 'Printer information'|trans }}</a>
     </li>
     {% endif %}
+    {% if not is_granted("ROLE_SUPER_ADMIN") %}
+        {% if not app.user.subscriber or not app.user.subscriber.hasPaidActiveSubscription %}
+            <li>
+                <div class="subscription-info-new">
+                    <a href="{{path('newSubscription', { userid: app.user.id })}}" class="btn btn-success"><span class="glyphicon glyphicon-plus"> </span> {{ 'Subscription'|trans }}</a>
+                </div>
+            </li>
+        {% endif %}
+    {% endif %}
     <li>
-    <a href="{{path('fos_user_profile_show')}}">
-        {{ 'logged_in_as'|trans({'%username%': app.user.username}) }}
-    </a>
+        <a href="{{path('fos_user_profile_show')}}">
+            <span class="glyphicon glyphicon-user"> </span> {{ 'logged_in_as'|trans({'%username%': app.user.username}) }}
+        </a>
     </li>
     <li>
     <a class="btn btn-danger" href="{{ path('fos_user_security_logout') }}">
-        {{ 'logout'|trans }}
+        <span class="glyphicon glyphicon-off"> </span> {{ 'logout'|trans }}
     </a>
     </li>
 
