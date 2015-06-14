@@ -108,6 +108,15 @@ class HealthcareController extends Controller
      */
     public function createInvoice(Request $request, $id, $ordernumber){
         $healthcare = $this->getDoctrine()->getRepository('AppBundle:Healthcare')->find($id);
+
+        if($healthcare->getVatNumber() == null){
+            $this->addFlash(
+                'error',
+                'You have to set your vat number before you can generate an invoice, please edit your subscription to add it!'
+            );
+            return $this->render('healthcare/details.html.twig', array('healthcare' => $healthcare));
+        }
+
         $invoiceNumber = $this->getDoctrine()->getRepository('AppBundle:System')->getInvoiceNumber();
         $em = $this->getDoctrine()->getManager();
 
