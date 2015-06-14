@@ -198,12 +198,8 @@ class PdfGenerator{
   * @param Invoice invoice
   */
   public function generateInvoicePdf($invoice){
-    if(isset($invoice->getOrganization)){
-      $subscriberNumbers = array();
-      foreach ($invoice->getOrganization()->getSubscribers() as $subscriber) {
-        array_push($subscriberNumbers, $subscriber->getId());
-      }
-      $this->generateOrganizationInvoice($invoice->getDate(), $invoice->getName(), $invoice->getStreet(), $invoice->getPostalCode() . " " . $invoice->getMunicipality(), $invoice->getvatNumber(), $invoice->getOrderNumber(), $invoice->getInvoiceNumber(), $subscriberNumbers, $invoice->getPrice(), $invoice->getDiscount(), $invoice->getOgm(), $output = "", $fileName = "");
+    if($invoice->getBookstore() != null || $invoice->getHealthcare() != null){
+      $this->generateOrganizationInvoice($invoice->getDate(), $invoice->getName(), $invoice->getStreet(), $invoice->getPostalCode() . " " . $invoice->getMunicipality(), $invoice->getvatNumber(), $invoice->getOrderNumber(), $invoice->getInvoiceNumber(), $invoice->getSubscriberNumbers(), $invoice->getPrice(), $invoice->getDiscount(), $invoice->getOgm(), $output = "", $fileName = "");
     }else{
       $this->generateSubscriberInvoice($invoice->getDate(), $invoice->getName(), $invoice->getStreet(), $invoice->getPostalCode() . " " . $invoice->getMunicipality(), $invoice->getvatNumber(), $invoice->getOrderNumber(), $invoice->getInvoiceNumber(), $invoice->getSubscription()->getSubscriber()->getId(), $invoice->getPrice(), $invoice->getDiscount(), $invoice->getOgm(), $output = "", $filePath = "");
     }
@@ -226,7 +222,7 @@ class PdfGenerator{
 	public function generateOrganizationInvoice($date, $name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $subscriberNumbers, $price, $discount, $ogm, $output = "", $fileName = ""){
 		
 		$numberOfSubscriptions = count($subscriberNumbers);
-		$pdf = $this->generateInvoiceDefaults($name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $numberOfSubscriptions, $price, $discount, $ogm);
+		$pdf = $this->generateInvoiceDefaults($date, $name, $streetAddress, $municipalityAddress, $vatNumber, $orderNumber, $invoiceNumber, $numberOfSubscriptions, $price, $discount, $ogm);
 		
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B', 16);

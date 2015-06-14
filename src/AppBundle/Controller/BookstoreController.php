@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\Type\BookstoreFormType;
 use AppBundle\Entity\Bookstore;
+use AppBundle\Entity\Invoice;
+use AppBundle\Entity\Types\PaymentType;
+use AppBundle\Service\PdfGenerator;
 
 class BookstoreController extends Controller
 {
@@ -46,6 +49,15 @@ class BookstoreController extends Controller
         );
 
         return $this->render('bookstore/new.html.twig', $parameters);
+    }
+
+    /**
+     * @Route("/bookstore/details/{id}", name="bookstoreDetails")
+     */
+    public function detailsAction(Request $request, $id){
+        $bookstore = $this->getDoctrine()->getRepository('AppBundle:Bookstore')->find($id);
+
+        return $this->render('bookstore/details.html.twig', array('bookstore' => $bookstore));
     }
 
     /**
@@ -89,5 +101,52 @@ class BookstoreController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('bookstoreOverview');
+    }
+
+    /**
+     * @Route("/bookstore/{id}/invoice/{ordernumber}", name="createBookstoreInvoice", defaults={"ordernumber" = ""})
+     */
+    public function createInvoice(Request $request, $id, $ordernumber){
+        $bookstore = $this->getDoctrine()->getRepository('AppBundle:Bookstore')->find($id);
+        $invoiceNumber = $this->getDoctrine()->getRepository('AppBundle:System')->getInvoiceNumber();
+        $em = $this->getDoctrine()->getManager();
+
+        //var_dump($user->getFirstName() . " " . $user->getName());
+
+        $invoice = new Invoice();
+        $invoice->setDate(new \DateTime());
+        $invoice->setName($bookstore->getName());
+        $invoice->setStreet($bookstore->getAddress()->getStreet());
+        $invoice->setPostalCode($bookstore->getAddress()->getPostalCode());
+        $invoice->setMunicipality($bookstore->getAddress()->getMunicipality());
+        $invoice->setVatNumber($bookstore->getVatNumber());
+        $invoice->setOrderNumber($ordernumber);
+        $invoice->setInvoiceNumber(date('Y') . '-' . strval($invoiceNumber));
+        $invoice->setBookstore($bookstore);
+        $invoice->setPrice(PaymentType::getPrice(PaymentType::BOOKSTORE_PRICE));
+        $invoice->setDiscount(PaymentType::getDiscount(PaymentType::BOOKSTORE_PRICE));
+
+        $invoice->setSubscriberNumbers($bookstore->getUnpaidSubscriberNumbers());
+
+        $invoice->setOgm(substr(date('Y'), 1) . sprintf('%04d', $invoiceNumber) . sprintf('%05d', $bookstore->getId()));
+
+        $em->persist($invoice);
+        $bookstore->addInvoice($invoice);
+        $em->flush();
+        $this->getDoctrine()->getRepository('AppBundle:System')->incrementInvoiceNumber();
+
+        $pdfGenerator = new PdfGenerator();
+        $pdfGenerator->generateInvoicePdf($invoice);
+        exit();
+    }
+
+    /**
+     * @Route("/bookstore/{id}/invoices/", name="bookstoreInvoiceOverview")
+     */
+    public function invoiceIndexAction(Request $request, $id){
+        $invoices = $this->getDoctrine()
+            ->getRepository('AppBundle:Invoice')->findBy(array('_bookstore' => $id), array('_invoiceNumber' => 'ASC'));
+
+        return $this->render('invoice/index.html.twig', array('invoices' => $invoices));
     }
 }

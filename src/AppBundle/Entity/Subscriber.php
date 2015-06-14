@@ -214,6 +214,17 @@ class Subscriber
     /**
      * @return boolean
      */
+    public function hasPaidActiveSubscription()
+    {
+        foreach ($this->_subscriptions as $subscription) {
+           if($subscription->isActive() && $subscription->isPaid()){return true;}
+        }
+        return false;
+    }
+
+    /**
+     * @return boolean
+     */
     public function getActiveSubscription()
     {
         foreach ($this->_subscriptions as $subscription) {

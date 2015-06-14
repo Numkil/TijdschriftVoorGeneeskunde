@@ -35,6 +35,7 @@ class LoadHealthCareData extends AbstractFixture implements OrderedFixtureInterf
         $healthcare = new HealthCare();
         $healthcare->setName('Begrensde kwakzalvers');
         $healthcare->setEmail('begrensde@kwak.zalvers');
+        $healthcare->setVatNumber('868519093');
 
         $number = '0497 623 321';
         $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
@@ -59,6 +60,6 @@ class LoadHealthCareData extends AbstractFixture implements OrderedFixtureInterf
      */
     public function getOrder()
     {
-        return 4;
+        return 7;
     }
 }

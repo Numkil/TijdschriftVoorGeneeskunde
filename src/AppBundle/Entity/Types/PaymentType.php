@@ -13,6 +13,7 @@ class PaymentType extends AbstractEnumType
     const STUDENT_PRICE = 'S';            //30 euro
     const FOREIGN_PRICE = 'F';            //70 euro
     const BOOKSTORE_PRICE = 'B';          //?? euro
+    const HEALTHCARE_PRICE = 'H';          //?? euro
     const FREE_PRICE = 'FR';
     const MENTOR_PRICE = 'M';             //30 euro
     const FOREIGN_DOCTOR_PRICE = 'FD';    //?? euro
@@ -22,6 +23,7 @@ class PaymentType extends AbstractEnumType
         self::STUDENT_PRICE => 'Student price',
         self::FOREIGN_PRICE => 'Foreign price',
         self::BOOKSTORE_PRICE => 'Bookstore price',
+        self::HEALTHCARE_PRICE => 'Healthcare price',
         self::FREE_PRICE => 'Free price',
         self::MENTOR_PRICE => 'Mentor price',
         self::FOREIGN_DOCTOR_PRICE => 'Foreign Doctor price',
