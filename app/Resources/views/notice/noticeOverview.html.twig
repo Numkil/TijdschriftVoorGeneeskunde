@@ -1,12 +1,12 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    
+
 
     <div class="row">
     	<div class="jumbotron">
-    	<h1>Notice overview</h1>
-	    
+        <h1>{% trans %}Notice overview{% endtrans %}</h1>
+
 	    {% for notice in pagination %}
 	    	<div class="row">
 	    		<div class="col-md-12">
