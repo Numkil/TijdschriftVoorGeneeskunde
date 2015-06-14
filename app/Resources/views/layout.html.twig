@@ -40,13 +40,17 @@
 
         <!-- Begin page content -->
         <div class="beginpage container" >
-            {% for type, messages in app.session.flashBag.all %}
-                {% for message in messages %}
-                <div class="alert alert-block alert-success">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-block alert-success" role="alert">
                     <a class="close" data-dismiss="alert">×</a>
-                    {{ message|trans }}
+                    {{ flashMessage | trans}}
                 </div>
-                {% endfor %}
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="alert alert-danger" role="alert">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ flashMessage | trans}}
+                </div>
             {% endfor %}
             {% block sidebar %}
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') or

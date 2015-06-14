@@ -259,6 +259,14 @@ class SubscriptionController extends Controller{
     public function createInvoice(Request $request, $userid, $subscriptionid, $ordernumber){
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('id' => $userid));
         $subscription = $this->getDoctrine()->getRepository('AppBundle:Subscription')->findOneBy(array('id' => $subscriptionid));
+        if($subscription->getSubscriber()->getVatNumber() == null){
+            $this->addFlash(
+                'error',
+                'You have to set your vat number before you can generate an invoice, please edit your subscription to add it!'
+            );
+            return $this->render('FOSUserBundle::Profile/show.html.twig', array('user' => $user));
+        }
+
         $invoiceNumber = $this->getDoctrine()->getRepository('AppBundle:System')->getInvoiceNumber();
         $em = $this->getDoctrine()->getManager();
 

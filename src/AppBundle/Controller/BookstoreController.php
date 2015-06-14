@@ -108,6 +108,15 @@ class BookstoreController extends Controller
      */
     public function createInvoice(Request $request, $id, $ordernumber){
         $bookstore = $this->getDoctrine()->getRepository('AppBundle:Bookstore')->find($id);
+
+        if($bookstore->getVatNumber() == null){
+            $this->addFlash(
+                'error',
+                'You have to set your vat number before you can generate an invoice, please edit your subscription to add it!'
+            );
+            return $this->render('bookstore/details.html.twig', array('bookstore' => $bookstore));
+        }
+
         $invoiceNumber = $this->getDoctrine()->getRepository('AppBundle:System')->getInvoiceNumber();
         $em = $this->getDoctrine()->getManager();
 
