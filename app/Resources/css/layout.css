@@ -15,7 +15,6 @@ body{
     position: relative;
     height: auto;
     /*padding-left: 250px;*/
-    
 }
 
 
@@ -239,10 +238,9 @@ body{
 
 .subscription-info-new{
     color: white;
-    background-color: transparent;
-    padding: 20px 20px 20px 20px;
-    margin-bottom: 20px;
+    margin: 10px 0px 0px;
     text-align: center;
+    vertical-align: center;
 }
 
 #facturationAddress{

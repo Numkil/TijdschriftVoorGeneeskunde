@@ -98,6 +98,35 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/agenda/", name="agenda")
+     */
+    public function agendaAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $content = $em->getRepository('AppBundle:PageContent')->findOneBy(array('_url' => '/agenda/'));
+        if(!$content){
+            $content = new PageContent('/agenda/', '');
+            $em->persist($content);
+            $em->flush();
+        }
+        $form = null;
+
+        if($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')){
+            $form = $this->createForm(new PageContentFormType(), $content);
+            $form->handleRequest($request);
+            if($form->isValid()){
+                $em->flush();
+            }
+        }
+
+        return $this->render('default/agenda.html.twig', array(
+            'form' => $form ? $form->createView() : null,
+            'content' => $content,
+        ));
+    }
+
+    /**
      * @Route("/guidelines/", name="guidelines")
      */
     public function guidelinesAction(Request $request)
