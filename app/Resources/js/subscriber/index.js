@@ -25,6 +25,10 @@ $(document).ready(function () {
     $(".invoiceDownload").click(function (e) {
         e.preventDefault();
         var $self = $(this);
+        bootbox.setDefaults({
+            locale: "nl"
+        });
+
         bootbox.prompt("Wat is het bestelbon nummer?", function (result) {
             if (result !== null && result !== "") {
                 $self.attr("href", $self.attr('href') + "/" + result);
