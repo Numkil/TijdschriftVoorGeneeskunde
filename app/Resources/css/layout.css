@@ -285,5 +285,10 @@ body{
 .btn-success:hover{
     background-color: #3c763d !important;
 }
+
+.modal-footer>.btn-default{
+    background-color: #d9534f;
+}
+
 /*#004050;
 75C1D4*/
